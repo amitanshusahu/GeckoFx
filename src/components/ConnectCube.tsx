@@ -1,4 +1,5 @@
 import { motion } from "motion/react"
+import { useId } from "react"
 
 const LINE1 = "M173 68C167.5 57 143.099 30.7861 131.499 33.1861C119.899 35.5861 115.332 49.5194 114.499 56.186C110.999 77.5193 111.399 138.786 140.999 213.186C177.999 306.186 217.499 383.686 249.999 401.186C275.999 415.186 285.499 403.019 286.999 395.186C288.499 390.519 287.6 374.9 284 356.5"
 const LINE2 = "M62.0101 304.286C50.9158 309.593 24.28 333.533 26.4772 345.174C28.6744 356.814 42.5258 361.623 49.1769 362.572C70.4459 366.444 131.71 367.113 206.615 338.816C300.247 303.445 378.424 265.304 396.489 233.114C410.941 207.362 398.942 197.651 391.136 196.015C386.496 194.434 370.863 195.06 352.403 198.338"
@@ -17,7 +18,14 @@ export default function ConnectCube({
   colors?: string[]
   beam?: boolean
 }) {
-  const [primary = "#988BFF", surface = "#191D26", border = "#2A333F", dot = "#384C6E", beamColor = "#FFFFFF"] = colors
+  const [primary, surface, border, dot, beamColor] = colors
+
+  const ids = {
+    p0: useId(),
+    p1: useId(),
+    p2: useId(),
+    p3: useId(),
+  };
 
   return (
     <motion.div
@@ -44,7 +52,7 @@ export default function ConnectCube({
           data-figma-bg-blur-radius="100"
           d="M206.059 7.34668C211.879 3.89279 219.121 3.89279 224.941 7.34668L391.569 106.229C397.185 109.561 400.629 115.607 400.629 122.138V320.862C400.629 327.393 397.185 333.439 391.569 336.771L224.941 435.653C219.121 439.107 211.879 439.107 206.059 435.653L39.4307 336.771C33.8148 333.439 30.3712 327.393 30.3711 320.862V122.138C30.3712 115.607 33.8148 109.561 39.4307 106.229L206.059 7.34668Z"
           fill={beamColor} fillOpacity="0.05"
-          stroke="url(#paint0_linear_2013_3342)" strokeWidth="3"
+          stroke={`url(#${ids.p0})`} strokeWidth="3"
           initial={{ strokeOpacity: 0.5 }}
           animate={{ strokeOpacity: [0.5, 1, 0.5] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -259,7 +267,7 @@ export default function ConnectCube({
         <circle opacity="0.25" cx="7.5" cy="7.5" r="7.5" transform="matrix(-0.866025 0.5 0 1 265.326 211)" fill={dot} />
         <circle opacity="0.27" cx="7.5" cy="7.5" r="7.5" transform="matrix(-0.866025 0.5 0 1 242.81 224)" fill={dot} />
         {/* connecting line 1 */}
-        <path d={LINE1} stroke="url(#paint1_radial_2013_3342)" strokeWidth="5" strokeLinecap="round" />
+        <path d={LINE1} stroke={`url(#${ids.p1})`} strokeWidth="5" strokeLinecap="round" />
         {
           beam && (
             <circle cx={0} cy={0} r={4.5} fill={beamColor} filter="url(#cubeGlow)">
@@ -268,14 +276,14 @@ export default function ConnectCube({
           )
         }
         {/* connecting line 2 */}
-        <path d={LINE2} stroke="url(#paint2_radial_2013_3342)" strokeWidth="5" strokeLinecap="round" />
+        <path d={LINE2} stroke={`url(#${ids.p2})`} strokeWidth="5" strokeLinecap="round" />
         {
           beam && <circle cx={0} cy={0} r={4.5} fill={beamColor} filter="url(#cubeGlow)">
             <animateMotion dur="2.4s" repeatCount="indefinite" begin="0.6s" path={LINE2} />
           </circle>
         }
         {/* connecting line 3 */}
-        <path d={LINE3} stroke="url(#paint3_radial_2013_3342)" strokeWidth="5" strokeLinecap="round" />
+        <path d={LINE3} stroke={`url(#${ids.p3})`} strokeWidth="5" strokeLinecap="round" />
         {
           beam && <circle cx={0} cy={0} r={4.5} fill={beamColor} filter="url(#cubeGlow)">
             <animateMotion dur="2.4s" repeatCount="indefinite" begin="1.2s" path={LINE3} />
@@ -290,19 +298,19 @@ export default function ConnectCube({
             </feMerge>
           </filter>
           <clipPath id="bgblur_0_2013_3342_clip_path" transform="translate(71.1285 96.7436)"><path d="M206.059 7.34668C211.879 3.89279 219.121 3.89279 224.941 7.34668L391.569 106.229C397.185 109.561 400.629 115.607 400.629 122.138V320.862C400.629 327.393 397.185 333.439 391.569 336.771L224.941 435.653C219.121 439.107 211.879 439.107 206.059 435.653L39.4307 336.771C33.8148 333.439 30.3712 327.393 30.3711 320.862V122.138C30.3712 115.607 33.8148 109.561 39.4307 106.229L206.059 7.34668Z" />
-          </clipPath><linearGradient id="paint0_linear_2013_3342" x1="215.5" y1="0" x2="215.5" y2="443" gradientUnits="userSpaceOnUse">
+          </clipPath><linearGradient id={`${ids.p0}`} x1="215.5" y1="0" x2="215.5" y2="443" gradientUnits="userSpaceOnUse">
             <stop stopColor={primary} stop-opacity="0.47" />
             <stop offset="1" stopColor={primary} stop-opacity="0.08" />
           </linearGradient>
-          <radialGradient id="paint1_radial_2013_3342" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(155.5 239.5) rotate(75.0617) scale(173.973 81.1399)">
+          <radialGradient id={`${ids.p1}`} cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(155.5 239.5) rotate(75.0617) scale(173.973 81.1399)">
             <stop stopColor={beamColor} />
             <stop offset="1" stopColor={primary} />
           </radialGradient>
-          <radialGradient id="paint2_radial_2013_3342" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(233.178 324.776) rotate(-13.9383) scale(173.973 81.1399)">
+          <radialGradient id={`${ids.p2}`} cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(233.178 324.776) rotate(-13.9383) scale(173.973 81.1399)">
             <stop stopColor={beamColor} />
             <stop offset="1" stopColor={primary} />
           </radialGradient>
-          <radialGradient id="paint3_radial_2013_3342" cx="0" cy="0" r="1" gradientTransform="matrix(8.24999 52.5 -43.5765 -9.21827 268 106.5)" gradientUnits="userSpaceOnUse">
+          <radialGradient id={`${ids.p3}`} cx="0" cy="0" r="1" gradientTransform="matrix(8.24999 52.5 -43.5765 -9.21827 268 106.5)" gradientUnits="userSpaceOnUse">
             <stop stopColor={beamColor} />
             <stop offset="1" stopColor={primary} />
           </radialGradient>
