@@ -1,75 +1,97 @@
-# React + TypeScript + Vite
+# GeckoFX
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Open-source library of premium animated SVG components for modern websites.
 
-Currently, two official plugins are available:
+GeckoFX is a collection of handcrafted SVG components designed for developers who want their products to look technical, futuristic, and memorable.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+No generic corporate illustrations. No bloated assets.
 
-## React Compiler
+Just clean, customizable, animated SVGs built for landing pages, dashboards, developer tools, AI products, infrastructure platforms, and startups.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### Why GeckoFX?
 
-Note: This will impact Vite dev & build performances.
+Most illustration libraries are filled with people pointing at charts.
 
-## Expanding the ESLint configuration
+GeckoFX focuses on what developers actually build and love:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- AI chips
+- Satellites
+- Server racks
+- Drones
+- Mechs
+- GPUs
+- Robotics
+- Infrastructure
+- Sci-fi inspired technology
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Every asset is designed as a reusable component with animation and theming support.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Lightweight SVG-based components
+- Built for React
+- Smooth motion-powered animations
+- Themeable colors and styles
+- Dark-mode friendly
+- Open source
+- Developer-first API
+
+## Example
+
+```tsx
+import { Satellite } from "@geckofx/react";
+
+export default function Hero() {
+  return (
+    <Satellite
+      size={420}
+      animate
+      theme="neon"
+    />
+  );
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Philosophy
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The modern web has become increasingly generic.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+GeckoFX exists to bring back personality, engineering aesthetics, and visual identity through high-quality animated technical illustrations.
+
+**Making the internet less slope.**
+
+## Roadmap
+
+### Core Collection
+
+* [ ] Satellite
+* [ ] Turret
+* [ ] Drone
+* [ ] AI Chip
+* [ ] GPU Cluster
+* [ ] Server Rack
+* [ ] Robot Arm
+* [ ] Mechanical Keyboard
+* [ ] Quantum Core
+* [ ] Validator Node
+
+### Themes
+
+* [ ] Wireframe
+* [ ] Blueprint
+* [ ] Neon
+* [ ] Terminal
+
+### Future
+
+* [ ] Component CLI
+* [ ] Motion presets
+* [ ] Figma support
+* [ ] SVG generation tooling
+* [ ] Interactive playground
+
+## Contributing
+
+Contributions, ideas, and new component designs are welcome.
+
+If you've built something that deserves a place in GeckoFX, open a PR.
