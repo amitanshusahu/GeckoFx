@@ -1,4 +1,5 @@
 import ConnectCube from "./components/ConnectCube"
+import GpuChip from "./components/GpuChip"
 import ServerRack from "./components/ServerRack"
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       // ping={true}
       />
       <ServerRack />
+      <GpuChip />
     </div>
   )
 }
