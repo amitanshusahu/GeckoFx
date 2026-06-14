@@ -1,14 +1,16 @@
 import ConnectCube from "./components/ConnectCube"
+import ServerRack from "./components/ServerRack"
 
 function App() {
   return (
-    <div className="flex items-center justify-center h-screen w-screen bg-black bg-[radial-gradient(#ffffff34_1px,transparent_2px)] bg-size-[24px_24px]">
+    <div className="flex flex-col gap-20 items-center p-20 h-screen w-screen bg-black bg-[radial-gradient(#ffffff34_1px,transparent_2px)] bg-size-[24px_24px] overflow-y-auto">
       <ConnectCube
-        float={true}
+        float={false}
         floatDistance={20}
         beam={true}
+      // ping={true}
       />
-      <ConnectCube colors={["#00D9FF", "#0A0E27", "#1A1F3A", "#2A3F5C", "#FFFFFF"]} floatDelay={3} />
+      <ServerRack />
     </div>
   )
 }
