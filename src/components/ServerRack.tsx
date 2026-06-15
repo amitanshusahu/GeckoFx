@@ -13,19 +13,34 @@ const COLORS = {
   white: "white",
 } as const;
 
-export type ServerRackColors = typeof COLORS;
+export type ServerRackColors = {
+  accent: string,
+  darkest: string,
+  dark1: string,
+  dark2: string,
+  dark3: string,
+  dark4: string,
+  stroke: string,
+  strokeLight: string,
+  white: string,
+};
+
+const LEFT_CABLE_PATH = "M3.00028 28V331.5C3.00026 335 3.0001 337.5 6.00028 341C9.39452 344.96 69.1671 377.833 129 413.5"
+const RIGHT_CABLE_PATH = "M399.501 27V330.5C399.501 334 399.501 336.5 396.501 340C393.107 343.96 333.334 376.833 273.501 412.5"
 
 export default function ServerRack({
-  className = "w-100 h-100",
+  className = "w-200 h-200",
   colors,
   float = true,
   beam = false,
+  beamStroke = [6, 10],
   magnetic = false,
 }: {
   className?: string
   colors?: Partial<ServerRackColors>
   float?: boolean
   beam?: boolean,
+  beamStroke? : [number, number],
   magnetic?: boolean
 }) {
 
@@ -72,24 +87,18 @@ export default function ServerRack({
           0%, 100% { opacity: 0.35; }
           50% { opacity: 0.75; }
         }
-        @keyframes coreBreathe {
-          0%, 100% { fill-opacity: 0.55; }
-          50% { fill-opacity: 0.95; }
-        }
-        @keyframes scanline {
-          0% { transform: translateY(0); opacity: 0; }
-          10% { opacity: 0.9; }
-          90% { opacity: 0.9; }
-          100% { transform: translateY(80px); opacity: 0; }
+        @keyframes huerotate {
+          0% { filter: hue-rotate(0deg); }
+          100% { filter: hue-rotate(360deg); }
         }
 
         ${beam && `
           .cable {
-          stroke-dasharray: 6 10;
+          stroke-dasharray: ${beamStroke[0]} ${beamStroke[1]};
           animation: dataFlow 3s linear infinite;
         }
         .cable-reverse {
-          stroke-dasharray: 6 10;
+          stroke-dasharray: ${beamStroke[0]} ${beamStroke[1]};
           animation: dataFlow 3s linear infinite reverse;
         }
           `
@@ -112,8 +121,6 @@ export default function ServerRack({
         .led-9 { animation-delay: 0.8s; }
 
         .top-cap { animation: capBreathe 3.5s ease-in-out infinite; }
-        .core-breathe { animation: coreBreathe 4.2s ease-in-out infinite; }
-        .core-breathe-2 { animation: coreBreathe 5s ease-in-out infinite; animation-delay: 0.6s; }
 
       `}</style>
 
@@ -161,7 +168,15 @@ export default function ServerRack({
 
               {/* Stack Layer 1 (bottom) */}
               <motion.g
-              // animate={{ y: [0, -10, 0], transition: { duration: 4, repeat: Infinity } }}
+                initial={{ opacity: 0, scale: 0.55, y: -6 }}
+                // animate={{ opacity: row.opacity, scale: 1, y: 0 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, amount: "some" }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
                 <path d="M66.328 274.5L203.828 354.5V308L66.328 228.5V274.5Z" fill={`url(#${g(1)})`} stroke={c.stroke} stroke-width="2" />
                 <path d="M91.2069 259.598C92.6514 261.661 93.3312 263.918 93.3036 265.872C93.276 267.827 92.5509 269.394 91.2819 270.283C90.0126 271.172 88.2908 271.317 86.4441 270.675C84.599 270.033 82.7103 268.622 81.2658 266.559C79.8214 264.496 79.1414 262.238 79.169 260.285C79.1967 258.33 79.9224 256.762 81.1916 255.873C82.4608 254.984 84.1821 254.839 86.0286 255.482C87.8737 256.124 89.7623 257.535 91.2069 259.598Z" stroke={c.stroke} stroke-width="2" />
@@ -182,7 +197,14 @@ export default function ServerRack({
 
               {/* Stack Layer 2 (middle) */}
               <motion.g
-              // animate={{ y: [0, -6, 0], transition: { duration: 3, repeat: Infinity } }}
+                initial={{ opacity: 0, scale: 0.55, y: -6 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, amount: "some" }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.3,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
                 <path d="M67.328 215.5L204.828 295.5V249L67.328 169.5V215.5Z" fill={`url(#${g(3)})`} stroke={c.stroke} stroke-width="2" />
                 <path d="M92.2069 200.598C93.6514 202.661 94.3312 204.918 94.3036 206.872C94.276 208.827 93.5509 210.394 92.2819 211.283C91.0126 212.172 89.2908 212.317 87.4441 211.675C85.599 211.033 83.7103 209.622 82.2658 207.559C80.8214 205.496 80.1414 203.238 80.169 201.285C80.1967 199.33 80.9224 197.762 82.1916 196.873C83.4608 195.984 85.1821 195.839 87.0286 196.482C88.8737 197.124 90.7623 198.535 92.2069 200.598Z" stroke={c.stroke} stroke-width="2" />
@@ -202,8 +224,15 @@ export default function ServerRack({
               </motion.g>
 
               {/* Stack Layer 3 (top) */}
-              <g
-
+              <motion.g
+                initial={{ opacity: 0, scale: 0.55, y: -6 }}
+                // animate={{ opacity: row.opacity, scale: 1, y: 0 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, amount: "some" }}
+                transition={{
+                  duration: 0.6,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
                 <path d="M67.828 155.5L205.328 235.5V189L67.828 109.5V155.5Z" fill={`url(#${g(5)})`} stroke={c.stroke} stroke-width="2" />
                 <path d="M92.7069 140.598C94.1514 142.661 94.8312 144.918 94.8036 146.872C94.776 148.827 94.0509 150.394 92.7819 151.283C91.5126 152.172 89.7908 152.317 87.9441 151.675C86.099 151.033 84.2103 149.622 82.7658 147.559C81.3214 145.496 80.6414 143.238 80.669 141.285C80.6967 139.33 81.4224 137.762 82.6916 136.873C83.9608 135.984 85.1821 135.839 87.5286 136.482C89.3737 137.124 91.2623 138.535 92.7069 140.598Z" stroke={c.stroke} stroke-width="2" />
@@ -220,12 +249,12 @@ export default function ServerRack({
                 <path d="M332.328 134V147" stroke={c.strokeLight} stroke-opacity="0.51" stroke-width="2" stroke-linecap="round" className="led led-9" />
                 <path d="M343.328 109L205.828 189L67.828 109L205.828 30L343.328 109Z" fill={`url(#${g(7)})`} stroke={c.stroke} stroke-width="2" />
                 <path d="M205.828 43L93.828 108.5L205.828 173L319.828 108.5L205.828 43Z" stroke={c.stroke} stroke-width="2" />
-              </g>
+              </motion.g>
             </motion.g>
 
 
             {/* Cables - left side */}
-            <path className="cable sp-1" d="M3.00028 28V331.5C3.00026 335 3.0001 337.5 6.00028 341C9.39452 344.96 69.1671 377.833 129 413.5" stroke={`url(#${g(8)})`} stroke-width="5" stroke-linecap="round" />
+            <path className="cable sp-1" d={LEFT_CABLE_PATH} stroke={`url(#${g(8)})`} stroke-width="5" stroke-linecap="round" />
             <path d="M2.50053 223V336.37C2.50052 337.677 2.50046 338.611 3.64338 339.918C4.93642 341.397 27.7069 353.677 50.5005 367" stroke={`url(#${g(9)})`} stroke-width="5" stroke-linecap="round" />
             <path className=" sp-3" d="M118.407 586V412.796C118.407 410.799 118.407 409.372 116.695 407.375C114.758 405.115 80.6467 386.355 46.5005 366" stroke={`url(#${g(10)})`} stroke-width="5" stroke-linecap="round" />
             <path d="M118.692 474.716V410.017C118.692 409.271 118.692 408.738 118.04 407.992C117.302 407.148 104.307 400.14 91.2994 392.537" stroke={`url(#${g(11)})`} stroke-width="5" stroke-linecap="round" />
@@ -237,7 +266,7 @@ export default function ServerRack({
             <path d="M55.5004 419.814V372.316C55.5004 371.768 55.5004 371.377 55.0216 370.829C54.4798 370.209 44.9396 365.064 35.3897 359.482" stroke={`url(#${g(15)})`} stroke-width="5" stroke-linecap="round" />
 
             {/* Cables - right side */}
-            <path className="cable sp-1" d="M399.501 27V330.5C399.501 334 399.501 336.5 396.501 340C393.107 343.96 333.334 376.833 273.501 412.5" stroke={`url(#${g(16)})`} stroke-width="5" stroke-linecap="round" />
+            <path className="cable sp-1" d={RIGHT_CABLE_PATH} stroke={`url(#${g(16)})`} stroke-width="5" stroke-linecap="round" />
             <path d="M400.001 222V335.37C400.001 336.677 400.001 337.611 398.858 338.918C397.565 340.397 374.794 352.677 352.001 366" stroke={`url(#${g(17)})`} stroke-width="5" stroke-linecap="round" />
             <path className=" sp-3" d="M284.094 585V411.796C284.094 409.799 284.094 408.372 285.806 406.375C287.743 404.115 321.854 385.355 356.001 365" stroke={`url(#${g(18)})`} stroke-width="5" stroke-linecap="round" />
             <path d="M283.809 473.716V409.017C283.809 408.271 283.809 407.738 284.461 406.992C285.199 406.148 298.194 399.14 311.202 391.537" stroke={`url(#${g(19)})`} stroke-width="5" stroke-linecap="round" />
