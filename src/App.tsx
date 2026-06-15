@@ -11,7 +11,7 @@ function App() {
         beam={true}
       // ping={true}
       />
-      <ServerRack colors={{accent: "orange"}}/>
+      <ServerRack />
       <GpuChip />
     </div>
   )
