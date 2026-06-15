@@ -11,7 +11,9 @@ function App() {
         beam={true}
       // ping={true}
       />
-      <ServerRack />
+      <ServerRack 
+        float={false}
+      />
       <GpuChip />
     </div>
   )

@@ -40,7 +40,7 @@ export default function ServerRack({
   colors?: Partial<ServerRackColors>
   float?: boolean
   beam?: boolean,
-  beamStroke? : [number, number],
+  beamStroke?: [number, number],
   magnetic?: boolean
 }) {
 
@@ -153,8 +153,8 @@ export default function ServerRack({
 
           <g>
             <motion.g
-              animate={{
-                y: float ? [0, -4, 0] : 0,
+              animate={float && {
+                y: [0, -4, 0],
                 transition: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
               }}
             >
