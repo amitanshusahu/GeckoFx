@@ -1,5 +1,6 @@
 import ConnectCube from "./components/ConnectCube"
 import GpuChip from "./components/GpuChip"
+import GpuCluster from "./components/GpuCluster"
 import ServerRack from "./components/ServerRack"
 
 function App() {
@@ -11,10 +12,11 @@ function App() {
         beam={true}
       // ping={true}
       />
-      <ServerRack 
+      <ServerRack
         float={false}
       />
       <GpuChip />
+      <GpuCluster />
     </div>
   )
 }

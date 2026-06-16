@@ -29,7 +29,7 @@ const LEFT_CABLE_PATH = "M3.00028 28V331.5C3.00026 335 3.0001 337.5 6.00028 341C
 const RIGHT_CABLE_PATH = "M399.501 27V330.5C399.501 334 399.501 336.5 396.501 340C393.107 343.96 333.334 376.833 273.501 412.5"
 
 export default function ServerRack({
-  className = "w-150 h-150",
+  className = "h-100",
   colors,
   float = true,
   beam = false,

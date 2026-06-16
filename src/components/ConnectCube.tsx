@@ -6,7 +6,7 @@ const LINE2 = "M62.0101 304.286C50.9158 309.593 24.28 333.533 26.4772 345.174C28
 const LINE3 = "M235.5 179.499C238.5 154 249.5 131.5 273 114.5C296.915 97.1995 321.5 96.5001 330 102.5"
 
 export default function ConnectCube({
-  className = "w-100 h-100",
+  className = "h-100",
   colors = ["#988BFF", "#191D26", "#2A333F", "#384C6E", "#FFFFFF"],
   float = true,
   floatDistance = 20,
