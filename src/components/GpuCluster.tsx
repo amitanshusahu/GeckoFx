@@ -1,3 +1,5 @@
+import { motion } from "motion/react"
+
 export default function GpuCluster({
   className = "w-200"
 }: {
@@ -5,10 +7,15 @@ export default function GpuCluster({
 }) {
   return (
     <div className="relative">
-      
-      <div className="absolute inset-0 flex items-center justify-center ">
-        <img src="/favicon.svg" alt="icon"  className="w-20"/>
-      </div>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: "all" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="absolute inset-0 flex items-center justify-center ">
+        <img src="/favicon.svg" alt="icon" className="w-20" />
+      </motion.div>
 
       <svg
         className={className}
@@ -16,10 +23,23 @@ export default function GpuCluster({
         fill="none"
         preserveAspectRatio="xMidYMid meet"
       >
-        <g filter="url(#filter0_f_2011_441)">
+        <style>{`
+          @keyframes gpuSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+          @keyframes gpuBreathe { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+          @keyframes gpuPulse { 0%, 100% { opacity: 0.75; transform: scale(0.92); } 50% { opacity: 1; transform: scale(1.08); } }
+          @keyframes gpuCorePulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+          .gpu-fan { transform-box: fill-box; transform-origin: center; animation: gpuSpin 9s linear infinite; will-change: transform; }
+          .gpu-fan-slow { animation-duration: 13s; }
+          .gpu-fan-fast { animation-duration: 6.5s; }
+          .gpu-fan-rev { animation-direction: reverse; }
+          .gpu-breathe { animation: gpuBreathe 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+          .gpu-pulse { animation: gpuPulse 3.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+          .gpu-core { animation: gpuCorePulse 2.6s ease-in-out infinite; }
+        `}</style>
+        <g filter="url(#filter0_f_2011_441)" className="gpu-breathe">
           <ellipse cx="580" cy="580.5" rx="280" ry="280.5" fill="#5691FF" fill-opacity="0.76" />
         </g>
-        <g filter="url(#filter1_f_2011_441)">
+        <g filter="url(#filter1_f_2011_441)" className="gpu-pulse">
           <circle cx="573" cy="570" r="110" fill="#BCD1FF" />
         </g>
         <g filter="url(#filter2_f_2011_441)">
@@ -93,6 +113,7 @@ export default function GpuCluster({
         <circle cx="303" cy="570" r="69" fill="#131A2A" />
         <circle cx="303" cy="570" r="68" stroke="#404A67" stroke-opacity="0.55" stroke-width="2" />
         <path d="M302.5 515C333.16 515 358 539.633 358 570C358 600.367 333.16 625 302.5 625C271.84 625 247 600.367 247 570C247 539.633 271.84 515 302.5 515Z" stroke="#2F374F" stroke-opacity="0.34" stroke-width="2" />
+        <g className="gpu-fan">
         <g filter="url(#filter10_d_2011_441)">
           <path d="M310.5 606.5L303 576.5L312.5 569L339.5 576.5C346 581.833 357.5 594.6 351.5 603C345.5 611.4 330 621.167 323 625C321.167 625.333 316.9 625.8 314.5 625C312.1 624.2 310.833 621 310.5 619.5V606.5Z" fill="url(#paint1_linear_2011_441)" />
           <path d="M310.5 606.5L303 576.5L312.5 569L339.5 576.5C346 581.833 357.5 594.6 351.5 603C345.5 611.4 330 621.167 323 625C321.167 625.333 316.9 625.8 314.5 625C312.1 624.2 310.833 621 310.5 619.5V606.5Z" stroke="#404A67" />
@@ -112,6 +133,7 @@ export default function GpuCluster({
         <g filter="url(#filter14_d_2011_441)">
           <circle cx="303" cy="569" r="12" fill="#20293F" />
           <circle cx="303" cy="569" r="11.5" stroke="#2F374F" />
+        </g>
         </g>
         <g filter="url(#filter15_f_2011_441)">
           <rect x="504" y="467" width="137" height="197" fill="#72A3FF" />
@@ -154,6 +176,7 @@ export default function GpuCluster({
         <circle cx="573" cy="837" r="69" fill="#131A2A" />
         <circle cx="573" cy="837" r="68" stroke="#404A67" stroke-opacity="0.55" stroke-width="2" />
         <path d="M572.5 782C603.16 782 628 806.633 628 837C628 867.367 603.16 892 572.5 892C541.84 892 517 867.367 517 837C517 806.633 541.84 782 572.5 782Z" stroke="#2F374F" stroke-opacity="0.34" stroke-width="2" />
+        <g className="gpu-fan gpu-fan-rev">
         <g filter="url(#filter19_d_2011_441)">
           <path d="M580.5 873.5L573 843.5L582.5 836L609.5 843.5C616 848.833 627.5 861.6 621.5 870C615.5 878.4 600 888.167 593 892C591.167 892.333 586.9 892.8 584.5 892C582.1 891.2 580.833 888 580.5 886.5V873.5Z" fill="url(#paint7_linear_2011_441)" />
           <path d="M580.5 873.5L573 843.5L582.5 836L609.5 843.5C616 848.833 627.5 861.6 621.5 870C615.5 878.4 600 888.167 593 892C591.167 892.333 586.9 892.8 584.5 892C582.1 891.2 580.833 888 580.5 886.5V873.5Z" stroke="#404A67" />
@@ -173,6 +196,7 @@ export default function GpuCluster({
         <g filter="url(#filter23_d_2011_441)">
           <circle cx="573" cy="836" r="12" fill="#20293F" />
           <circle cx="573" cy="836" r="11.5" stroke="#2F374F" />
+        </g>
         </g>
         <g filter="url(#filter24_f_2011_441)">
           <rect width="190" height="67" transform="matrix(1 0 0 -1 478 406)" fill="#72A3FF" />
@@ -197,6 +221,7 @@ export default function GpuCluster({
         <circle cx="69" cy="69" r="69" transform="matrix(1 0 0 -1 504 372)" fill="#131A2A" />
         <circle cx="69" cy="69" r="68" transform="matrix(1 0 0 -1 504 372)" stroke="#404A67" stroke-opacity="0.55" stroke-width="2" />
         <path d="M572.5 358C603.16 358 628 333.367 628 303C628 272.633 603.16 248 572.5 248C541.84 248 517 272.633 517 303C517 333.367 541.84 358 572.5 358Z" stroke="#2F374F" stroke-opacity="0.34" stroke-width="2" />
+        <g className="gpu-fan">
         <g filter="url(#filter26_d_2011_441)">
           <path d="M580.5 266.5L573 296.5L582.5 304L609.5 296.5C616 291.167 627.5 278.4 621.5 270C615.5 261.6 600 251.833 593 248C591.167 247.667 586.9 247.2 584.5 248C582.1 248.8 580.833 252 580.5 253.5V266.5Z" fill="url(#paint12_linear_2011_441)" />
           <path d="M580.5 266.5L573 296.5L582.5 304L609.5 296.5C616 291.167 627.5 278.4 621.5 270C615.5 261.6 600 251.833 593 248C591.167 247.667 586.9 247.2 584.5 248C582.1 248.8 580.833 252 580.5 253.5V266.5Z" stroke="#404A67" />
@@ -216,6 +241,7 @@ export default function GpuCluster({
         <g filter="url(#filter30_d_2011_441)">
           <circle cx="12" cy="12" r="12" transform="matrix(1 0 0 -1 561 316)" fill="#20293F" />
           <circle cx="12" cy="12" r="11.5" transform="matrix(1 0 0 -1 561 316)" stroke="#2F374F" />
+        </g>
         </g>
         <g filter="url(#filter31_f_2011_441)">
           <rect x="749" y="734" width="151" height="75" fill="#72A3FF" />
@@ -240,6 +266,7 @@ export default function GpuCluster({
         <circle cx="843" cy="837" r="69" fill="#131A2A" />
         <circle cx="843" cy="837" r="68" stroke="#404A67" stroke-opacity="0.55" stroke-width="2" />
         <path d="M842.5 782C873.16 782 898 806.633 898 837C898 867.367 873.16 892 842.5 892C811.84 892 787 867.367 787 837C787 806.633 811.84 782 842.5 782Z" stroke="#2F374F" stroke-opacity="0.34" stroke-width="2" />
+        <g className="gpu-fan gpu-fan-slow">
         <g filter="url(#filter33_d_2011_441)">
           <path d="M850.5 873.5L843 843.5L852.5 836L879.5 843.5C886 848.833 897.5 861.6 891.5 870C885.5 878.4 870 888.167 863 892C861.167 892.333 856.9 892.8 854.5 892C852.1 891.2 850.833 888 850.5 886.5V873.5Z" fill="url(#paint17_linear_2011_441)" />
           <path d="M850.5 873.5L843 843.5L852.5 836L879.5 843.5C886 848.833 897.5 861.6 891.5 870C885.5 878.4 870 888.167 863 892C861.167 892.333 856.9 892.8 854.5 892C852.1 891.2 850.833 888 850.5 886.5V873.5Z" stroke="#404A67" />
@@ -259,6 +286,7 @@ export default function GpuCluster({
         <g filter="url(#filter37_d_2011_441)">
           <circle cx="843" cy="836" r="12" fill="#20293F" />
           <circle cx="843" cy="836" r="11.5" stroke="#2F374F" />
+        </g>
         </g>
         <g filter="url(#filter38_f_2011_441)">
           <rect width="151" height="75" transform="matrix(1 0 0 -1 749 406)" fill="#72A3FF" />
@@ -283,6 +311,7 @@ export default function GpuCluster({
         <circle cx="69" cy="69" r="69" transform="matrix(1 0 0 -1 774 372)" fill="#131A2A" />
         <circle cx="69" cy="69" r="68" transform="matrix(1 0 0 -1 774 372)" stroke="#404A67" stroke-opacity="0.55" stroke-width="2" />
         <path d="M842.5 358C873.16 358 898 333.367 898 303C898 272.633 873.16 248 842.5 248C811.84 248 787 272.633 787 303C787 333.367 811.84 358 842.5 358Z" stroke="#2F374F" stroke-opacity="0.34" stroke-width="2" />
+        <g className="gpu-fan gpu-fan-rev">
         <g filter="url(#filter40_d_2011_441)">
           <path d="M850.5 266.5L843 296.5L852.5 304L879.5 296.5C886 291.167 897.5 278.4 891.5 270C885.5 261.6 870 251.833 863 248C861.167 247.667 856.9 247.2 854.5 248C852.1 248.8 850.833 252 850.5 253.5V266.5Z" fill="url(#paint22_linear_2011_441)" />
           <path d="M850.5 266.5L843 296.5L852.5 304L879.5 296.5C886 291.167 897.5 278.4 891.5 270C885.5 261.6 870 251.833 863 248C861.167 247.667 856.9 247.2 854.5 248C852.1 248.8 850.833 252 850.5 253.5V266.5Z" stroke="#404A67" />
@@ -302,6 +331,7 @@ export default function GpuCluster({
         <g filter="url(#filter44_d_2011_441)">
           <circle cx="12" cy="12" r="12" transform="matrix(1 0 0 -1 831 316)" fill="#20293F" />
           <circle cx="12" cy="12" r="11.5" transform="matrix(1 0 0 -1 831 316)" stroke="#2F374F" />
+        </g>
         </g>
         <g filter="url(#filter45_f_2011_441)">
           <rect x="816" y="496" width="126" height="76" transform="rotate(90 816 496)" fill="#72A3FF" />
@@ -326,6 +356,7 @@ export default function GpuCluster({
         <circle cx="843" cy="570" r="69" fill="#131A2A" />
         <circle cx="843" cy="570" r="68" stroke="#404A67" stroke-opacity="0.55" stroke-width="2" />
         <path d="M842.5 515C873.16 515 898 539.633 898 570C898 600.367 873.16 625 842.5 625C811.84 625 787 600.367 787 570C787 539.633 811.84 515 842.5 515Z" stroke="#2F374F" stroke-opacity="0.34" stroke-width="2" />
+        <g className="gpu-fan gpu-fan-slow gpu-fan-rev">
         <g filter="url(#filter47_d_2011_441)">
           <path d="M850.5 606.5L843 576.5L852.5 569L879.5 576.5C886 581.833 897.5 594.6 891.5 603C885.5 611.4 870 621.167 863 625C861.167 625.333 856.9 625.8 854.5 625C852.1 624.2 850.833 621 850.5 619.5V606.5Z" fill="url(#paint27_linear_2011_441)" />
           <path d="M850.5 606.5L843 576.5L852.5 569L879.5 576.5C886 581.833 897.5 594.6 891.5 603C885.5 611.4 870 621.167 863 625C861.167 625.333 856.9 625.8 854.5 625C852.1 624.2 850.833 621 850.5 619.5V606.5Z" stroke="#404A67" />
@@ -345,6 +376,7 @@ export default function GpuCluster({
         <g filter="url(#filter51_d_2011_441)">
           <circle cx="843" cy="569" r="12" fill="#20293F" />
           <circle cx="843" cy="569" r="11.5" stroke="#2F374F" />
+        </g>
         </g>
         <g filter="url(#filter52_f_2011_441)">
           <rect x="253" y="734" width="151" height="83" fill="#72A3FF" />
@@ -369,6 +401,7 @@ export default function GpuCluster({
         <circle cx="303" cy="837" r="69" fill="#131A2A" />
         <circle cx="303" cy="837" r="68" stroke="#404A67" stroke-opacity="0.55" stroke-width="2" />
         <path d="M302.5 782C333.16 782 358 806.633 358 837C358 867.367 333.16 892 302.5 892C271.84 892 247 867.367 247 837C247 806.633 271.84 782 302.5 782Z" stroke="#2F374F" stroke-opacity="0.34" stroke-width="2" />
+        <g className="gpu-fan gpu-fan-fast">
         <g filter="url(#filter54_d_2011_441)">
           <path d="M310.5 873.5L303 843.5L312.5 836L339.5 843.5C346 848.833 357.5 861.6 351.5 870C345.5 878.4 330 888.167 323 892C321.167 892.333 316.9 892.8 314.5 892C312.1 891.2 310.833 888 310.5 886.5V873.5Z" fill="url(#paint32_linear_2011_441)" />
           <path d="M310.5 873.5L303 843.5L312.5 836L339.5 843.5C346 848.833 357.5 861.6 351.5 870C345.5 878.4 330 888.167 323 892C321.167 892.333 316.9 892.8 314.5 892C312.1 891.2 310.833 888 310.5 886.5V873.5Z" stroke="#404A67" />
@@ -388,6 +421,7 @@ export default function GpuCluster({
         <g filter="url(#filter58_d_2011_441)">
           <circle cx="303" cy="836" r="12" fill="#20293F" />
           <circle cx="303" cy="836" r="11.5" stroke="#2F374F" />
+        </g>
         </g>
         <g filter="url(#filter59_f_2011_441)">
           <rect width="151" height="83" transform="matrix(1 0 0 -1 253 406)" fill="#72A3FF" />
@@ -412,6 +446,7 @@ export default function GpuCluster({
         <circle cx="69" cy="69" r="69" transform="matrix(1 0 0 -1 234 372)" fill="#131A2A" />
         <circle cx="69" cy="69" r="68" transform="matrix(1 0 0 -1 234 372)" stroke="#404A67" stroke-opacity="0.55" stroke-width="2" />
         <path d="M302.5 358C333.16 358 358 333.367 358 303C358 272.633 333.16 248 302.5 248C271.84 248 247 272.633 247 303C247 333.367 271.84 358 302.5 358Z" stroke="#2F374F" stroke-opacity="0.34" stroke-width="2" />
+        <g className="gpu-fan gpu-fan-slow">
         <g filter="url(#filter61_d_2011_441)">
           <path d="M310.5 266.5L303 296.5L312.5 304L339.5 296.5C346 291.167 357.5 278.4 351.5 270C345.5 261.6 330 251.833 323 248C321.167 247.667 316.9 247.2 314.5 248C312.1 248.8 310.833 252 310.5 253.5V266.5Z" fill="url(#paint37_linear_2011_441)" />
           <path d="M310.5 266.5L303 296.5L312.5 304L339.5 296.5C346 291.167 357.5 278.4 351.5 270C345.5 261.6 330 251.833 323 248C321.167 247.667 316.9 247.2 314.5 248C312.1 248.8 310.833 252 310.5 253.5V266.5Z" stroke="#404A67" />
@@ -431,6 +466,7 @@ export default function GpuCluster({
         <g filter="url(#filter65_d_2011_441)">
           <circle cx="12" cy="12" r="12" transform="matrix(1 0 0 -1 291 316)" fill="#20293F" />
           <circle cx="12" cy="12" r="11.5" transform="matrix(1 0 0 -1 291 316)" stroke="#2F374F" />
+        </g>
         </g>
         <defs>
           <filter id="filter0_f_2011_441" x="0" y="0" width="1160" height="1161" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
