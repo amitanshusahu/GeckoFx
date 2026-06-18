@@ -39,10 +39,14 @@ const IDLE_STATE: FlickerState = {
   textOpacity: 0.7,
 };
 
-function useLedFlicker(stackCount: number): FlickerState {
+function useLedFlicker(stackCount: number, enabled: boolean): FlickerState {
   const [state, setState] = useState<FlickerState>(IDLE_STATE);
 
   useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+
     let cancelled = false;
     let timer: ReturnType<typeof setTimeout> | undefined;
 
@@ -93,7 +97,7 @@ function useLedFlicker(stackCount: number): FlickerState {
       clearTimeout(start);
       if (timer) clearTimeout(timer);
     };
-  }, [stackCount]);
+  }, [stackCount, enabled]);
 
   return state;
 }
@@ -137,19 +141,25 @@ function LedText({
 export default function ServerStack({
   className = "h-100",
   colors,
+  flicker: flickerEnabled = true,
 }: {
   className?: string;
   colors?: Partial<ServerStackColors>;
+  flicker?: boolean;
 }) {
   const c: ServerStackColors = { ...COLORS, ...colors };
-  const flicker = useLedFlicker(STACK_COUNT);
+  const flicker = useLedFlicker(STACK_COUNT, flickerEnabled);
 
   const ledOpacity = (i: number) => (flicker.activeStack === i ? flicker.glowOpacity : IDLE_STATE.glowOpacity);
   const stripOpacity = (i: number) => (flicker.activeStack === i ? flicker.stripOpacity : IDLE_STATE.stripOpacity);
   const textOpacity = (i: number) => (flicker.activeStack === i ? flicker.textOpacity : IDLE_STATE.textOpacity);
 
   return (
-    <div>
+    <div className="relative">
+      {/* 30 X 30 logo */}
+      <div className="absolute top-20 left-45 rotate-x-40 w-32 h-32">
+        <img src="/logo.svg" alt="Logo" />
+      </div>
       <svg
         className={className}
         viewBox="0 0 406 418"
@@ -157,7 +167,7 @@ export default function ServerStack({
         preserveAspectRatio="xMidYMid meet"
       >
         {/* Stack 1 (bottom) */}
-        <motion.g custom={2} variants={stackVariants} initial="hidden" animate="visible">
+        <motion.g custom={2} variants={stackVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
           <path
             d="M25.7236 308.434L174.224 381.434H231.224L379.224 308.434L380.224 341.934L231.224 415.934H174.224L25.7236 341.934V308.434Z"
             fill={c.bodyOuter}
@@ -228,7 +238,7 @@ export default function ServerStack({
         </motion.g>
 
         {/* Stack 2 (middle) */}
-        <motion.g custom={1} variants={stackVariants} initial="hidden" animate="visible">
+        <motion.g custom={1} variants={stackVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
           <g filter="url(#filter1_d_2068_56)">
             <path
               d="M25.7236 213.434L174.224 286.434H231.224L379.224 213.434L380.224 246.934L231.224 320.934H174.224L25.7236 246.934V213.434Z"
@@ -301,7 +311,7 @@ export default function ServerStack({
         </motion.g>
 
         {/* Stack 3 (top) */}
-        <motion.g custom={0} variants={stackVariants} initial="hidden" animate="visible">
+        <motion.g custom={0} variants={stackVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
           <g filter="url(#filter3_d_2068_56)">
             <path
               d="M25.3618 123.967L173.862 196.967H230.862L378.862 123.967L379.862 157.467L230.862 231.467H173.862L25.3618 157.467V123.967Z"
