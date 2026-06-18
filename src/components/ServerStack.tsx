@@ -7,6 +7,7 @@ const COLORS = {
   stroke: "#363636",
   ledFill: "#FF4C85",
   ledStroke: "#FF4C85",
+  ledText: "white",
   accent: "white",
   dot: "#D9D9D9",
 } as const;
@@ -17,6 +18,7 @@ export type ServerStackColors = {
   stroke: string;
   ledFill: string;
   ledStroke: string;
+  ledText: string;
   accent: string;
   dot: string;
 };
@@ -47,27 +49,42 @@ function useLedFlicker(stackCount: number): FlickerState {
     const runCycle = () => {
       if (cancelled) return;
       const idx = Math.floor(Math.random() * stackCount);
-      const pulses = 2 + Math.floor(Math.random() * 4);
-      let pulse = 0;
 
-      const tick = () => {
+      // Phase 1: LED turns on solidly for 2-3 seconds
+      setState({
+        activeStack: idx,
+        glowOpacity: 1,
+        stripOpacity: 1,
+        textOpacity: 1,
+      });
+
+      timer = setTimeout(() => {
         if (cancelled) return;
-        const on = pulse % 2 === 0;
-        setState({
-          activeStack: idx,
-          glowOpacity: on ? 0.55 + Math.random() * 0.45 : 0.04 + Math.random() * 0.1,
-          stripOpacity: on ? 0.9 + Math.random() * 0.1 : 0.15 + Math.random() * 0.1,
-          textOpacity: on ? 0.95 : 0.5 + Math.random() * 0.2,
-        });
-        pulse += 1;
-        if (pulse >= pulses * 2) {
-          setState(IDLE_STATE);
-          timer = setTimeout(runCycle, 600 + Math.random() * 1800);
-          return;
-        }
-        timer = setTimeout(tick, 40 + Math.random() * 90);
-      };
-      tick();
+
+        // Phase 2: Flicker off (rapid on/off pulses)
+        const pulses = 4 + Math.floor(Math.random() * 4);
+        let pulse = 0;
+
+        const tick = () => {
+          if (cancelled) return;
+          const on = pulse % 2 === 0;
+          setState({
+            activeStack: idx,
+            glowOpacity: on ? 0.6 + Math.random() * 0.4 : 0.02 + Math.random() * 0.06,
+            stripOpacity: on ? 0.85 + Math.random() * 0.15 : 0.08 + Math.random() * 0.08,
+            textOpacity: on ? 0.95 : 0.25 + Math.random() * 0.15,
+          });
+          pulse += 1;
+          if (pulse >= pulses * 2) {
+            // Phase 3: Turn off completely
+            setState(IDLE_STATE);
+            timer = setTimeout(runCycle, 500 + Math.random() * 1500);
+            return;
+          }
+          timer = setTimeout(tick, 30 + Math.random() * 80);
+        };
+        tick();
+      }, 2000 + Math.random() * 1000);
     };
 
     const start = setTimeout(runCycle, 1500);
@@ -100,15 +117,17 @@ const LED_TEXT_PATH = `M258.272 388.039L257.276 388.525L260.156 378.393L261.136 
 function LedText({
   translateY = 0,
   opacity,
+  color,
 }: {
   translateY?: number;
   opacity: number;
+  color: string;
 }) {
   const path = (
     <motion.path
       animate={{ opacity }}
       d={LED_TEXT_PATH}
-      fill="#FF7E5D"
+      fill={color}
     />
   );
   if (translateY === 0) return path;
@@ -138,7 +157,7 @@ export default function ServerStack({
         preserveAspectRatio="xMidYMid meet"
       >
         {/* Stack 1 (bottom) */}
-        <motion.g custom={0} variants={stackVariants} initial="hidden" animate="visible">
+        <motion.g custom={2} variants={stackVariants} initial="hidden" animate="visible">
           <path
             d="M25.7236 308.434L174.224 381.434H231.224L379.224 308.434L380.224 341.934L231.224 415.934H174.224L25.7236 341.934V308.434Z"
             fill={c.bodyOuter}
@@ -205,7 +224,7 @@ export default function ServerStack({
             fill={c.ledFill}
             stroke={c.ledStroke}
           />
-          <LedText opacity={textOpacity(0)} />
+          <LedText opacity={textOpacity(0)} color={c.ledText} />
         </motion.g>
 
         {/* Stack 2 (middle) */}
@@ -277,12 +296,12 @@ export default function ServerStack({
               fill={c.ledFill}
               stroke={c.ledStroke}
             />
-            <LedText translateY={-92} opacity={textOpacity(1)} />
+            <LedText translateY={-92} opacity={textOpacity(1)} color={c.ledText} />
           </g>
         </motion.g>
 
         {/* Stack 3 (top) */}
-        <motion.g custom={2} variants={stackVariants} initial="hidden" animate="visible">
+        <motion.g custom={0} variants={stackVariants} initial="hidden" animate="visible">
           <g filter="url(#filter3_d_2068_56)">
             <path
               d="M25.3618 123.967L173.862 196.967H230.862L378.862 123.967L379.862 157.467L230.862 231.467H173.862L25.3618 157.467V123.967Z"
@@ -350,7 +369,7 @@ export default function ServerStack({
               fill={c.ledFill}
               stroke={c.ledStroke}
             />
-            <LedText translateY={-181} opacity={textOpacity(2)} />
+            <LedText translateY={-181} opacity={textOpacity(2)} color={c.ledText} />
           </g>
         </motion.g>
 
