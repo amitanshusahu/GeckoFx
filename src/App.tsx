@@ -17,10 +17,10 @@ function App() {
               <div className="flex flex-col justify-between">
                 <div>
                   <h1 className="text-4xl">Make the Internet Less Slop</h1>
-                  <p className="text-lg mt-7 max-w-[500px]">
+                  <p className="text-lg mt-7 max-w-[500px] text-neutral-400">
                     Stop shipping the same gradient, the same hero section, and the same lifeless landing pages
                   </p>
-                  <button className="mt-15 border border-primary/50 px-10 py-5 relative bg-primary/20 text-[#ffa8c3] text-lg">
+                  <button className="mt-15 border border-primary/40 px-10 py-5 relative bg-primary/10 text-[#ffa8c3] text-lg">
                     Premium SVG Components
                     <Edges color="#FF4C85" opacity="100" />
                   </button>
