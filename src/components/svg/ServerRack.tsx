@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useSpring } from "motion/react";
 import { useId, useRef } from "react";
 
-const COLORS = {
+const DEFAULT_COLORS = {
   accent: "#4C9EFF",
   darkest: "#0F1216",
   dark1: "#1F2532",
@@ -13,7 +13,7 @@ const COLORS = {
   white: "white",
 } as const;
 
-export type Colors = {
+type ServerRackColors = {
   accent: string,
   darkest: string,
   dark1: string,
@@ -25,6 +25,15 @@ export type Colors = {
   white: string,
 };
 
+type Props = {
+  className?: string
+  colors?: Partial<ServerRackColors>
+  float?: boolean
+  beam?: boolean,
+  beamStroke?: [number, number],
+  magnetic?: boolean
+}
+
 const LEFT_CABLE_PATH = "M3.00028 28V331.5C3.00026 335 3.0001 337.5 6.00028 341C9.39452 344.96 69.1671 377.833 129 413.5"
 const RIGHT_CABLE_PATH = "M399.501 27V330.5C399.501 334 399.501 336.5 396.501 340C393.107 343.96 333.334 376.833 273.501 412.5"
 
@@ -35,16 +44,9 @@ export default function ServerRack({
   beam = false,
   beamStroke = [6, 10],
   magnetic = false,
-}: {
-  className?: string
-  colors?: Partial<Colors>
-  float?: boolean
-  beam?: boolean,
-  beamStroke?: [number, number],
-  magnetic?: boolean
-}) {
+}: Props) {
 
-  const c = { ...COLORS, ...colors }
+  const c = { ...DEFAULT_COLORS, ...colors }
 
   const uid = useId()
   const g = (n: number) => `${uid}-paint${n}_linear_2011_144`

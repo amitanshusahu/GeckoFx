@@ -1,30 +1,48 @@
 import { motion, useMotionValue, useSpring } from "motion/react"
 import { useId, useRef } from "react"
 
-const LINE1 = "M173 68C167.5 57 143.099 30.7861 131.499 33.1861C119.899 35.5861 115.332 49.5194 114.499 56.186C110.999 77.5193 111.399 138.786 140.999 213.186C177.999 306.186 217.499 383.686 249.999 401.186C275.999 415.186 285.499 403.019 286.999 395.186C288.499 390.519 287.6 374.9 284 356.5"
-const LINE2 = "M62.0101 304.286C50.9158 309.593 24.28 333.533 26.4772 345.174C28.6744 356.814 42.5258 361.623 49.1769 362.572C70.4459 366.444 131.71 367.113 206.615 338.816C300.247 303.445 378.424 265.304 396.489 233.114C410.941 207.362 398.942 197.651 391.136 196.015C386.496 194.434 370.863 195.06 352.403 198.338"
-const LINE3 = "M235.5 179.499C238.5 154 249.5 131.5 273 114.5C296.915 97.1995 321.5 96.5001 330 102.5"
+const DEFAULT_COLORS = {
+  primary: "#988BFF",
+  surface: "#191D26",
+  border: "#2A333F",
+  dot: "#384C6E",
+  beamColor: "#FFFFFF",
+}
 
-export default function ConnectCube({
-  className = "h-100",
-  colors = ["#988BFF", "#191D26", "#2A333F", "#384C6E", "#FFFFFF"],
-  float = true,
-  floatDistance = 20,
-  floatDelay = 0,
-  beam = true,
-  magnetic = true,
-  ping = false,
-}: {
+type ConnectCubeColors = {
+  primary: string
+  surface: string
+  border: string
+  dot: string
+  beamColor: string
+}
+
+type Props = {
   className?: string
-  colors?: string[]
+  colors?: Partial<ConnectCubeColors>
   float?: boolean
   floatDistance?: number
   floatDelay?: number
   beam?: boolean,
   magnetic?: boolean
   ping?: boolean
-}) {
-  const [primary, surface, border, dot, beamColor] = colors
+}
+
+const LINE1 = "M173 68C167.5 57 143.099 30.7861 131.499 33.1861C119.899 35.5861 115.332 49.5194 114.499 56.186C110.999 77.5193 111.399 138.786 140.999 213.186C177.999 306.186 217.499 383.686 249.999 401.186C275.999 415.186 285.499 403.019 286.999 395.186C288.499 390.519 287.6 374.9 284 356.5"
+const LINE2 = "M62.0101 304.286C50.9158 309.593 24.28 333.533 26.4772 345.174C28.6744 356.814 42.5258 361.623 49.1769 362.572C70.4459 366.444 131.71 367.113 206.615 338.816C300.247 303.445 378.424 265.304 396.489 233.114C410.941 207.362 398.942 197.651 391.136 196.015C386.496 194.434 370.863 195.06 352.403 198.338"
+const LINE3 = "M235.5 179.499C238.5 154 249.5 131.5 273 114.5C296.915 97.1995 321.5 96.5001 330 102.5"
+
+export default function ConnectCube({
+  className = "h-100",
+  colors = DEFAULT_COLORS,
+  float = true,
+  floatDistance = 20,
+  floatDelay = 0,
+  beam = true,
+  magnetic = true,
+  ping = false,
+}: Props) {
+  const { primary, surface, border, dot, beamColor } = colors
   const containerRef = useRef<HTMLDivElement>(null)
 
   const mouseX = useMotionValue(0)
@@ -110,7 +128,7 @@ export default function ConnectCube({
               fill={primary} filter="url(#cubeGlow)"
               initial={{ scale: ping ? 1 : undefined }}
               animate={{ scale: ping ? [1, 1.4, 1] : undefined }}
-              transition={{ duration: 1.6, repeat: Infinity, ease:"easeInOut", delay: 0 }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 0 }}
               style={{ transformBox: "fill-box", transformOrigin: "center" }}
             />
           </g>
@@ -156,7 +174,7 @@ export default function ConnectCube({
               fill={primary} filter="url(#cubeGlow)"
               initial={{ scale: ping ? 1 : undefined }}
               animate={{ scale: ping ? [1, 1.4, 1] : undefined }}
-              transition={{ duration: 1.6, repeat: Infinity, ease:"easeInOut", delay: 0.4 }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
               style={{ transformBox: "fill-box", transformOrigin: "center" }}
             />
           </g>
@@ -167,7 +185,7 @@ export default function ConnectCube({
               fill={primary} filter="url(#cubeGlow)"
               initial={{ scale: ping ? 1 : undefined }}
               animate={{ scale: ping ? [1, 1.4, 1] : undefined }}
-              transition={{ duration: 1.6, repeat: Infinity, ease:"easeInOut", delay: 0.2 }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
               style={{ transformBox: "fill-box", transformOrigin: "center" }}
             />
           </g>
@@ -188,7 +206,7 @@ export default function ConnectCube({
               fill={primary} filter="url(#cubeGlow)"
               initial={{ scale: ping ? 1 : undefined }}
               animate={{ scale: ping ? [1, 1.4, 1] : undefined }}
-              transition={{ duration: 1.6, repeat: Infinity, ease:"easeInOut", delay: 0.6 }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
               style={{ transformBox: "fill-box", transformOrigin: "center" }}
             />
           </g>
@@ -249,7 +267,7 @@ export default function ConnectCube({
               fill={primary} filter="url(#cubeGlow)"
               initial={{ scale: ping ? 1 : undefined }}
               animate={{ scale: ping ? [1, 1.4, 1] : undefined }}
-              transition={{ duration: 1.6, repeat: Infinity, ease:"easeInOut", delay: 1 }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               style={{ transformBox: "fill-box", transformOrigin: "center" }}
             />
           </g>
@@ -282,7 +300,7 @@ export default function ConnectCube({
             fill={primary} filter="url(#cubeGlow)"
             initial={{ scale: ping ? 1 : undefined }}
             animate={{ scale: ping ? [1, 1.3, 1] : undefined }}
-            transition={{ duration: 1.6, repeat: Infinity, ease:"easeInOut", delay: 0.8 }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
             style={{ transformBox: "fill-box", transformOrigin: "center" }}
           />
           <circle opacity="0.31" cx="7.5" cy="7.5" r="7.5" transform="matrix(-0.866025 0.5 0 1 333.967 200)" fill={dot} />
@@ -341,8 +359,8 @@ function Definations(
         p2: string,
         p3: string
       },
-      primary: string,
-      beamColor: string
+      primary?: string,
+      beamColor?: string
     }
 ) {
   return (

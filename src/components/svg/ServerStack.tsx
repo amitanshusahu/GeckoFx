@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
-const COLORS = {
+const DEFAULT_COLORS = {
   bodyOuter: "#050505",
   bodyInner: "#0E0E0E",
   stroke: "#363636",
@@ -12,7 +12,7 @@ const COLORS = {
   dot: "#D9D9D9",
 } as const;
 
-export type ServerStackColors = {
+type ServerStackColors = {
   bodyOuter: string;
   bodyInner: string;
   stroke: string;
@@ -22,6 +22,12 @@ export type ServerStackColors = {
   accent: string;
   dot: string;
 };
+
+type Props = {
+  translateY?: number;
+  opacity: number;
+  color: string;
+}
 
 const STACK_COUNT = 3;
 
@@ -122,11 +128,7 @@ function LedText({
   translateY = 0,
   opacity,
   color,
-}: {
-  translateY?: number;
-  opacity: number;
-  color: string;
-}) {
+}: Props) {
   const path = (
     <motion.path
       animate={{ opacity }}
@@ -147,7 +149,7 @@ export default function ServerStack({
   colors?: Partial<ServerStackColors>;
   flicker?: boolean;
 }) {
-  const c: ServerStackColors = { ...COLORS, ...colors };
+  const c: ServerStackColors = { ...DEFAULT_COLORS, ...colors };
   const flicker = useLedFlicker(STACK_COUNT, flickerEnabled);
 
   const ledOpacity = (i: number) => (flicker.activeStack === i ? flicker.glowOpacity : IDLE_STATE.glowOpacity);

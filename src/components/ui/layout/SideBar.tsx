@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { cn } from "../../../lib/utils";
-import { IconArrowUpRight } from '@tabler/icons-react';
 
 export default function SideBar() {
 

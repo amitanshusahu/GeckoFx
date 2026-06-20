@@ -1,7 +1,7 @@
 import { motion } from "motion/react"
 import { useId } from "react"
 
-const COLORS = {
+const DEFAULT_COLORS = {
   dot: "#183722",
   dotInner: "#408E57",
   gradientFrom: "#181C25",
@@ -11,7 +11,7 @@ const COLORS = {
   text: "#C2C2C2",
 } as const
 
-export type GpuChipColors = {
+type GpuChipColors = {
   dot: string
   dotInner: string
   gradientFrom: string
@@ -19,6 +19,12 @@ export type GpuChipColors = {
   stroke: string
   accentBar: string
   text: string
+}
+
+type Props = {
+  className?: string
+  colors?: Partial<GpuChipColors>
+  float?: boolean
 }
 
 const ROWS = [
@@ -55,12 +61,8 @@ export default function GpuChip({
   className = "w-100",
   colors,
   float = false,
-}: {
-  className?: string
-  colors?: Partial<GpuChipColors>
-  float?: boolean
-}) {
-  const c = { ...COLORS, ...colors }
+}: Props) {
+  const c = { ...DEFAULT_COLORS, ...colors }
   const uid = useId()
   const gradId = `${uid}-paint0_linear_2012_1943`
 

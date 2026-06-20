@@ -1,6 +1,5 @@
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 import Logo from '../../components/ui/details/Logo'
-import Edges from '../../components/ui/details/Edges'
 import Margin from '../../components/ui/details/Margin'
 import { useLayoutEffect, useRef, useState } from 'react'
 import SideBar from '../../components/ui/layout/SideBar'
