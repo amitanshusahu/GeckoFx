@@ -1,13 +1,34 @@
+import { Children, isValidElement, type ReactNode } from "react";
 import { cn } from "../../../lib/utils";
 import { componentMap } from "../../../component.map";
 
 type DocsTabProps = {
-  children: React.ReactNode,
+  children: ReactNode,
+}
+
+function getComponentName(children: ReactNode): string | null {
+  let name: string | null = null;
+  Children.forEach(children, (child) => {
+    if (!isValidElement(child)) return;
+    const type = child.type;
+    if (typeof type === "function" && type.name) {
+      const match = componentMap.find(c => c.name === type.name);
+      if (match) { name = match.name; return; }
+    }
+    const childProps = child.props as { children?: ReactNode };
+    if (childProps?.children) {
+      const found = getComponentName(childProps.children);
+      if (found) name = found;
+    }
+  });
+  return name;
 }
 
 export default function DocsTab({
   children
 }: DocsTabProps) {
+
+  const componentName = getComponentName(children);
 
   return (
     <div>
@@ -15,8 +36,15 @@ export default function DocsTab({
         {children}
       </div>
 
-      <div className="border border-line border-dashed mt-16">
+      <div className="flex gap-16 mt-16">
+        <div className="border border-line border-dashed p-4">
+          <h3 className="text-sm font-medium text-neutral-400 mb-2">dependency</h3>
+          <code className="text-sm text-neutral-300">bun add motion</code>
+        </div>
 
+        <div className="flex-1 border border-line border-dashed">
+          {componentName && <DocsTable componentName={componentName} />}
+        </div>
       </div>
     </div>
   )
@@ -28,45 +56,30 @@ function DocsTable({
   componentName: string,
 }) {
 
-  const component = componentMap.find(c => c.name === componentName)!;
-  const props = component.props;
+  const component = componentMap.find(c => c.name === componentName);
+  if (!component?.props) return null;
 
-  if (!props) return null;
+  const entries = Object.entries(component.props);
 
   return (
     <table className="w-full">
       <thead>
         <tr>
           <th className="text-left text-sm text-neutral-400 py-2 px-4 border-r border-r-line border-dashed">props</th>
-          <th className="text-left text-sm text-neutral-400 py-2 px-4 border-r border-r-line border-dashed">types</th>
-          <th className="text-right text-sm text-neutral-400 py-2 px-4">description</th>
+          <th className="text-left text-sm text-neutral-400 py-2 px-4">types</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td className={cn(
-            "text-sm text-neutral-300 py-2 px-4 border-t border-t-line border-dashed border-r border-r-line"
-          )}>size</td>
-          <td className={cn(
-            "text-sm text-neutral-300 py-2 px-4 border-t border-t-line border-dashed border-r border-r-line"
-          )}>number</td>
-          <td className={cn(
-            "text-sm text-neutral-300 py-2 px-4 border-t border-t-line border-dashed border-r border-r-line", "text-right")}>size of the server stack component</td>
-        </tr>
-        <tr>
-          <td className={cn(
-            "text-sm text-neutral-300 py-2 px-4 border-t border-t-line border-dashed border-r border-r-line"
-          )}>color</td>
-          <td className={cn(
-            "text-sm text-neutral-300 py-2 px-4 border-t border-t-line border-dashed border-r border-r-line"
-          )}>string</td>
-          <td className={cn(
-            "text-sm text-neutral-300 py-2 px-4 border-t border-t-line border-dashed border-r border-r-line",
-            "text-right"
-          )}>
-            color of the server stack component
-          </td>
-        </tr>
+        {entries.map(([prop, type]) => (
+          <tr key={prop}>
+            <td className={cn(
+              "text-sm text-neutral-300 py-2 px-4 border-t border-t-line border-dashed border-r border-r-line"
+            )}>{prop}</td>
+            <td className={cn(
+              "text-sm text-neutral-300 py-2 px-4 border-t border-t-line border-dashed"
+            )}>{Array.isArray(type) ? type.join(" | ") : type}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   )

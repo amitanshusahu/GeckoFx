@@ -1,7 +1,6 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 import ServerStack from '../../components/svg/ServerStack'
 import Button from '../../components/ui/layout/Button'
-import { useState } from 'react';
 import DocsTab from '../../components/ui/layout/DocsTab';
 
 export const Route = createLazyFileRoute('/docs/server-stack')({
@@ -9,8 +8,6 @@ export const Route = createLazyFileRoute('/docs/server-stack')({
 })
 
 function RouteComponent() {
-
-  const [tab, setTab] = useState<"docs" | "code">("docs");
 
   return <div className='p-4'>
     <div className='h-fit w-full p-8 flex flex-col gap-8'>
