@@ -1,12 +1,12 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
-import ServerStack from '../../components/svg/ServerStack';
-import ServerStackCode from '../../components/svg/ServerStack?raw';
+import GpuChip from '../../components/svg/GpuChip';
+import GpuChipCode from '../../components/svg/GpuChip?raw';
 import Button from '../../components/ui/layout/Button';
 import DocsTab from '../../components/ui/layout/DocsTab';
 import { useState, useRef, useEffect } from 'react';
 import CodeTab from '../../components/ui/layout/CodeTab';
 
-export const Route = createLazyFileRoute('/docs/server-stack')({
+export const Route = createLazyFileRoute('/docs/gpu-chip')({
   component: RouteComponent,
 })
 
@@ -26,7 +26,7 @@ function RouteComponent() {
       <div className="flex justify-between">
         <div className='flex items-center'>
           <h1 className='text-xl font-bold'>{"<"}</h1>
-          <h1 className='text-xl font-bold text-primary'>{ServerStack.name}</h1>
+          <h1 className='text-xl font-bold text-primary'>{GpuChip.name}</h1>
           <h1 className='text-xl font-bold ml-2'>{"/>"}</h1>
         </div>
         <div className="flex gap-4">
@@ -51,11 +51,11 @@ function RouteComponent() {
       {tab === "docs" ? (
         <DocsTab>
           <div className='flex flex-col gap-20 h-full w-full items-center justify-center'>
-            <ServerStack />
+            <GpuChip />
           </div>
         </DocsTab>
       ) : (
-        <CodeTab source={ServerStackCode} width={containerWidth} />
+        <CodeTab source={GpuChipCode} width={containerWidth} />
       )}
     </div>
   </div>

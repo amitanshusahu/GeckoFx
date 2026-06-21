@@ -1,12 +1,12 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
-import ServerStack from '../../components/svg/ServerStack';
-import ServerStackCode from '../../components/svg/ServerStack?raw';
+import ConnectCube from '../../components/svg/ConnectCube';
+import ConnectCubeCode from '../../components/svg/ConnectCube?raw';
 import Button from '../../components/ui/layout/Button';
 import DocsTab from '../../components/ui/layout/DocsTab';
 import { useState, useRef, useEffect } from 'react';
 import CodeTab from '../../components/ui/layout/CodeTab';
 
-export const Route = createLazyFileRoute('/docs/server-stack')({
+export const Route = createLazyFileRoute('/docs/connect-cube')({
   component: RouteComponent,
 })
 
@@ -26,7 +26,7 @@ function RouteComponent() {
       <div className="flex justify-between">
         <div className='flex items-center'>
           <h1 className='text-xl font-bold'>{"<"}</h1>
-          <h1 className='text-xl font-bold text-primary'>{ServerStack.name}</h1>
+          <h1 className='text-xl font-bold text-primary'>{ConnectCube.name}</h1>
           <h1 className='text-xl font-bold ml-2'>{"/>"}</h1>
         </div>
         <div className="flex gap-4">
@@ -51,11 +51,11 @@ function RouteComponent() {
       {tab === "docs" ? (
         <DocsTab>
           <div className='flex flex-col gap-20 h-full w-full items-center justify-center'>
-            <ServerStack />
+            <ConnectCube />
           </div>
         </DocsTab>
       ) : (
-        <CodeTab source={ServerStackCode} width={containerWidth} />
+        <CodeTab source={ConnectCubeCode} width={containerWidth} />
       )}
     </div>
   </div>

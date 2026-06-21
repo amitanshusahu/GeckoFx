@@ -1,12 +1,21 @@
+import fs from "fs";
+import { toKebab } from "../lib/utils";
+import { componentMap } from "../component.map";
+
+function generateDocsPageContent(componentName: string) {
+
+  const componentNameKebab = toKebab(componentName);
+
+  const content = `
 import { createLazyFileRoute } from '@tanstack/react-router';
-import ServerStack from '../../components/svg/ServerStack';
-import ServerStackCode from '../../components/svg/ServerStack?raw';
+import ${componentName} from '../../components/svg/${componentName}';
+import ${componentName}Code from '../../components/svg/${componentName}?raw';
 import Button from '../../components/ui/layout/Button';
 import DocsTab from '../../components/ui/layout/DocsTab';
 import { useState, useRef, useEffect } from 'react';
 import CodeTab from '../../components/ui/layout/CodeTab';
 
-export const Route = createLazyFileRoute('/docs/server-stack')({
+export const Route = createLazyFileRoute('/docs/${componentNameKebab}')({
   component: RouteComponent,
 })
 
@@ -26,7 +35,7 @@ function RouteComponent() {
       <div className="flex justify-between">
         <div className='flex items-center'>
           <h1 className='text-xl font-bold'>{"<"}</h1>
-          <h1 className='text-xl font-bold text-primary'>{ServerStack.name}</h1>
+          <h1 className='text-xl font-bold text-primary'>{${componentName}.name}</h1>
           <h1 className='text-xl font-bold ml-2'>{"/>"}</h1>
         </div>
         <div className="flex gap-4">
@@ -51,14 +60,45 @@ function RouteComponent() {
       {tab === "docs" ? (
         <DocsTab>
           <div className='flex flex-col gap-20 h-full w-full items-center justify-center'>
-            <ServerStack />
+            <${componentName} />
           </div>
         </DocsTab>
       ) : (
-        <CodeTab source={ServerStackCode} width={containerWidth} />
+        <CodeTab source={${componentName}Code} width={containerWidth} />
       )}
     </div>
   </div>
 }
 
-  
+  `
+  return content
+}
+
+function getRouteFilePath(componentName: string) {
+  const componentNameKebab = toKebab(componentName);
+  return `src/routes/docs/${componentNameKebab}.lazy.tsx`;
+}
+
+async function main() {
+  try {
+    const docsDir = "src/routes/docs";
+    if (!fs.existsSync(docsDir)) {
+      fs.mkdirSync(docsDir, { recursive: true });
+    }
+
+    for (const component of componentMap) {
+      const content = generateDocsPageContent(component.name);
+      const filePath = getRouteFilePath(component.name);
+      fs.writeFileSync(filePath, content.trimStart());
+      console.log(`Generated: ${filePath}`);
+    }
+
+    console.log(`\nDone! Generated ${componentMap.length} docs pages.`);
+  }
+  catch (error) {
+    console.error("Error generating docs:", error);
+    process.exit(1);
+  }
+}
+
+main();
