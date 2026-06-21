@@ -22,9 +22,10 @@ export default function Button({
   return (
     <button
       className={cn(
-        'text-sm px-4 py-2 rounded bg-primary/10 text-[#ffc3d6] relative cursor-pointer',
+        'text-sm px-4 py-2 bg-primary/10 text-white relative cursor-pointer',
         'border border-dashed border-primary/50',
         'hover:bg-primary/20',
+        'transition-all transition-duration-300',
         className
       )}
       onClick={onClick}
