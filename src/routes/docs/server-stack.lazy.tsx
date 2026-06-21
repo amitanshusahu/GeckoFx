@@ -11,21 +11,7 @@ export const Route = createLazyFileRoute('/docs/server-stack')({
 })
 
 function RouteComponent() {
-
-  const tabs = [
-    (
-      <DocsTab>
-        <div className='flex flex-col gap-20 h-full w-full items-center justify-center'>
-          <ServerStack />
-        </div>
-      </DocsTab>
-    ),
-    (
-      <CodeTab source={ServerStackCode} />
-    )
-  ]
-
-  const [tab, setTab] = useState(tabs[0]);
+  const [tab, setTab] = useState<"docs" | "code">("docs");
 
   return <div className='p-4'>
     <div className='h-fit w-full p-8 flex flex-col gap-8'>
@@ -40,7 +26,7 @@ function RouteComponent() {
             edgeColor="var(--color-primary)"
             edgeOpacity={100}
             edgeWidth={7}
-            onClick = {() => setTab(tabs[0])}
+            onClick={() => setTab("docs")}
           >
             docs
           </Button>
@@ -49,13 +35,21 @@ function RouteComponent() {
             edgeOpacity={50}
             edgeWidth={7}
             className='bg-white/5 border-white/10  text-neutral-400 hover:bg-white/10'
-            onClick = {() => setTab(tabs[1])}
+            onClick={() => setTab("code")}
           >
             code
           </Button>
         </div>
       </div>
-      {tab}
+      {tab === "docs" ? (
+        <DocsTab>
+          <div className='flex flex-col gap-20 h-full w-full items-center justify-center'>
+            <ServerStack />
+          </div>
+        </DocsTab>
+      ) : (
+        <CodeTab source={ServerStackCode} />
+      )}
     </div>
   </div>
 }
