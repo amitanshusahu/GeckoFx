@@ -8,10 +8,14 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
+import { createFileRoute } from '@tanstack/react-router'
+
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as DocsRouteRouteImport } from './routes/docs/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DocsServerRackRouteImport } from './routes/docs/server-rack'
+
+const DocsServerStackLazyRouteImport = createFileRoute('/docs/server-stack')()
+const DocsServerRackLazyRouteImport = createFileRoute('/docs/server-rack')()
 
 const DocsRouteRoute = DocsRouteRouteImport.update({
   id: '/docs',
@@ -23,34 +27,46 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DocsServerRackRoute = DocsServerRackRouteImport.update({
+const DocsServerStackLazyRoute = DocsServerStackLazyRouteImport.update({
+  id: '/server-stack',
+  path: '/server-stack',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/server-stack.lazy').then((d) => d.Route),
+)
+const DocsServerRackLazyRoute = DocsServerRackLazyRouteImport.update({
   id: '/server-rack',
   path: '/server-rack',
   getParentRoute: () => DocsRouteRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/docs/server-rack.lazy').then((d) => d.Route),
+)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
-  '/docs/server-rack': typeof DocsServerRackRoute
+  '/docs/server-rack': typeof DocsServerRackLazyRoute
+  '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
-  '/docs/server-rack': typeof DocsServerRackRoute
+  '/docs/server-rack': typeof DocsServerRackLazyRoute
+  '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
-  '/docs/server-rack': typeof DocsServerRackRoute
+  '/docs/server-rack': typeof DocsServerRackLazyRoute
+  '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/docs' | '/docs/server-rack'
+  fullPaths: '/' | '/docs' | '/docs/server-rack' | '/docs/server-stack'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/docs' | '/docs/server-rack'
-  id: '__root__' | '/' | '/docs' | '/docs/server-rack'
+  to: '/' | '/docs' | '/docs/server-rack' | '/docs/server-stack'
+  id: '__root__' | '/' | '/docs' | '/docs/server-rack' | '/docs/server-stack'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -74,22 +90,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/docs/server-stack': {
+      id: '/docs/server-stack'
+      path: '/server-stack'
+      fullPath: '/docs/server-stack'
+      preLoaderRoute: typeof DocsServerStackLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/server-rack': {
       id: '/docs/server-rack'
       path: '/server-rack'
       fullPath: '/docs/server-rack'
-      preLoaderRoute: typeof DocsServerRackRouteImport
+      preLoaderRoute: typeof DocsServerRackLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
   }
 }
 
 interface DocsRouteRouteChildren {
-  DocsServerRackRoute: typeof DocsServerRackRoute
+  DocsServerRackLazyRoute: typeof DocsServerRackLazyRoute
+  DocsServerStackLazyRoute: typeof DocsServerStackLazyRoute
 }
 
 const DocsRouteRouteChildren: DocsRouteRouteChildren = {
-  DocsServerRackRoute: DocsServerRackRoute,
+  DocsServerRackLazyRoute: DocsServerRackLazyRoute,
+  DocsServerStackLazyRoute: DocsServerStackLazyRoute,
 }
 
 const DocsRouteRouteWithChildren = DocsRouteRoute._addFileChildren(

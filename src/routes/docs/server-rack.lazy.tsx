@@ -1,11 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 import ConnectCube from '../../components/svg/ConnectCube'
 import GpuChip from '../../components/svg/GpuChip'
 import GpuCluster from '../../components/svg/GpuCluster'
 import ServerRack from '../../components/svg/ServerRack'
 import ServerStack from '../../components/svg/ServerStack'
 
-export const Route = createFileRoute('/docs/server-rack')({
+export const Route = createLazyFileRoute('/docs/server-rack')({
   component: RouteComponent,
 })
 
