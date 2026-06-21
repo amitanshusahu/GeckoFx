@@ -26,13 +26,13 @@ function DocsLayoutComponent() {
 
       {/* top bar */}
       <div className='grid grid-cols-[20%_60%_20%]'>
-        <div className='p-4'>
+        <div className='p-4 pl-8'>
           <Logo />
         </div>
         <div className='grid grid-cols-[--spacing(10)_1fr_--spacing(10)]'>
 
         </div>
-        <div className='p-4'>
+        <div className='p-4 px-8'>
           <button>sponsor</button>
         </div>
       </div>
@@ -52,7 +52,7 @@ function DocsLayoutComponent() {
 
       {/* content */}
       <div className='grid grid-cols-[20%_60%_20%] h-full'>
-        <div className='px-4 pt-4'>
+        <div className='px-4 pt-4 pl-8'>
           <SideBar />
         </div>
         <div className='grid grid-cols-[--spacing(10)_1fr_--spacing(10)]'>
@@ -65,7 +65,7 @@ function DocsLayoutComponent() {
           </div>
           <Margin className='h-full w-full' vertical edgesWidth={7} />
         </div>
-        <div className='px-4 pt-4'>
+        <div className='px-4 pt-4 pl-8'>
 
         </div>
       </div>
