@@ -16,6 +16,9 @@ import { Route as IndexRouteImport } from './routes/index'
 
 const DocsServerStackLazyRouteImport = createFileRoute('/docs/server-stack')()
 const DocsServerRackLazyRouteImport = createFileRoute('/docs/server-rack')()
+const DocsGpuClusterLazyRouteImport = createFileRoute('/docs/gpu-cluster')()
+const DocsGpuChipLazyRouteImport = createFileRoute('/docs/gpu-chip')()
+const DocsConnectCubeLazyRouteImport = createFileRoute('/docs/connect-cube')()
 
 const DocsRouteRoute = DocsRouteRouteImport.update({
   id: '/docs',
@@ -41,16 +44,41 @@ const DocsServerRackLazyRoute = DocsServerRackLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/docs/server-rack.lazy').then((d) => d.Route),
 )
+const DocsGpuClusterLazyRoute = DocsGpuClusterLazyRouteImport.update({
+  id: '/gpu-cluster',
+  path: '/gpu-cluster',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/gpu-cluster.lazy').then((d) => d.Route),
+)
+const DocsGpuChipLazyRoute = DocsGpuChipLazyRouteImport.update({
+  id: '/gpu-chip',
+  path: '/gpu-chip',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() => import('./routes/docs/gpu-chip.lazy').then((d) => d.Route))
+const DocsConnectCubeLazyRoute = DocsConnectCubeLazyRouteImport.update({
+  id: '/connect-cube',
+  path: '/connect-cube',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/connect-cube.lazy').then((d) => d.Route),
+)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
+  '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
+  '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
+  '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
+  '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
+  '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
+  '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
@@ -58,15 +86,40 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
+  '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
+  '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
+  '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/docs' | '/docs/server-rack' | '/docs/server-stack'
+  fullPaths:
+    | '/'
+    | '/docs'
+    | '/docs/connect-cube'
+    | '/docs/gpu-chip'
+    | '/docs/gpu-cluster'
+    | '/docs/server-rack'
+    | '/docs/server-stack'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/docs' | '/docs/server-rack' | '/docs/server-stack'
-  id: '__root__' | '/' | '/docs' | '/docs/server-rack' | '/docs/server-stack'
+  to:
+    | '/'
+    | '/docs'
+    | '/docs/connect-cube'
+    | '/docs/gpu-chip'
+    | '/docs/gpu-cluster'
+    | '/docs/server-rack'
+    | '/docs/server-stack'
+  id:
+    | '__root__'
+    | '/'
+    | '/docs'
+    | '/docs/connect-cube'
+    | '/docs/gpu-chip'
+    | '/docs/gpu-cluster'
+    | '/docs/server-rack'
+    | '/docs/server-stack'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -104,15 +157,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsServerRackLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/gpu-cluster': {
+      id: '/docs/gpu-cluster'
+      path: '/gpu-cluster'
+      fullPath: '/docs/gpu-cluster'
+      preLoaderRoute: typeof DocsGpuClusterLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/gpu-chip': {
+      id: '/docs/gpu-chip'
+      path: '/gpu-chip'
+      fullPath: '/docs/gpu-chip'
+      preLoaderRoute: typeof DocsGpuChipLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/connect-cube': {
+      id: '/docs/connect-cube'
+      path: '/connect-cube'
+      fullPath: '/docs/connect-cube'
+      preLoaderRoute: typeof DocsConnectCubeLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
   }
 }
 
 interface DocsRouteRouteChildren {
+  DocsConnectCubeLazyRoute: typeof DocsConnectCubeLazyRoute
+  DocsGpuChipLazyRoute: typeof DocsGpuChipLazyRoute
+  DocsGpuClusterLazyRoute: typeof DocsGpuClusterLazyRoute
   DocsServerRackLazyRoute: typeof DocsServerRackLazyRoute
   DocsServerStackLazyRoute: typeof DocsServerStackLazyRoute
 }
 
 const DocsRouteRouteChildren: DocsRouteRouteChildren = {
+  DocsConnectCubeLazyRoute: DocsConnectCubeLazyRoute,
+  DocsGpuChipLazyRoute: DocsGpuChipLazyRoute,
+  DocsGpuClusterLazyRoute: DocsGpuClusterLazyRoute,
   DocsServerRackLazyRoute: DocsServerRackLazyRoute,
   DocsServerStackLazyRoute: DocsServerStackLazyRoute,
 }
