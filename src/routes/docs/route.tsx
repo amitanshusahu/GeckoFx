@@ -52,8 +52,10 @@ function DocsLayoutComponent() {
 
       {/* content */}
       <div className='grid grid-cols-[20%_60%_20%] h-full'>
-        <div className='px-4 pt-4 pl-8'>
-          <SideBar />
+        <div className='pt-4'>
+          <div className='w-full overflow-y-auto px-8' style={{ height: `${height}px` }}>
+            <SideBar />
+          </div>
         </div>
         <div className='grid grid-cols-[--spacing(10)_1fr_--spacing(10)]'>
           <Margin className='h-full w-full' vertical edgesWidth={7} />

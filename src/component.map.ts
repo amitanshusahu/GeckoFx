@@ -7,18 +7,15 @@ const categories = {
 
 export const componentMap = [
   {
-    name: "ServerRack",
-    description: "a rack containing multiple servers or routers. 2 cables like lines are beside the rack that indicate data or network flow",
+    name: "ServerStack",
+    description: "a stack of three server units with animated LED indicators that flicker and pulse",
     props: {
       className: "string",
       colors: "Partial<Colors>",
-      float: "boolean",
-      beam: "boolean",
-      beamStroke: ["number", "number"],
-      magnetic: "boolean",
+      flicker: "boolean",
     },
-    tags: ["data flow", "network", "rack", "server", "hardware", "infrastructure"],
-    category: [categories.infrastructure],
+    tags: ["server", "stack", "led", "animation", "hardware", "infrastructure"],
+    category: [categories.hardware, categories.infrastructure],
   },
   {
     name: "GpuCluster",
@@ -59,14 +56,17 @@ export const componentMap = [
     category: [categories.infrastructure, categories.web3],
   },
   {
-    name: "ServerStack",
-    description: "a stack of three server units with animated LED indicators that flicker and pulse",
+    name: "ServerRack",
+    description: "a rack containing multiple servers or routers. 2 cables like lines are beside the rack that indicate data or network flow",
     props: {
       className: "string",
       colors: "Partial<Colors>",
-      flicker: "boolean",
+      float: "boolean",
+      beam: "boolean",
+      beamStroke: ["number", "number"],
+      magnetic: "boolean",
     },
-    tags: ["server", "stack", "led", "animation", "hardware", "infrastructure"],
-    category: [categories.hardware, categories.infrastructure],
+    tags: ["data flow", "network", "rack", "server", "hardware", "infrastructure"],
+    category: [categories.infrastructure],
   },
 ]
