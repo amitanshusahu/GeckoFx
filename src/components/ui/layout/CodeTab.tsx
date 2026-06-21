@@ -22,10 +22,12 @@ const hotPinkTheme: PrismTheme = {
 
 type CodeTabProps = {
   source: string,
+  width?: number,
 }
 
 export default function CodeTab({
   source,
+  width,
 }: CodeTabProps) {
   return (
     <Highlight code={source} language="tsx" theme={hotPinkTheme}>
@@ -34,7 +36,7 @@ export default function CodeTab({
           className={className}
           style={{
             ...style,
-            maxWidth: "60vw",
+            maxWidth: width ? `${width}px` : "60vw",
             overflowX: "auto",
             padding: "1em",
             borderRadius: "0.5em",

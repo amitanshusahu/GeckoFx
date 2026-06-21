@@ -3,7 +3,7 @@ import ServerStack from '../../components/svg/ServerStack';
 import ServerStackCode from '../../components/svg/ServerStack?raw';
 import Button from '../../components/ui/layout/Button';
 import DocsTab from '../../components/ui/layout/DocsTab';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import CodeTab from '../../components/ui/layout/CodeTab';
 
 export const Route = createLazyFileRoute('/docs/server-stack')({
@@ -12,9 +12,17 @@ export const Route = createLazyFileRoute('/docs/server-stack')({
 
 function RouteComponent() {
   const [tab, setTab] = useState<"docs" | "code">("docs");
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState<number | undefined>();
+
+  useEffect(() => {
+    if (containerRef.current) {
+      setContainerWidth(containerRef.current.offsetWidth - 100);
+    }
+  }, []);
 
   return <div className='p-4'>
-    <div className='h-fit w-full p-8 flex flex-col gap-8'>
+    <div ref={containerRef} className='h-fit w-full p-8 flex flex-col gap-8'>
       <div className="flex justify-between">
         <div className='flex items-center'>
           <h1 className='text-xl font-bold'>{"<"}</h1>
@@ -23,18 +31,17 @@ function RouteComponent() {
         </div>
         <div className="flex gap-4">
           <Button
-            edgeColor="var(--color-primary)"
-            edgeOpacity={100}
+            edgeOpacity={tab === "docs" ? 100 : 50}
             edgeWidth={7}
+            className={tab !== "docs" ? 'bg-white/5 border-white/10 text-neutral-400 hover:bg-white/10' : 'bg-primary text-white hover:bg-primary/90 border-white font-semibold'}
             onClick={() => setTab("docs")}
           >
             docs
           </Button>
           <Button
-            edgeColor="white"
-            edgeOpacity={50}
+            edgeOpacity={tab === "code" ? 100 : 50}
             edgeWidth={7}
-            className='bg-white/5 border-white/10  text-neutral-400 hover:bg-white/10'
+            className={tab !== "code" ? 'bg-white/5 border-white/10 text-neutral-400 hover:bg-white/10' : 'bg-primary text-white hover:bg-primary/90 border-white font-semibold'}
             onClick={() => setTab("code")}
           >
             code
@@ -48,7 +55,7 @@ function RouteComponent() {
           </div>
         </DocsTab>
       ) : (
-        <CodeTab source={ServerStackCode} />
+        <CodeTab source={ServerStackCode} width={containerWidth} />
       )}
     </div>
   </div>
