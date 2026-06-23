@@ -1,19 +1,38 @@
 @import "tailwindcss";
 
-.dot-grid {
-  /* Radial gradient for the background color shift (center to edges) */
-  background-image: 
-    radial-gradient(circle at center, #1a202c 0%, #0f172a 100%),
-    radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
-  
-  /* Size of the grid cells */
-  background-size: 100%, 24px 24px;
-  
-  /* Blend them together (optional, depending on your colors) */
-  background-blend-mode: overlay;
-  
-  /* Ensures it covers the entire viewport */
-  width: 100vw;
-  height: 100vh;
+* {
+  font-family: "IBM Plex Mono", monospace;
+  /* border: 1px solid rgba(255, 0, 0, 0.384); */
 }
 
+@theme {
+  --color-line: #303030;
+  --color-primary: #FF4C85;
+  --text-md: 16px;
+}
+
+
+@utility bg-hatching {
+  background-image: repeating-linear-gradient(315deg,
+      var(--color-line) 0,
+      var(--color-line) 1px,
+      transparent 0,
+      transparent 50%);
+  background-size: 10px 10px;
+}
+
+@utility screen-line-top {
+  @apply before:bg-line relative before:absolute before:top-0 before:left-[-100vw] before:z-1 before:h-px before:w-[300vw];
+}
+
+@utility screen-line-bottom {
+  @apply after:bg-line relative after:absolute after:bottom-0 after:left-[-100vw] after:z-1 after:h-px after:w-[200vw];
+}
+
+@utility screen-line-left {
+  @apply before:bg-line relative before:absolute before:top-[-100vh] before:left-0 before:z-1 before:w-px before:h-[300vh];
+}
+
+@utility screen-line-right {
+  @apply after:bg-line relative after:absolute after:top-[-100vh] after:right-0 after:z-1 after:w-px after:h-[300vh];
+}
