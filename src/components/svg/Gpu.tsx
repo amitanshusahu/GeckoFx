@@ -30,11 +30,16 @@ type GpuColors = {
 }
 
 type Props = {
+  className?: string
   colors?: Partial<GpuColors>
   rotationDuration?: number
 }
 
-export default function Gpu({ colors, rotationDuration = 2 }: Props) {
+export default function Gpu({ 
+  className = "w-100", 
+  colors, 
+  rotationDuration = 2 
+}: Props) {
   const fan1Cx = 243.66;
   const fan1Cy = 124.65;
   const fan2Cx = 357.74;
@@ -48,7 +53,7 @@ export default function Gpu({ colors, rotationDuration = 2 }: Props) {
 
   return (
     <div>
-      <svg width="485" height="332" viewBox="0 0 485 332" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg className={className} viewBox="0 0 485 332" fill="none" xmlns="http://www.w3.org/2000/svg">
         <style>
           {`
             @keyframes gpu-rotor-pulse {

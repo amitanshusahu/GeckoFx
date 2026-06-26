@@ -5,7 +5,15 @@ const categories = {
   infrastructure: "infrastructure",
 }
 
-export const componentMap = [
+type ComponentMapEntry = {
+  name: string
+  description: string
+  props: Record<string, string | string[]>
+  tags: string[]
+  category: string[]
+}
+
+export const componentMap : ComponentMapEntry[] = [
   {
     name: "ServerStack",
     description: "a stack of three server units with animated LED indicators that flicker and pulse",
@@ -69,4 +77,15 @@ export const componentMap = [
     tags: ["data flow", "network", "rack", "server", "hardware", "infrastructure"],
     category: [categories.infrastructure],
   },
+  {
+    name: "Gpu",
+    description: "a single GPU chip with animated cooling fans and glowing effects",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      rotationDuration: "number",
+    },
+    tags: ["gpu", "chip", "fan", "animation", "hardware", "ai"],
+    category: [categories.hardware, categories.ai],
+  }
 ]
