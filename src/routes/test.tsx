@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import Gpu from '../components/svg/Gpu'
+import AudioChip from '../components/svg/AudioChip'
 
 export const Route = createFileRoute('/test')({
   component: RouteComponent,
@@ -8,7 +8,7 @@ export const Route = createFileRoute('/test')({
 function RouteComponent() {
   return (
     <div className="flex justify-center items-center h-screen bg-black text-white">
-      <Gpu />
+      <AudioChip />      
     </div>
   )
 }
