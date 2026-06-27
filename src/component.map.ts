@@ -99,5 +99,19 @@ export const componentMap : ComponentMapEntry[] = [
     },
     tags: ["audio", "chip", "hardware", "animation"],
     category: [categories.hardware, categories.ai],
+  },
+  {
+    name: "MicRipple",
+    description: "a microphone with animated ripple effects and floating animation",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      ripple: "boolean",
+      bounce: "boolean",
+      float: "boolean",
+      animate: "boolean",
+    },
+    tags: ["microphone", "ripple", "animation", "hardware", "audio"],
+    category: [categories.hardware],
   }
 ]

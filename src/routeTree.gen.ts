@@ -17,6 +17,7 @@ import { Route as IndexRouteImport } from './routes/index'
 
 const DocsServerStackLazyRouteImport = createFileRoute('/docs/server-stack')()
 const DocsServerRackLazyRouteImport = createFileRoute('/docs/server-rack')()
+const DocsMicRippleLazyRouteImport = createFileRoute('/docs/mic-ripple')()
 const DocsGpuClusterLazyRouteImport = createFileRoute('/docs/gpu-cluster')()
 const DocsGpuChipLazyRouteImport = createFileRoute('/docs/gpu-chip')()
 const DocsGpuLazyRouteImport = createFileRoute('/docs/gpu')()
@@ -51,6 +52,13 @@ const DocsServerRackLazyRoute = DocsServerRackLazyRouteImport.update({
   getParentRoute: () => DocsRouteRoute,
 } as any).lazy(() =>
   import('./routes/docs/server-rack.lazy').then((d) => d.Route),
+)
+const DocsMicRippleLazyRoute = DocsMicRippleLazyRouteImport.update({
+  id: '/mic-ripple',
+  path: '/mic-ripple',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/mic-ripple.lazy').then((d) => d.Route),
 )
 const DocsGpuClusterLazyRoute = DocsGpuClusterLazyRouteImport.update({
   id: '/gpu-cluster',
@@ -93,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
+  '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
@@ -105,6 +114,7 @@ export interface FileRoutesByTo {
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
+  '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
@@ -118,6 +128,7 @@ export interface FileRoutesById {
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
+  '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/docs/gpu'
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
+    | '/docs/mic-ripple'
     | '/docs/server-rack'
     | '/docs/server-stack'
   fileRoutesByTo: FileRoutesByTo
@@ -144,6 +156,7 @@ export interface FileRouteTypes {
     | '/docs/gpu'
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
+    | '/docs/mic-ripple'
     | '/docs/server-rack'
     | '/docs/server-stack'
   id:
@@ -156,6 +169,7 @@ export interface FileRouteTypes {
     | '/docs/gpu'
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
+    | '/docs/mic-ripple'
     | '/docs/server-rack'
     | '/docs/server-stack'
   fileRoutesById: FileRoutesById
@@ -203,6 +217,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsServerRackLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/mic-ripple': {
+      id: '/docs/mic-ripple'
+      path: '/mic-ripple'
+      fullPath: '/docs/mic-ripple'
+      preLoaderRoute: typeof DocsMicRippleLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/gpu-cluster': {
       id: '/docs/gpu-cluster'
       path: '/gpu-cluster'
@@ -247,6 +268,7 @@ interface DocsRouteRouteChildren {
   DocsGpuLazyRoute: typeof DocsGpuLazyRoute
   DocsGpuChipLazyRoute: typeof DocsGpuChipLazyRoute
   DocsGpuClusterLazyRoute: typeof DocsGpuClusterLazyRoute
+  DocsMicRippleLazyRoute: typeof DocsMicRippleLazyRoute
   DocsServerRackLazyRoute: typeof DocsServerRackLazyRoute
   DocsServerStackLazyRoute: typeof DocsServerStackLazyRoute
 }
@@ -257,6 +279,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsGpuLazyRoute: DocsGpuLazyRoute,
   DocsGpuChipLazyRoute: DocsGpuChipLazyRoute,
   DocsGpuClusterLazyRoute: DocsGpuClusterLazyRoute,
+  DocsMicRippleLazyRoute: DocsMicRippleLazyRoute,
   DocsServerRackLazyRoute: DocsServerRackLazyRoute,
   DocsServerStackLazyRoute: DocsServerStackLazyRoute,
 }
