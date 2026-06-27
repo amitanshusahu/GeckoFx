@@ -38,6 +38,8 @@ type MicRippleColors = {
 type Props = {
   className?: string
   ripple?: boolean
+  bounce?: boolean
+  float?: boolean
   animate?: boolean
   colors?: Partial<MicRippleColors>
 }
@@ -65,6 +67,8 @@ function particleClass(i: number) {
 export default function MicRipple({
   className = "h-[400px]",
   ripple = true,
+  bounce = true,
+  float = true,
   animate = true,
   colors,
 }: Props) {
@@ -239,7 +243,7 @@ export default function MicRipple({
             />
           </g>
           <g id="sound-source">
-            <g id="mic-button" className={animate ? "mr-mic-bounce" : ""}>
+            <g id="mic-button" className={animate && bounce ? "mr-mic-bounce" : ""}>
               <path id="bottom" d="M184.749 158.48H198.249L229.249 176.48L231.249 185.98C240.249 187.146 263.549 186.88 284.749 176.48C305.949 166.08 303.249 150.48 299.249 143.98L284.749 142.48L254.749 124.48V117.48C254.749 117.48 236.749 109.58 208.749 121.98C180.749 134.38 181.082 151.48 184.749 158.48Z" fill={c.micBottom} />
               <path id="top" d="M186 152.999H199.5L230.5 170.999L232.5 180.499C241.5 181.666 264.8 181.399 286 170.999C307.2 160.599 304.5 144.999 300.5 138.499L286 136.999L256 118.999V111.999C256 111.999 238 104.099 210 116.499C182 128.899 182.333 145.999 186 152.999Z" fill={c.micTop} stroke={`url(#${pId(4)})`} />
               <g id="mic-icon">
@@ -264,7 +268,7 @@ export default function MicRipple({
                 <path id="meter_2" className={animate ? "mr-meter-pulse" : ""} d="M212.43 148.566L208.646 150.153L206.814 148.697L210.597 147.11L212.43 148.566ZM208.783 144.154L204.336 144.988L203.372 143.277L207.819 142.442L208.783 144.154ZM207.676 139.308H203V137.508H207.676V139.308ZM210.182 132.789L209.218 134.501L204.771 133.667L205.734 131.955L210.182 132.789ZM215.089 128.748L213.257 130.204L209.474 128.618L211.306 127.161L215.089 128.748ZM221.919 125.78L219.397 126.839L216.648 124.654L219.171 123.597L221.919 125.78ZM230.004 124.178L227.039 124.733L225.594 122.166L228.559 121.609L230.004 124.178ZM248.029 121.943L246.978 124.573L243.939 124.169L244.991 121.538L248.029 121.943ZM238.635 123.699H235.518V121H238.635V123.699Z" fill={`url(#${pId(6)})`} />
               </g>
             </g>
-            <g id="play-button" className={animate ? "mr-btn-float" : ""}>
+            <g id="play-button" className={animate && float ? "mr-btn-float" : ""}>
               <path id="bottom_2" d="M182.438 170.424C186.264 168.215 192.468 168.215 196.294 170.424L212.042 179.515L216.5 178.924V186.424L215.438 186.967C214.98 187.491 214.373 187.985 213.614 188.424L179.105 208.347C175.279 210.557 169.075 210.557 165.249 208.347L147.928 198.347C146.55 197.552 145.67 196.577 145.285 195.554L145 195.424V188.424L153.131 187.343L182.438 170.424Z" fill={`url(#${pId(7)})`} />
               <rect id="top_2" x="0.866025" width="54.8479" height="35" rx="7.5" transform="matrix(0.866025 -0.5 0.866025 0.5 141.116 189.357)" fill={`url(#${pId(8)})`} stroke={c.playStroke} />
               <g id="Polygon 1" filter={`url(#${fId(1)})`}>
