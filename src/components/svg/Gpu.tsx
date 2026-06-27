@@ -198,7 +198,7 @@ export default function Gpu({
               <circle cx="7.62588" cy="7.62588" r="7.62588" transform="matrix(0.866025 -0.5 -0.866025 -0.5 243.9 132.418)" fill={c.panelDark} />
               <circle cx="7.62588" cy="7.62588" r="7.12588" transform="matrix(0.866025 -0.5 -0.866025 -0.5 243.9 132.418)" stroke={c.surfaceLight} />
             </g>
-            <circle className="gpu-power-led" cx="243.9" cy="124.79" r="2.5" />
+            {/* <circle className="gpu-power-led" cx="243.9" cy="124.79" r="2.5" /> */}
           </g>
           <g id="gpu-fan-set_2">
             <path id="Vector 1_2" d="M290.58 77.5V60.5H425.08L423.58 82C419.914 91.1667 401.78 109.9 358.58 111.5C315.38 113.1 295.247 89.5 290.58 77.5Z" fill={c.surface} />
@@ -245,7 +245,7 @@ export default function Gpu({
               <circle cx="7.62588" cy="7.62588" r="7.62588" transform="matrix(0.866025 -0.5 -0.866025 -0.5 357.984 66.4184)" fill={c.panelDark} />
               <circle cx="7.62588" cy="7.62588" r="7.12588" transform="matrix(0.866025 -0.5 -0.866025 -0.5 357.984 66.4184)" stroke={c.surfaceLight} />
             </g>
-            <circle className="gpu-power-led gpu-power-led-2" cx="357.98" cy="58.79" r="2.5" />
+            {/* <circle className="gpu-power-led gpu-power-led-2" cx="357.98" cy="58.79" r="2.5" /> */}
           </g>
         </g>
         <defs>
