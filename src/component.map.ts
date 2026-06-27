@@ -87,5 +87,17 @@ export const componentMap : ComponentMapEntry[] = [
     },
     tags: ["gpu", "chip", "fan", "animation", "hardware", "ai"],
     category: [categories.hardware, categories.ai],
+  },
+  {
+    name: "AudioChip",
+    description: "a single audio chip with animated glow and floating effects",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      float: "boolean",
+      animate: "boolean",
+    },
+    tags: ["audio", "chip", "hardware", "animation"],
+    category: [categories.hardware, categories.ai],
   }
 ]

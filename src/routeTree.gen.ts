@@ -21,6 +21,7 @@ const DocsGpuClusterLazyRouteImport = createFileRoute('/docs/gpu-cluster')()
 const DocsGpuChipLazyRouteImport = createFileRoute('/docs/gpu-chip')()
 const DocsGpuLazyRouteImport = createFileRoute('/docs/gpu')()
 const DocsConnectCubeLazyRouteImport = createFileRoute('/docs/connect-cube')()
+const DocsAudioChipLazyRouteImport = createFileRoute('/docs/audio-chip')()
 
 const TestRoute = TestRouteImport.update({
   id: '/test',
@@ -75,11 +76,19 @@ const DocsConnectCubeLazyRoute = DocsConnectCubeLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/docs/connect-cube.lazy').then((d) => d.Route),
 )
+const DocsAudioChipLazyRoute = DocsAudioChipLazyRouteImport.update({
+  id: '/audio-chip',
+  path: '/audio-chip',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/audio-chip.lazy').then((d) => d.Route),
+)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
+  '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
@@ -91,6 +100,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
+  '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
@@ -103,6 +113,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
+  '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/test'
+    | '/docs/audio-chip'
     | '/docs/connect-cube'
     | '/docs/gpu'
     | '/docs/gpu-chip'
@@ -127,6 +139,7 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/test'
+    | '/docs/audio-chip'
     | '/docs/connect-cube'
     | '/docs/gpu'
     | '/docs/gpu-chip'
@@ -138,6 +151,7 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/test'
+    | '/docs/audio-chip'
     | '/docs/connect-cube'
     | '/docs/gpu'
     | '/docs/gpu-chip'
@@ -217,10 +231,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsConnectCubeLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/audio-chip': {
+      id: '/docs/audio-chip'
+      path: '/audio-chip'
+      fullPath: '/docs/audio-chip'
+      preLoaderRoute: typeof DocsAudioChipLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
   }
 }
 
 interface DocsRouteRouteChildren {
+  DocsAudioChipLazyRoute: typeof DocsAudioChipLazyRoute
   DocsConnectCubeLazyRoute: typeof DocsConnectCubeLazyRoute
   DocsGpuLazyRoute: typeof DocsGpuLazyRoute
   DocsGpuChipLazyRoute: typeof DocsGpuChipLazyRoute
@@ -230,6 +252,7 @@ interface DocsRouteRouteChildren {
 }
 
 const DocsRouteRouteChildren: DocsRouteRouteChildren = {
+  DocsAudioChipLazyRoute: DocsAudioChipLazyRoute,
   DocsConnectCubeLazyRoute: DocsConnectCubeLazyRoute,
   DocsGpuLazyRoute: DocsGpuLazyRoute,
   DocsGpuChipLazyRoute: DocsGpuChipLazyRoute,
