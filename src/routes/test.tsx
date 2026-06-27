@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import MicRipple from '../components/svg/MicRipple'
+import RadarScan from '../components/svg/RadarScan'
 
 export const Route = createFileRoute('/test')({
   component: RouteComponent,
@@ -8,7 +8,7 @@ export const Route = createFileRoute('/test')({
 function RouteComponent() {
   return (
     <div className="flex justify-center items-center h-screen bg-black text-white">
-      <MicRipple />
+      <RadarScan />
     </div>
   )
 }

@@ -65,7 +65,7 @@ function particleClass(i: number) {
 }
 
 export default function MicRipple({
-  className = "h-[400px]",
+  className = "h-100",
   ripple = true,
   bounce = true,
   float = true,

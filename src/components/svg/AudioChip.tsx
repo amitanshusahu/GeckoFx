@@ -50,7 +50,7 @@ function particleClass(i: number) {
 }
 
 export default function AudioChip({
-  className = "h-[400px]",
+  className = "h-100",
   float = true,
   animate = true,
   colors,
