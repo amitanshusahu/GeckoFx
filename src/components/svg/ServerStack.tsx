@@ -165,8 +165,8 @@ export default function ServerStack({
   return (
     <div className="relative">
       {/* 30 X 30 logo */}
-      <div className="absolute top-20 left-45 rotate-x-40 w-32 h-32" >
-        <img src="/logo.svg" alt="Logo" />
+      <div className="absolute top-15 left-35 sm:top-20 sm:left-45 rotate-x-40 w-32 h-32" >
+        <img src="/logo.svg" alt="Your Logo" />
       </div>
       <svg
         className={className}

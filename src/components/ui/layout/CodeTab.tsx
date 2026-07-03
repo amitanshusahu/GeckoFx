@@ -58,7 +58,7 @@ export default function CodeTab({
             className={className}
             style={{
               ...style,
-              maxWidth: width ? `${width}px` : "60vw",
+              maxWidth: width ? `${width}px` : "100%",
               overflowX: "auto",
               padding: "1em",
               borderRadius: "0.5em",

@@ -2,7 +2,11 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { cn, toKebab, toLabel } from "../../../lib/utils";
 import { componentMap } from "../../../component.map";
 
-export default function SideBar() {
+export default function SideBar({
+  onNavigate,
+}: {
+  onNavigate?: () => void,
+}) {
 
   const activePathName = useLocation({
     select: (location) => location.pathname,
@@ -36,6 +40,7 @@ export default function SideBar() {
                 <Link
                   key={component.name}
                   to={path}
+                  onClick={onNavigate}
                   className={cn(
                     "text-sm",
                     {
