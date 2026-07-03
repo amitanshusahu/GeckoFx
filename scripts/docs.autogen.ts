@@ -35,7 +35,7 @@ function RouteComponent() {
       <div className="flex justify-between">
         <div className='flex items-center'>
           <h1 className='text-xl font-bold'>{"<"}</h1>
-          <h1 className='text-xl font-bold text-primary'>{${componentName}.name}</h1>
+          <h1 className='text-xl font-bold text-primary'>{"${componentName}"}</h1>
           <h1 className='text-xl font-bold ml-2'>{"/>"}</h1>
         </div>
         <div className="flex gap-4">
@@ -58,7 +58,7 @@ function RouteComponent() {
         </div>
       </div>
       {tab === "docs" ? (
-        <DocsTab>
+        <DocsTab componentName={"${componentName}"}>
           <div className='flex flex-col gap-20 h-full w-full items-center justify-center'>
             <${componentName} />
           </div>
