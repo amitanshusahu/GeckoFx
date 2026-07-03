@@ -49,6 +49,7 @@ const DEFAULT_CYCLE = [
 type Props = {
   className?: string;
   colors?: Partial<RoboBrainColors>;
+  rgb?: boolean;
   cycleColors?: string[];
   cycleDuration?: number;
   floatDuration?: number;
@@ -59,6 +60,7 @@ type Props = {
 export default function RoboBrain({
   className = "w-100",
   colors,
+  rgb = false,
   cycleColors,
   cycleDuration = 6,
   floatDuration = 4,
@@ -66,8 +68,7 @@ export default function RoboBrain({
   radarDuration = 5,
 }: Props) {
   const c = { ...DEFAULT_COLORS, ...colors };
-  const cyc =
-    cycleColors && cycleColors.length >= 2 ? cycleColors : [...DEFAULT_CYCLE];
+  const cyc = rgb ? cycleColors ? cycleColors : [...DEFAULT_CYCLE] : [c.lightBg];
   const uid = useId();
   const shouldReduceMotion = useReducedMotion();
 
