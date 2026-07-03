@@ -1,34 +1,17 @@
-import { Children, isValidElement, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { cn } from "../../../lib/utils";
 import { componentMap } from "../../../component.map";
 
 type DocsTabProps = {
   children: ReactNode,
-}
-
-function getComponentName(children: ReactNode): string | null {
-  let name: string | null = null;
-  Children.forEach(children, (child) => {
-    if (!isValidElement(child)) return;
-    const type = child.type;
-    if (typeof type === "function" && type.name) {
-      const match = componentMap.find(c => c.name === type.name);
-      if (match) { name = match.name; return; }
-    }
-    const childProps = child.props as { children?: ReactNode };
-    if (childProps?.children) {
-      const found = getComponentName(childProps.children);
-      if (found) name = found;
-    }
-  });
-  return name;
+  componentName?: string,
 }
 
 export default function DocsTab({
-  children
+  children,
+  componentName,
 }: DocsTabProps) {
 
-  const componentName = getComponentName(children);
   const component = componentMap.find(c => c.name === componentName);
 
   return (
