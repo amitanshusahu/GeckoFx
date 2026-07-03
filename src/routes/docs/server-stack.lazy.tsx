@@ -21,15 +21,15 @@ function RouteComponent() {
     }
   }, []);
 
-  return <div className='p-4'>
-    <div ref={containerRef} className='h-fit w-full p-8 flex flex-col gap-8'>
-      <div className="flex justify-between">
+  return <div className='p-2 lg:p-4'>
+    <div ref={containerRef} className='h-fit w-full p-4 lg:p-8 flex flex-col gap-6 lg:gap-8'>
+      <div className="flex flex-wrap justify-between gap-2">
         <div className='flex items-center'>
           <h1 className='text-xl font-bold'>{"<"}</h1>
           <h1 className='text-xl font-bold text-primary'>{"ServerStack"}</h1>
           <h1 className='text-xl font-bold ml-2'>{"/>"}</h1>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-2 lg:gap-4">
           <Button
             edgeOpacity={tab === "docs" ? 100 : 50}
             edgeWidth={7}
@@ -50,8 +50,14 @@ function RouteComponent() {
       </div>
       {tab === "docs" ? (
         <DocsTab componentName={"ServerStack"}>
-          <div className='flex flex-col gap-20 h-full w-full items-center justify-center'>
-            <ServerStack />
+          <div className='flex flex-col gap-10 lg:gap-20 h-full w-full items-center justify-center'>
+            {
+              containerWidth && containerWidth < 800 ? (
+                <ServerStack className='w-80'/>
+              ) : (
+                <ServerStack/>
+              )
+            }
           </div>
         </DocsTab>
       ) : (

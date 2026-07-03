@@ -20,9 +20,9 @@ export default function DocsTab({
         {children}
       </div>
 
-      <div className="flex gap-16 mt-16">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 mt-8 lg:mt-16">
         {component?.tags && (
-          <div className="border border-line border-dashed p-4 w-1/2">
+          <div className="border border-line border-dashed p-4 w-full lg:w-1/2">
             <h3 className="text-sm font-medium text-neutral-400 mb-2">tags</h3>
             <div className="flex flex-wrap gap-2">
               {component.tags.map((tag) => (
@@ -34,7 +34,7 @@ export default function DocsTab({
           </div>
         )}
 
-        <div className="flex-1 h-fit border border-line border-dashed">
+        <div className="flex-1 h-fit border border-line border-dashed overflow-x-auto">
           {componentName && <DocsTable componentName={componentName} />}
         </div>
       </div>
