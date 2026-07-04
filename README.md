@@ -1,6 +1,11 @@
+<div align="center">
+  <img width="1280" height="640" alt="geckofx-github-thumb" src="https://github.com/user-attachments/assets/bbc38026-9bdb-4bd6-8063-73407b7bdbb5" />
+  
+</div>
+
 # GeckoFX
 
-> Open-source library of premium animated SVG components for modern websites.
+> Open-source library of premium animated SVG components for modern websites. [live link](https://geckofx.geckostack.store/)
 
 GeckoFX is a collection of handcrafted SVG components designed for developers who want their products to look technical, futuristic, and memorable.
 
