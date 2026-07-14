@@ -178,5 +178,17 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["clock", "animation", "hardware", "effects"],
     category: [categories.hardware],
+  },
+  {
+    name: "IsometricCamera",
+    description: "an isometric camera with a blinking LED indicator for a live recording effect",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      blinkSpeed: "number",
+    },
+    tags: ["camera", "recording", "isometric", "led", "animation", "hardware"],
+    category: [categories.hardware],
   }
 ]
