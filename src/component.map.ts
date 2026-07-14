@@ -190,5 +190,19 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["camera", "recording", "isometric", "led", "animation", "hardware"],
     category: [categories.hardware],
+  },
+  {
+    name: "ArrowInCubicLattice",
+    description: "an arrow inside a cubic lattice structure, representing direction and movement within a 3D space",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      float: "boolean",
+      floatDistance: "number",
+      floatDelay: "number",
+      magnetic: "boolean",
+    },
+    tags: ["arrow", "cubic lattice", "3D", "animation", "hardware"],
+    category: [categories.hardware],
   }
 ]

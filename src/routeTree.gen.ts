@@ -31,6 +31,9 @@ const DocsFastCompressLazyRouteImport = createFileRoute('/docs/fast-compress')()
 const DocsConnectCubeLazyRouteImport = createFileRoute('/docs/connect-cube')()
 const DocsClockLazyRouteImport = createFileRoute('/docs/clock')()
 const DocsAudioChipLazyRouteImport = createFileRoute('/docs/audio-chip')()
+const DocsArrowInCubicLatticeLazyRouteImport = createFileRoute(
+  '/docs/arrow-in-cubic-lattice',
+)()
 
 const TestRoute = TestRouteImport.update({
   id: '/test',
@@ -137,11 +140,20 @@ const DocsAudioChipLazyRoute = DocsAudioChipLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/docs/audio-chip.lazy').then((d) => d.Route),
 )
+const DocsArrowInCubicLatticeLazyRoute =
+  DocsArrowInCubicLatticeLazyRouteImport.update({
+    id: '/arrow-in-cubic-lattice',
+    path: '/arrow-in-cubic-lattice',
+    getParentRoute: () => DocsRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/docs/arrow-in-cubic-lattice.lazy').then((d) => d.Route),
+  )
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
+  '/docs/arrow-in-cubic-lattice': typeof DocsArrowInCubicLatticeLazyRoute
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
@@ -161,6 +173,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
+  '/docs/arrow-in-cubic-lattice': typeof DocsArrowInCubicLatticeLazyRoute
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
@@ -181,6 +194,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
+  '/docs/arrow-in-cubic-lattice': typeof DocsArrowInCubicLatticeLazyRoute
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
@@ -202,6 +216,7 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/test'
+    | '/docs/arrow-in-cubic-lattice'
     | '/docs/audio-chip'
     | '/docs/clock'
     | '/docs/connect-cube'
@@ -221,6 +236,7 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/test'
+    | '/docs/arrow-in-cubic-lattice'
     | '/docs/audio-chip'
     | '/docs/clock'
     | '/docs/connect-cube'
@@ -240,6 +256,7 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/test'
+    | '/docs/arrow-in-cubic-lattice'
     | '/docs/audio-chip'
     | '/docs/clock'
     | '/docs/connect-cube'
@@ -383,10 +400,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsAudioChipLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/arrow-in-cubic-lattice': {
+      id: '/docs/arrow-in-cubic-lattice'
+      path: '/arrow-in-cubic-lattice'
+      fullPath: '/docs/arrow-in-cubic-lattice'
+      preLoaderRoute: typeof DocsArrowInCubicLatticeLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
   }
 }
 
 interface DocsRouteRouteChildren {
+  DocsArrowInCubicLatticeLazyRoute: typeof DocsArrowInCubicLatticeLazyRoute
   DocsAudioChipLazyRoute: typeof DocsAudioChipLazyRoute
   DocsClockLazyRoute: typeof DocsClockLazyRoute
   DocsConnectCubeLazyRoute: typeof DocsConnectCubeLazyRoute
@@ -404,6 +429,7 @@ interface DocsRouteRouteChildren {
 }
 
 const DocsRouteRouteChildren: DocsRouteRouteChildren = {
+  DocsArrowInCubicLatticeLazyRoute: DocsArrowInCubicLatticeLazyRoute,
   DocsAudioChipLazyRoute: DocsAudioChipLazyRoute,
   DocsClockLazyRoute: DocsClockLazyRoute,
   DocsConnectCubeLazyRoute: DocsConnectCubeLazyRoute,
