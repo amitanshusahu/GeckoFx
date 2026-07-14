@@ -202,7 +202,7 @@ export const componentMap: ComponentMapEntry[] = [
       floatDelay: "number",
       magnetic: "boolean",
     },
-    tags: ["arrow", "cubic lattice", "3D", "animation", "hardware"],
-    category: [categories.hardware],
+    tags: ["arrow", "cubic lattice", "3D", "animation", "effects"],
+    category: [categories.effects],
   }
 ]
