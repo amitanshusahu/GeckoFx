@@ -46,18 +46,14 @@ export default function Folder({ className = "w-80", colors, animate = true }: P
   const p = Array.from({ length: 29 }, (_, i) => `${uid}-p${i}`)
   const bgBlurClip = `${uid}-bgBlurClip`
 
-  const spring = {
+  const popSpring = {
     type: "spring" as const,
-    stiffness: 220,
-    damping: 16,
-    mass: 0.9,
+    stiffness: 280,
+    damping: 18,
+    mass: 0.8,
   }
 
-  const groupTransition = { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] as [number, number, number, number] }
-  const pageTransition = { ...spring, delay: 0.06 }
-
-  const groupAnim = animate ? (isInView ? "visible" : "hidden") : "visible"
-  const pageAnim = animate ? (isInView ? "visible" : "hidden") : "visible"
+  const anim = animate ? (isInView ? "visible" : "hidden") : "visible"
 
   return (
     <div>
@@ -78,46 +74,63 @@ export default function Folder({ className = "w-80", colors, animate = true }: P
 
           <motion.g
             initial={animate ? "hidden" : false}
-            animate={groupAnim}
+            animate={anim}
             variants={{
-              hidden: { y: 30, opacity: 0 },
-              visible: { y: 0, opacity: 1 },
+              hidden: { opacity: 0 },
+              visible: { opacity: 1 },
             }}
-            transition={groupTransition}
+            transition={{ duration: 0.2 }}
           >
             <motion.g
               initial={animate ? "hidden" : false}
-              animate={pageAnim}
+              animate={anim}
               variants={{
-                hidden: { rotate: -16 },
-                visible: { rotate: 0 },
+                hidden: { scale: 0.5, y: 40 },
+                visible: { scale: 1, y: 0 },
               }}
-              style={{
-                transformOrigin: `${RIGHT_PAGE_CX}px ${RIGHT_PAGE_CY}px`,
-                transformBox: "view-box",
-              }}
-              transition={pageTransition}
+              style={{ transformOrigin: "306px 161px", transformBox: "view-box" }}
+              transition={{ ...popSpring, delay: 0.05 }}
             >
-              <g filter={`url(#${f1})`}>
-                <rect x="195.643" y="17.3102" width="221.077" height="288" rx="24"
-                  transform={`rotate(16 ${RIGHT_PAGE_CX} ${RIGHT_PAGE_CY})`}
-                  fill={`url(#${p[1]})`} />
-              </g>
-              <g>
-                <rect x="215.208" y="60.371"  width="158.667" height="15" rx="7.5" transform="rotate(16 215.208 60.371)"  fill={`url(#${p[2]})`} />
-                <rect x="200.875" y="110.357" width="158.667" height="8"  rx="4"   transform="rotate(16 200.875 110.357)" fill={`url(#${p[3]})`} />
-                <rect x="194.811" y="131.504" width="158.667" height="8"  rx="4"   transform="rotate(16 194.811 131.504)" fill={`url(#${p[4]})`} />
-                <rect x="188.747" y="152.652" width="158.667" height="8"  rx="4"   transform="rotate(16 188.747 152.652)" fill={`url(#${p[5]})`} />
-                <rect x="182.682" y="173.8"   width="158.667" height="8"  rx="4"   transform="rotate(16 182.682 173.8)"   fill={`url(#${p[6]})`} />
-                <rect x="176.619" y="194.948" width="158.667" height="8"  rx="4"   transform="rotate(16 176.619 194.948)" fill={`url(#${p[7]})`} />
-                <rect x="170.555" y="216.095" width="158.667" height="8"  rx="4"   transform="rotate(16 170.555 216.095)" fill={`url(#${p[8]})`} />
-                <rect x="164.49"  y="237.243" width="158.667" height="8"  rx="4"   transform="rotate(16 164.49 237.243)"  fill={`url(#${p[9]})`} />
-              </g>
+              <motion.g
+                initial={animate ? "hidden" : false}
+                animate={anim}
+                variants={{
+                  hidden: { rotate: -16 },
+                  visible: { rotate: 0 },
+                }}
+                style={{ transformOrigin: `${RIGHT_PAGE_CX}px ${RIGHT_PAGE_CY}px`, transformBox: "view-box" }}
+                transition={{ ...popSpring, delay: 0.05 }}
+              >
+                <g filter={`url(#${f1})`}>
+                  <rect x="195.643" y="17.3102" width="221.077" height="288" rx="32"
+                    transform={`rotate(16 ${RIGHT_PAGE_CX} ${RIGHT_PAGE_CY})`}
+                    fill={`url(#${p[1]})`} />
+                </g>
+                <g>
+                  <rect x="215.208" y="60.371"  width="158.667" height="15" rx="7.5" transform="rotate(16 215.208 60.371)"  fill={`url(#${p[2]})`} />
+                  <rect x="200.875" y="110.357" width="158.667" height="8"  rx="4"   transform="rotate(16 200.875 110.357)" fill={`url(#${p[3]})`} />
+                  <rect x="194.811" y="131.504" width="158.667" height="8"  rx="4"   transform="rotate(16 194.811 131.504)" fill={`url(#${p[4]})`} />
+                  <rect x="188.747" y="152.652" width="158.667" height="8"  rx="4"   transform="rotate(16 188.747 152.652)" fill={`url(#${p[5]})`} />
+                  <rect x="182.682" y="173.8"   width="158.667" height="8"  rx="4"   transform="rotate(16 182.682 173.8)"   fill={`url(#${p[6]})`} />
+                  <rect x="176.619" y="194.948" width="158.667" height="8"  rx="4"   transform="rotate(16 176.619 194.948)" fill={`url(#${p[7]})`} />
+                  <rect x="170.555" y="216.095" width="158.667" height="8"  rx="4"   transform="rotate(16 170.555 216.095)" fill={`url(#${p[8]})`} />
+                  <rect x="164.49"  y="237.243" width="158.667" height="8"  rx="4"   transform="rotate(16 164.49 237.243)"  fill={`url(#${p[9]})`} />
+                </g>
+              </motion.g>
             </motion.g>
 
-            <g>
+            <motion.g
+              initial={animate ? "hidden" : false}
+              animate={anim}
+              variants={{
+                hidden: { scale: 0.5, y: 40 },
+                visible: { scale: 1, y: 0 },
+              }}
+              style={{ transformOrigin: "224px 178px", transformBox: "view-box" }}
+              transition={{ ...popSpring, delay: 0.0 }}
+            >
               <g filter={`url(#${f2})`}>
-                <rect x="113.26" y="34.3102" width="221.077" height="288" rx="24" fill={`url(#${p[10]})`} />
+                <rect x="113.26" y="34.3102" width="221.077" height="288" rx="32" fill={`url(#${p[10]})`} />
               </g>
               <g>
                 <rect x="143.936" y="70.3102" width="158.667" height="15" rx="7.5" fill={`url(#${p[11]})`} />
@@ -129,40 +142,47 @@ export default function Folder({ className = "w-80", colors, animate = true }: P
                 <rect x="143.936" y="232.31"  width="158.667" height="8"  rx="4"   fill={`url(#${p[17]})`} />
                 <rect x="143.936" y="254.31"  width="158.667" height="8"  rx="4"   fill={`url(#${p[18]})`} />
               </g>
-            </g>
+            </motion.g>
 
             <motion.g
               initial={animate ? "hidden" : false}
-              animate={pageAnim}
+              animate={anim}
               variants={{
-                hidden: { rotate: 16 },
-                visible: { rotate: 0 },
+                hidden: { scale: 0.5, y: 40 },
+                visible: { scale: 1, y: 0 },
               }}
-              style={{
-                transformOrigin: `${LEFT_PAGE_CX}px ${LEFT_PAGE_CY}px`,
-                transformBox: "view-box",
-              }}
-              transition={pageTransition}
+              style={{ transformOrigin: "153px 205px", transformBox: "view-box" }}
+              transition={{ ...popSpring, delay: 0.05 }}
             >
-              <g filter={`url(#${f3})`}>
-                <rect x="42" y="60.937" width="221.077" height="288" rx="24"
-                  transform={`rotate(-16 ${LEFT_PAGE_CX} ${LEFT_PAGE_CY})`}
-                  fill={`url(#${p[19]})`} />
-              </g>
-              <g>
-                <rect x="81.4104" y="87.087"  width="158.667" height="15" rx="7.5" transform="rotate(-16 81.4104 87.087)"  fill={`url(#${p[20]})`} />
-                <rect x="95.7435" y="137.073" width="158.667" height="8"  rx="4"   transform="rotate(-16 95.7435 137.073)" fill={`url(#${p[21]})`} />
-                <rect x="101.808" y="158.22"  width="158.667" height="8"  rx="4"   transform="rotate(-16 101.808 158.22)"  fill={`url(#${p[22]})`} />
-                <rect x="107.872" y="179.368" width="158.667" height="8"  rx="4"   transform="rotate(-16 107.872 179.368)" fill={`url(#${p[23]})`} />
-                <rect x="113.936" y="200.516" width="158.667" height="8"  rx="4"   transform="rotate(-16 113.936 200.516)" fill={`url(#${p[24]})`} />
-                <rect x="120"     y="221.664" width="158.667" height="8"  rx="4"   transform="rotate(-16 120 221.664)"     fill={`url(#${p[25]})`} />
-                <rect x="126.064" y="242.811" width="158.667" height="8"  rx="4"   transform="rotate(-16 126.064 242.811)" fill={`url(#${p[26]})`} />
-                <rect x="132.128" y="263.959" width="158.667" height="8"  rx="4"   transform="rotate(-16 132.128 263.959)" fill={`url(#${p[27]})`} />
-              </g>
+              <motion.g
+                initial={animate ? "hidden" : false}
+                animate={anim}
+                variants={{
+                  hidden: { rotate: 16 },
+                  visible: { rotate: 0 },
+                }}
+                style={{ transformOrigin: `${LEFT_PAGE_CX}px ${LEFT_PAGE_CY}px`, transformBox: "view-box" }}
+                transition={{ ...popSpring, delay: 0.05 }}
+              >
+                <g filter={`url(#${f3})`}>
+                  <rect x="42" y="60.937" width="221.077" height="288" rx="32"
+                    transform={`rotate(-16 ${LEFT_PAGE_CX} ${LEFT_PAGE_CY})`}
+                    fill={`url(#${p[19]})`} />
+                </g>
+                <g>
+                  <rect x="81.4104" y="87.087"  width="158.667" height="15" rx="7.5" transform="rotate(-16 81.4104 87.087)"  fill={`url(#${p[20]})`} />
+                  <rect x="95.7435" y="137.073" width="158.667" height="8"  rx="4"   transform="rotate(-16 95.7435 137.073)" fill={`url(#${p[21]})`} />
+                  <rect x="101.808" y="158.22"  width="158.667" height="8"  rx="4"   transform="rotate(-16 101.808 158.22)"  fill={`url(#${p[22]})`} />
+                  <rect x="107.872" y="179.368" width="158.667" height="8"  rx="4"   transform="rotate(-16 107.872 179.368)" fill={`url(#${p[23]})`} />
+                  <rect x="113.936" y="200.516" width="158.667" height="8"  rx="4"   transform="rotate(-16 113.936 200.516)" fill={`url(#${p[24]})`} />
+                  <rect x="120"     y="221.664" width="158.667" height="8"  rx="4"   transform="rotate(-16 120 221.664)"     fill={`url(#${p[25]})`} />
+                  <rect x="126.064" y="242.811" width="158.667" height="8"  rx="4"   transform="rotate(-16 126.064 242.811)" fill={`url(#${p[26]})`} />
+                  <rect x="132.128" y="263.959" width="158.667" height="8"  rx="4"   transform="rotate(-16 132.128 263.959)" fill={`url(#${p[27]})`} />
+                </g>
+              </motion.g>
             </motion.g>
           </motion.g>
 
-          {/* Folder front with backdrop blur */}
           <foreignObject x="-10" y="83" width="446.019" height="322.221">
             <div
               style={{

@@ -4,6 +4,7 @@ const categories = {
   web3: "web3",
   infrastructure: "infrastructure",
   effects: "effects",
+  icons: "icons",
 }
 
 type ComponentMapEntry = {
@@ -204,5 +205,16 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["arrow", "cubic lattice", "3D", "animation", "effects"],
     category: [categories.effects],
+  },
+  {
+    name: "Folder",
+    description: "a folder with a frosted glass effect, representing file storage or organization",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+    },
+    tags: ["folder", "frosted glass", "file storage", "organization", "animation"],
+    category: [categories.icons],
   }
 ]

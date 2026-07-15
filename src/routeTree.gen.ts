@@ -26,6 +26,7 @@ const DocsIsometricCameraLazyRouteImport = createFileRoute(
 const DocsGpuClusterLazyRouteImport = createFileRoute('/docs/gpu-cluster')()
 const DocsGpuChipLazyRouteImport = createFileRoute('/docs/gpu-chip')()
 const DocsGpuLazyRouteImport = createFileRoute('/docs/gpu')()
+const DocsFolderLazyRouteImport = createFileRoute('/docs/folder')()
 const DocsFastZapLazyRouteImport = createFileRoute('/docs/fast-zap')()
 const DocsFastCompressLazyRouteImport = createFileRoute('/docs/fast-compress')()
 const DocsConnectCubeLazyRouteImport = createFileRoute('/docs/connect-cube')()
@@ -109,6 +110,11 @@ const DocsGpuLazyRoute = DocsGpuLazyRouteImport.update({
   path: '/gpu',
   getParentRoute: () => DocsRouteRoute,
 } as any).lazy(() => import('./routes/docs/gpu.lazy').then((d) => d.Route))
+const DocsFolderLazyRoute = DocsFolderLazyRouteImport.update({
+  id: '/folder',
+  path: '/folder',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() => import('./routes/docs/folder.lazy').then((d) => d.Route))
 const DocsFastZapLazyRoute = DocsFastZapLazyRouteImport.update({
   id: '/fast-zap',
   path: '/fast-zap',
@@ -159,6 +165,7 @@ export interface FileRoutesByFullPath {
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
+  '/docs/folder': typeof DocsFolderLazyRoute
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
@@ -179,6 +186,7 @@ export interface FileRoutesByTo {
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
+  '/docs/folder': typeof DocsFolderLazyRoute
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
@@ -200,6 +208,7 @@ export interface FileRoutesById {
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
+  '/docs/folder': typeof DocsFolderLazyRoute
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
@@ -222,6 +231,7 @@ export interface FileRouteTypes {
     | '/docs/connect-cube'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
+    | '/docs/folder'
     | '/docs/gpu'
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
@@ -242,6 +252,7 @@ export interface FileRouteTypes {
     | '/docs/connect-cube'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
+    | '/docs/folder'
     | '/docs/gpu'
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
@@ -262,6 +273,7 @@ export interface FileRouteTypes {
     | '/docs/connect-cube'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
+    | '/docs/folder'
     | '/docs/gpu'
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
@@ -365,6 +377,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsGpuLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/folder': {
+      id: '/docs/folder'
+      path: '/folder'
+      fullPath: '/docs/folder'
+      preLoaderRoute: typeof DocsFolderLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/fast-zap': {
       id: '/docs/fast-zap'
       path: '/fast-zap'
@@ -417,6 +436,7 @@ interface DocsRouteRouteChildren {
   DocsConnectCubeLazyRoute: typeof DocsConnectCubeLazyRoute
   DocsFastCompressLazyRoute: typeof DocsFastCompressLazyRoute
   DocsFastZapLazyRoute: typeof DocsFastZapLazyRoute
+  DocsFolderLazyRoute: typeof DocsFolderLazyRoute
   DocsGpuLazyRoute: typeof DocsGpuLazyRoute
   DocsGpuChipLazyRoute: typeof DocsGpuChipLazyRoute
   DocsGpuClusterLazyRoute: typeof DocsGpuClusterLazyRoute
@@ -435,6 +455,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsConnectCubeLazyRoute: DocsConnectCubeLazyRoute,
   DocsFastCompressLazyRoute: DocsFastCompressLazyRoute,
   DocsFastZapLazyRoute: DocsFastZapLazyRoute,
+  DocsFolderLazyRoute: DocsFolderLazyRoute,
   DocsGpuLazyRoute: DocsGpuLazyRoute,
   DocsGpuChipLazyRoute: DocsGpuChipLazyRoute,
   DocsGpuClusterLazyRoute: DocsGpuClusterLazyRoute,

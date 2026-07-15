@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
-import Clock from '../components/svg/Clock'
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
-import IsometricCamera from '../components/svg/IsometricCamera'
+import Folder from '../components/svg/Folder'
+import FolderOriginal from '../components/svg/FolderOriginal'
 
 export const Route = createFileRoute('/test')({
   component: RouteComponent,
@@ -18,9 +18,8 @@ function RouteComponent() {
         </span>
       </p>
       <div className="flex gap-20">
-        <Clock />
-        <IsometricCamera />
-        <ArrowUpRightIcon />
+        <Folder />
+        <FolderOriginal />
       </div>
     </div>
   )
