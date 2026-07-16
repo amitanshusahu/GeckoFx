@@ -224,6 +224,8 @@ export const componentMap: ComponentMapEntry[] = [
       className: "string",
       colors: "Partial<Colors>",
       animate: "boolean",
+      floatSpeed: "number",
+      sparkleSpeed: "number",
     },
     tags: ["solana", "tokens", "crypto", "coins", "animation", "web3"],
     category: [categories.web3],
