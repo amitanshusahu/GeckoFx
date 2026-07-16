@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
 import { useId } from "react";
 import type { CSSProperties } from "react";
 
@@ -8,8 +8,8 @@ type Props = {
   className?: string;
   color?: string;
   animate?: boolean;
-  pulseDuration?: number;
   speedLineDuration?: number;
+  shakeDuration?: number;
 };
 
 type SpeedLine = {
@@ -58,8 +58,8 @@ export default function FastZap({
   className = "w-100",
   color = DEFAULT_COLOR,
   animate = true,
-  pulseDuration = 4,
   speedLineDuration = 1,
+  shakeDuration = 1,
 }: Props) {
   const uid = useId();
   const shouldReduceMotion = useReducedMotion();
@@ -83,6 +83,19 @@ export default function FastZap({
             70%  { stroke-dashoffset: 0;  opacity: var(--fz-max-op, 1); }
             100% { stroke-dashoffset: -1; opacity: 0; }
           }
+          @keyframes fz-shake {
+            0%   { transform: translate(0, 0) rotate(0deg); }
+            10%  { transform: translate(-1.5px, 0.5px) rotate(-0.8deg); }
+            20%  { transform: translate(1.2px, -0.8px) rotate(0.6deg); }
+            30%  { transform: translate(-1px, 1px) rotate(-0.5deg); }
+            40%  { transform: translate(1.5px, -0.4px) rotate(0.9deg); }
+            50%  { transform: translate(-0.8px, 1.2px) rotate(-0.7deg); }
+            60%  { transform: translate(1.3px, -1px) rotate(0.4deg); }
+            70%  { transform: translate(-1.2px, 0.8px) rotate(-0.6deg); }
+            80%  { transform: translate(0.9px, -1.2px) rotate(0.8deg); }
+            90%  { transform: translate(-0.5px, 0.6px) rotate(-0.4deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+          }
           .${uid}-speedline {
             stroke-dasharray: 1;
             animation-name: fz-speedline;
@@ -90,8 +103,15 @@ export default function FastZap({
             animation-iteration-count: infinite;
             animation-delay: var(--fz-delay, 0s);
           }
+          .${uid}-bolt {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: fz-shake var(--fz-shake-duration, 1s) linear infinite;
+            animation-iteration-count: infinite;
+          }
           @media (prefers-reduced-motion: reduce) {
-            .${uid}-speedline {
+            .${uid}-speedline,
+            .${uid}-bolt {
               animation: none;
             }
           }
@@ -129,16 +149,11 @@ export default function FastZap({
           />
         ))}
 
-        <motion.g
-          style={{ transformBox: "fill-box", transformOrigin: "center" }}
-          animate={canAnimate ? { scale: [1, 0.9, 1] } : undefined}
-          transition={
+        <g
+          className={canAnimate ? `${uid}-bolt` : undefined}
+          style={
             canAnimate
-              ? {
-                  duration: pulseDuration,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }
+              ? ({ "--fz-shake-duration": `${shakeDuration}s` } as CSSProperties)
               : undefined
           }
         >
@@ -149,7 +164,7 @@ export default function FastZap({
             <path d={BOLT_PATH} fill="#8450FF" />
           </g>
           <path d={BOLT_PATH_DETAIL} fill="#FFFAFF" stroke={color} />
-        </motion.g>
+        </g>
 
         <defs>
           <filter
