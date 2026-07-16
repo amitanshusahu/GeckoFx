@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
 import Folder from '../components/svg/Folder'
 import FolderOriginal from '../components/svg/FolderOriginal'
+import SolanaTokens from '../components/svg/SolanaTokens'
 
 export const Route = createFileRoute('/test')({
   component: RouteComponent,
@@ -20,6 +21,7 @@ function RouteComponent() {
       <div className="flex gap-20">
         <Folder />
         <FolderOriginal />
+        <SolanaTokens />
       </div>
     </div>
   )
