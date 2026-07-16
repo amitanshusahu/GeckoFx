@@ -21,6 +21,9 @@ const DocsServerRackLazyRouteImport = createFileRoute('/docs/server-rack')()
 const DocsRoboBrainLazyRouteImport = createFileRoute('/docs/robo-brain')()
 const DocsRadarScanLazyRouteImport = createFileRoute('/docs/radar-scan')()
 const DocsMicRippleLazyRouteImport = createFileRoute('/docs/mic-ripple')()
+const DocsMechanicalKeyLazyRouteImport = createFileRoute(
+  '/docs/mechanical-key',
+)()
 const DocsIsometricCameraLazyRouteImport = createFileRoute(
   '/docs/isometric-camera',
 )()
@@ -93,6 +96,13 @@ const DocsMicRippleLazyRoute = DocsMicRippleLazyRouteImport.update({
   getParentRoute: () => DocsRouteRoute,
 } as any).lazy(() =>
   import('./routes/docs/mic-ripple.lazy').then((d) => d.Route),
+)
+const DocsMechanicalKeyLazyRoute = DocsMechanicalKeyLazyRouteImport.update({
+  id: '/mechanical-key',
+  path: '/mechanical-key',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/mechanical-key.lazy').then((d) => d.Route),
 )
 const DocsIsometricCameraLazyRoute = DocsIsometricCameraLazyRouteImport.update({
   id: '/isometric-camera',
@@ -178,6 +188,7 @@ export interface FileRoutesByFullPath {
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
   '/docs/isometric-camera': typeof DocsIsometricCameraLazyRoute
+  '/docs/mechanical-key': typeof DocsMechanicalKeyLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
@@ -200,6 +211,7 @@ export interface FileRoutesByTo {
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
   '/docs/isometric-camera': typeof DocsIsometricCameraLazyRoute
+  '/docs/mechanical-key': typeof DocsMechanicalKeyLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
@@ -223,6 +235,7 @@ export interface FileRoutesById {
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
   '/docs/isometric-camera': typeof DocsIsometricCameraLazyRoute
+  '/docs/mechanical-key': typeof DocsMechanicalKeyLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
@@ -247,6 +260,7 @@ export interface FileRouteTypes {
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
     | '/docs/isometric-camera'
+    | '/docs/mechanical-key'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
     | '/docs/robo-brain'
@@ -269,6 +283,7 @@ export interface FileRouteTypes {
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
     | '/docs/isometric-camera'
+    | '/docs/mechanical-key'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
     | '/docs/robo-brain'
@@ -291,6 +306,7 @@ export interface FileRouteTypes {
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
     | '/docs/isometric-camera'
+    | '/docs/mechanical-key'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
     | '/docs/robo-brain'
@@ -368,6 +384,13 @@ declare module '@tanstack/react-router' {
       path: '/mic-ripple'
       fullPath: '/docs/mic-ripple'
       preLoaderRoute: typeof DocsMicRippleLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/mechanical-key': {
+      id: '/docs/mechanical-key'
+      path: '/mechanical-key'
+      fullPath: '/docs/mechanical-key'
+      preLoaderRoute: typeof DocsMechanicalKeyLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
     '/docs/isometric-camera': {
@@ -462,6 +485,7 @@ interface DocsRouteRouteChildren {
   DocsGpuChipLazyRoute: typeof DocsGpuChipLazyRoute
   DocsGpuClusterLazyRoute: typeof DocsGpuClusterLazyRoute
   DocsIsometricCameraLazyRoute: typeof DocsIsometricCameraLazyRoute
+  DocsMechanicalKeyLazyRoute: typeof DocsMechanicalKeyLazyRoute
   DocsMicRippleLazyRoute: typeof DocsMicRippleLazyRoute
   DocsRadarScanLazyRoute: typeof DocsRadarScanLazyRoute
   DocsRoboBrainLazyRoute: typeof DocsRoboBrainLazyRoute
@@ -482,6 +506,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsGpuChipLazyRoute: DocsGpuChipLazyRoute,
   DocsGpuClusterLazyRoute: DocsGpuClusterLazyRoute,
   DocsIsometricCameraLazyRoute: DocsIsometricCameraLazyRoute,
+  DocsMechanicalKeyLazyRoute: DocsMechanicalKeyLazyRoute,
   DocsMicRippleLazyRoute: DocsMicRippleLazyRoute,
   DocsRadarScanLazyRoute: DocsRadarScanLazyRoute,
   DocsRoboBrainLazyRoute: DocsRoboBrainLazyRoute,

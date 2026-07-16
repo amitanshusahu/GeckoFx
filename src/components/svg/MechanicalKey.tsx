@@ -55,8 +55,8 @@ export default function MechanicalKey({
   const c = { ...DEFAULT_COLORS, ...colors }
   const uid = useId()
   const paint0Id = `${uid}-paint0`
+  const paint1Id = `${uid}-paint1`
   const filter0Id = `${uid}-filter0`
-  const filter1Id = `${uid}-filter1`
 
   const initialKey = animate
     ? { y: 400, opacity: 1 }
@@ -124,10 +124,7 @@ export default function MechanicalKey({
             >
               <path id="Vector 21" d="M308.415 1471.81L1.91504 405.313L817.415 448.813L497.915 1471.81H308.415Z" fill={`url(#${paint0Id})`} />
               <g id="glow-light" filter={`url(#${filter0Id})`}>
-                <rect x="377.915" y="897.313" width="58" height="568" rx="29" fill={c.glowBright} />
-              </g>
-              <g id="glow-light_2" filter={`url(#${filter1Id})`}>
-                <rect x="377.915" y="897.313" width="58" height="568" rx="29" fill={c.glowInner} />
+                <rect x="377.915" y="897.313" width="58" height="568" rx="29" fill={`url(#${paint1Id})`} />
               </g>
             </motion.g>
             <g id="spring">
@@ -276,19 +273,18 @@ export default function MechanicalKey({
           </motion.g>
         </g>
         <defs>
-          <filter id={filter0Id} x="327.915" y="847.313" width="158" height="668" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+          <filter id={filter0Id} x="373.915" y="893.313" width="66" height="576" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
             <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-            <feGaussianBlur stdDeviation="25" />
-          </filter>
-          <filter id={filter1Id} x="373.915" y="893.313" width="66" height="576" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-            <feGaussianBlur stdDeviation="2" />
+            <feGaussianBlur stdDeviation="2" result={`effect1_foregroundBlur_${filter0Id}`} />
           </filter>
           <linearGradient id={paint0Id} x1="409.915" y1="405.313" x2="409.915" y2="1472.31" gradientUnits="userSpaceOnUse">
             <stop stopOpacity="0" />
             <stop offset="1" stopColor={c.lightGradientStart} stopOpacity="0.68" />
+          </linearGradient>
+          <linearGradient id={paint1Id} x1="407.19" y1="936.501" x2="407.19" y2="1207.5" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#C4C4C4" stopOpacity="0" />
+            <stop offset="1" stopColor="white" />
           </linearGradient>
         </defs>
       </svg>
