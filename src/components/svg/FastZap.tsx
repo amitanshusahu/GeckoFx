@@ -158,12 +158,12 @@ export default function FastZap({
           }
         >
           <g filter={`url(#${fId(0)})`}>
-            <path d={BOLT_PATH} fill="#BEA2FF" />
+            <path d={BOLT_PATH} fill="#76669A" />
           </g>
           <g filter={`url(#${fId(1)})`}>
             <path d={BOLT_PATH} fill="#8450FF" />
           </g>
-          <path d={BOLT_PATH_DETAIL} fill="#FFFAFF" stroke={color} />
+          <path d={BOLT_PATH_DETAIL} fill="#FFFAFF" stroke="#6B00DD" />
         </g>
 
         <defs>
