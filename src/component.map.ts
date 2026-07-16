@@ -146,8 +146,8 @@ export const componentMap: ComponentMapEntry[] = [
       className: "string",
       color: "string",
       animate: "boolean",
-      pulseDuration: "number",
       speedLineDuration: "number",
+      shakeDuration: "number",
     },
     tags: ["zap", "animation", "hardware", "infrastructure"],
     category: [categories.effects],
@@ -229,5 +229,19 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["solana", "tokens", "crypto", "coins", "animation", "web3"],
     category: [categories.web3],
+  },
+  {
+    name: "MechanicalKey",
+    description: "a mechanical key with a glowing effect and staggered animation of key components",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      staggerDelay: "number",
+      initialDelay: "number",
+      duration: "number",
+    },
+    tags: ["mechanical key", "glow", "animation", "hardware"],
+    category: [categories.hardware],
   }
 ]
