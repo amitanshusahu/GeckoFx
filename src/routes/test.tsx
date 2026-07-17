@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
-import MechanicalKey from '../components/svg/MechanicalKey'
+// import MechanicalKey from '../components/svg/MechanicalKey'
+import DartInBullseye from '../components/svg/DartInBullseye'
 
 export const Route = createFileRoute('/test')({
   component: RouteComponent,
@@ -19,7 +20,8 @@ function RouteComponent() {
       <div className="flex gap-20">
         {/* <Folder />
         <SolanaTokens /> */}
-        <MechanicalKey />
+        {/* <MechanicalKey /> */}
+        <DartInBullseye />
       </div>
     </div>
   )

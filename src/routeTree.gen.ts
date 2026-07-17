@@ -33,6 +33,9 @@ const DocsGpuLazyRouteImport = createFileRoute('/docs/gpu')()
 const DocsFolderLazyRouteImport = createFileRoute('/docs/folder')()
 const DocsFastZapLazyRouteImport = createFileRoute('/docs/fast-zap')()
 const DocsFastCompressLazyRouteImport = createFileRoute('/docs/fast-compress')()
+const DocsDartInBullseyeLazyRouteImport = createFileRoute(
+  '/docs/dart-in-bullseye',
+)()
 const DocsConnectCubeLazyRouteImport = createFileRoute('/docs/connect-cube')()
 const DocsClockLazyRouteImport = createFileRoute('/docs/clock')()
 const DocsAudioChipLazyRouteImport = createFileRoute('/docs/audio-chip')()
@@ -145,6 +148,13 @@ const DocsFastCompressLazyRoute = DocsFastCompressLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/docs/fast-compress.lazy').then((d) => d.Route),
 )
+const DocsDartInBullseyeLazyRoute = DocsDartInBullseyeLazyRouteImport.update({
+  id: '/dart-in-bullseye',
+  path: '/dart-in-bullseye',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/dart-in-bullseye.lazy').then((d) => d.Route),
+)
 const DocsConnectCubeLazyRoute = DocsConnectCubeLazyRouteImport.update({
   id: '/connect-cube',
   path: '/connect-cube',
@@ -181,6 +191,7 @@ export interface FileRoutesByFullPath {
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
+  '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
   '/docs/folder': typeof DocsFolderLazyRoute
@@ -204,6 +215,7 @@ export interface FileRoutesByTo {
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
+  '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
   '/docs/folder': typeof DocsFolderLazyRoute
@@ -228,6 +240,7 @@ export interface FileRoutesById {
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
+  '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
   '/docs/folder': typeof DocsFolderLazyRoute
@@ -253,6 +266,7 @@ export interface FileRouteTypes {
     | '/docs/audio-chip'
     | '/docs/clock'
     | '/docs/connect-cube'
+    | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
     | '/docs/folder'
@@ -276,6 +290,7 @@ export interface FileRouteTypes {
     | '/docs/audio-chip'
     | '/docs/clock'
     | '/docs/connect-cube'
+    | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
     | '/docs/folder'
@@ -299,6 +314,7 @@ export interface FileRouteTypes {
     | '/docs/audio-chip'
     | '/docs/clock'
     | '/docs/connect-cube'
+    | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
     | '/docs/folder'
@@ -442,6 +458,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsFastCompressLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/dart-in-bullseye': {
+      id: '/docs/dart-in-bullseye'
+      path: '/dart-in-bullseye'
+      fullPath: '/docs/dart-in-bullseye'
+      preLoaderRoute: typeof DocsDartInBullseyeLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/connect-cube': {
       id: '/docs/connect-cube'
       path: '/connect-cube'
@@ -478,6 +501,7 @@ interface DocsRouteRouteChildren {
   DocsAudioChipLazyRoute: typeof DocsAudioChipLazyRoute
   DocsClockLazyRoute: typeof DocsClockLazyRoute
   DocsConnectCubeLazyRoute: typeof DocsConnectCubeLazyRoute
+  DocsDartInBullseyeLazyRoute: typeof DocsDartInBullseyeLazyRoute
   DocsFastCompressLazyRoute: typeof DocsFastCompressLazyRoute
   DocsFastZapLazyRoute: typeof DocsFastZapLazyRoute
   DocsFolderLazyRoute: typeof DocsFolderLazyRoute
@@ -499,6 +523,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsAudioChipLazyRoute: DocsAudioChipLazyRoute,
   DocsClockLazyRoute: DocsClockLazyRoute,
   DocsConnectCubeLazyRoute: DocsConnectCubeLazyRoute,
+  DocsDartInBullseyeLazyRoute: DocsDartInBullseyeLazyRoute,
   DocsFastCompressLazyRoute: DocsFastCompressLazyRoute,
   DocsFastZapLazyRoute: DocsFastZapLazyRoute,
   DocsFolderLazyRoute: DocsFolderLazyRoute,

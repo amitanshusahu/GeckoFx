@@ -1,5 +1,5 @@
 import { motion } from "motion/react"
-import { useId } from "react"
+import { useId, useState } from "react"
 
 const DEFAULT_COLORS = {
   baseBackLight: "#8F7696",
@@ -45,11 +45,11 @@ type Props = {
 }
 
 export default function MechanicalKey({
-  className = "w-80",
+  className = "h-120",
   colors,
   animate = true,
-  staggerDelay = 0.2,
-  initialDelay = 0.3,
+  staggerDelay = 0,
+  initialDelay = 0,
   duration = 0.9,
 }: Props) {
   const c = { ...DEFAULT_COLORS, ...colors }
@@ -57,6 +57,8 @@ export default function MechanicalKey({
   const paint0Id = `${uid}-paint0`
   const paint1Id = `${uid}-paint1`
   const filter0Id = `${uid}-filter0`
+  const [isHovered, setIsHovered] = useState(false)
+  const [isPressed, setIsPressed] = useState(false)
 
   const initialKey = animate
     ? { y: 400, opacity: 1 }
@@ -64,18 +66,30 @@ export default function MechanicalKey({
   const initialKeyTop = animate
     ? { y: 900, opacity: 1 }
     : { y: 0, opacity: 1 }
+
+  const keyY = animate ? (isHovered ? isPressed ? initialKey.y : initialKey.y / 4 : 0) : 0
+  const keyTopY = animate ? (isHovered ? isPressed ? initialKeyTop.y : initialKeyTop.y / 4 : 0) : 0
+
   const whileInViewKeyTop = animate
-    ? { y: 0, transition: { duration, delay: initialDelay, ease: [0.22, 1, 0.36, 1] as const } }
+    ? { y: keyTopY, transition: { duration, delay: initialDelay, ease: [0.22, 1, 0.36, 1] as const } }
     : undefined
   const whileInViewKey = animate
-    ? { y: 0, transition: { duration, delay: initialDelay + staggerDelay, ease: [0.22, 1, 0.36, 1] as const } }
+    ? { y: keyY, transition: { duration, delay: initialDelay + staggerDelay, ease: [0.22, 1, 0.36, 1] as const } }
     : undefined
   const whileInViewLight = animate
-    ? { opacity: 1, transition: { duration: 2, delay: initialDelay + 2 * staggerDelay + duration * 0.5, ease: "easeOut" as const } }
+    ? { opacity: 1, transition: { duration: 0.5, delay: 2 * staggerDelay + duration * 0.5, ease: "easeOut" as const } }
     : undefined
 
+  const getSpringOffset = (index: number, hovered: boolean, pressed: boolean) => {
+    const minOffset = pressed ? 55 : hovered ? 28 : 0
+    const maxOffset = pressed ? 8 : hovered ? 4 : 0
+    return maxOffset + (minOffset - maxOffset) * (index / 8)
+  }
+
+  const springTransition = { type: "spring" as const, stiffness: 200, damping: 20, mass: 0.5 }
+
   return (
-    <div>
+    <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onMouseDown={() => setIsPressed(true)} onMouseUp={() => setIsPressed(false)} className="cursor-pointer">
       <svg
         className={className}
         viewBox="0 0 819 1670"
@@ -123,56 +137,56 @@ export default function MechanicalKey({
               viewport={animate ? { once: true, amount: 0.1 } : undefined}
             >
               <path id="Vector 21" d="M308.415 1471.81L1.91504 405.313L817.415 448.813L497.915 1471.81H308.415Z" fill={`url(#${paint0Id})`} />
-              <g id="glow-light" filter={`url(#${filter0Id})`}>
-                <rect x="377.915" y="897.313" width="58" height="568" rx="29" fill={`url(#${paint1Id})`} />
-              </g>
             </motion.g>
+            <g id="glow-light" filter={`url(#${filter0Id})`}>
+              <rect x="377.915" y="897.313" width="58" height="568" rx="29" fill={`url(#${paint1Id})`} />
+            </g>
             <g id="spring">
-              <g id="spring-ring">
+              <motion.g id="spring-ring" animate={{ y: getSpringOffset(0, isHovered, isPressed) }} transition={springTransition}>
                 <path id="Vector 19" d="M377.873 1359.81C366.04 1363.98 343.773 1376.51 349.373 1393.31C356.373 1414.31 391.373 1421.81 407.373 1421.31C423.373 1420.81 457.373 1413.81 466.873 1393.31C474.473 1376.91 450.373 1364.15 437.373 1359.81" stroke={c.springOuter} strokeWidth="7" />
                 <path id="Vector 18" d="M376.373 1356.31C363.832 1360.78 338.878 1375.23 344.813 1393.25C352.231 1415.78 389.323 1423.82 406.279 1423.29C423.235 1422.75 459.267 1415.24 469.335 1393.25C477.389 1375.66 451.849 1361.96 438.072 1357.31" stroke={c.stroke} strokeWidth="2" />
                 <path id="Vector 20" d="M378.873 1363.31C368.307 1367.11 347.373 1376.02 352.373 1391.31C358.623 1410.43 392.166 1418.75 406.452 1418.29C420.737 1417.84 453.891 1411.46 462.373 1392.81C469.159 1377.88 447.98 1367.26 436.373 1363.31" stroke={c.stroke} strokeWidth="2" />
-              </g>
-              <g id="spring-ring_2">
+              </motion.g>
+              <motion.g id="spring-ring_2" animate={{ y: getSpringOffset(1, isHovered, isPressed) }} transition={springTransition}>
                 <path id="Vector 19_2" d="M377.873 1329.81C366.04 1333.98 343.773 1346.51 349.373 1363.31C356.373 1384.31 391.373 1391.81 407.373 1391.31C423.373 1390.81 457.373 1383.81 466.873 1363.31C474.473 1346.91 450.373 1334.15 437.373 1329.81" stroke={c.springOuter} strokeWidth="7" />
                 <path id="Vector 18_2" d="M376.373 1326.31C363.832 1330.78 338.878 1345.23 344.813 1363.25C352.231 1385.78 389.323 1393.82 406.279 1393.29C423.235 1392.75 459.267 1385.24 469.335 1363.25C477.389 1345.66 451.849 1331.96 438.072 1327.31" stroke={c.stroke} strokeWidth="2" />
                 <path id="Vector 20_2" d="M378.873 1333.31C368.307 1337.11 347.373 1346.02 352.373 1361.31C358.623 1380.43 392.166 1388.75 406.452 1388.29C420.737 1387.84 453.891 1381.46 462.373 1362.81C469.159 1347.88 447.98 1337.26 436.373 1333.31" stroke={c.stroke} strokeWidth="2" />
-              </g>
-              <g id="spring-ring_3">
+              </motion.g>
+              <motion.g id="spring-ring_3" animate={{ y: getSpringOffset(2, isHovered, isPressed) }} transition={springTransition}>
                 <path id="Vector 19_3" d="M377.873 1299.81C366.04 1303.98 343.773 1316.51 349.373 1333.31C356.373 1354.31 391.373 1361.81 407.373 1361.31C423.373 1360.81 457.373 1353.81 466.873 1333.31C474.473 1316.91 450.373 1304.15 437.373 1299.81" stroke={c.springOuter} strokeWidth="7" />
                 <path id="Vector 18_3" d="M376.373 1296.31C363.832 1300.78 338.878 1315.23 344.813 1333.25C352.231 1355.78 389.323 1363.82 406.279 1363.29C423.235 1362.75 459.267 1355.24 469.335 1333.25C477.389 1315.66 451.849 1301.96 438.072 1297.31" stroke={c.stroke} strokeWidth="2" />
                 <path id="Vector 20_3" d="M378.873 1303.31C368.307 1307.11 347.373 1316.02 352.373 1331.31C358.623 1350.43 392.166 1358.75 406.452 1358.29C420.737 1357.84 453.891 1351.46 462.373 1332.81C469.159 1317.88 447.98 1307.26 436.373 1303.31" stroke={c.stroke} strokeWidth="2" />
-              </g>
-              <g id="spring-ring_4">
+              </motion.g>
+              <motion.g id="spring-ring_4" animate={{ y: getSpringOffset(3, isHovered, isPressed) }} transition={springTransition}>
                 <path id="Vector 19_4" d="M377.873 1269.81C366.04 1273.98 343.773 1286.51 349.373 1303.31C356.373 1324.31 391.373 1331.81 407.373 1331.31C423.373 1330.81 457.373 1323.81 466.873 1303.31C474.473 1286.91 450.373 1274.15 437.373 1269.81" stroke={c.springOuter} strokeWidth="7" />
                 <path id="Vector 18_4" d="M376.373 1266.31C363.832 1270.78 338.878 1285.23 344.813 1303.25C352.231 1325.78 389.323 1333.82 406.279 1333.29C423.235 1332.75 459.267 1325.24 469.335 1303.25C477.389 1285.66 451.849 1271.96 438.072 1267.31" stroke={c.stroke} strokeWidth="2" />
                 <path id="Vector 20_4" d="M378.873 1273.31C368.307 1277.11 347.373 1286.02 352.373 1301.31C358.623 1320.43 392.166 1328.75 406.452 1328.29C420.737 1327.84 453.891 1321.46 462.373 1302.81C469.159 1287.88 447.98 1277.26 436.373 1273.31" stroke={c.stroke} strokeWidth="2" />
-              </g>
-              <g id="spring-ring_5">
+              </motion.g>
+              <motion.g id="spring-ring_5" animate={{ y: getSpringOffset(4, isHovered, isPressed) }} transition={springTransition}>
                 <path id="Vector 19_5" d="M377.873 1239.81C366.04 1243.98 343.773 1256.51 349.373 1273.31C356.373 1294.31 391.373 1301.81 407.373 1301.31C423.373 1300.81 457.373 1293.81 466.873 1273.31C474.473 1256.91 450.373 1244.15 437.373 1239.81" stroke={c.springOuter} strokeWidth="7" />
                 <path id="Vector 18_5" d="M376.373 1236.31C363.832 1240.78 338.878 1255.23 344.813 1273.25C352.231 1295.78 389.323 1303.82 406.279 1303.29C423.235 1302.75 459.267 1295.24 469.335 1273.25C477.389 1255.66 451.849 1241.96 438.072 1237.31" stroke={c.stroke} strokeWidth="2" />
                 <path id="Vector 20_5" d="M378.873 1243.31C368.307 1247.11 347.373 1256.02 352.373 1271.31C358.623 1290.43 392.166 1298.75 406.452 1298.29C420.737 1297.84 453.891 1291.46 462.373 1272.81C469.159 1257.88 447.98 1247.26 436.373 1243.31" stroke={c.stroke} strokeWidth="2" />
-              </g>
-              <g id="spring-ring_6">
+              </motion.g>
+              <motion.g id="spring-ring_6" animate={{ y: getSpringOffset(5, isHovered, isPressed) }} transition={springTransition}>
                 <path id="Vector 19_6" d="M377.873 1209.81C366.04 1213.98 343.773 1226.51 349.373 1243.31C356.373 1264.31 391.373 1271.81 407.373 1271.31C423.373 1270.81 457.373 1263.81 466.873 1243.31C474.473 1226.91 450.373 1214.15 437.373 1209.81" stroke={c.springOuter} strokeWidth="7" />
                 <path id="Vector 18_6" d="M376.373 1206.31C363.832 1210.78 338.878 1225.23 344.813 1243.25C352.231 1265.78 389.323 1273.82 406.279 1273.29C423.235 1272.75 459.267 1265.24 469.335 1243.25C477.389 1225.66 451.849 1211.96 438.072 1207.31" stroke={c.stroke} strokeWidth="2" />
                 <path id="Vector 20_6" d="M378.873 1213.31C368.307 1217.11 347.373 1226.02 352.373 1241.31C358.623 1260.43 392.166 1268.75 406.452 1268.29C420.737 1267.84 453.891 1261.46 462.373 1242.81C469.159 1227.88 447.98 1217.26 436.373 1213.31" stroke={c.stroke} strokeWidth="2" />
-              </g>
-              <g id="spring-ring_7">
+              </motion.g>
+              <motion.g id="spring-ring_7" animate={{ y: getSpringOffset(6, isHovered, isPressed) }} transition={springTransition}>
                 <path id="Vector 19_7" d="M377.873 1193.81C366.04 1197.98 343.773 1210.51 349.373 1227.31C356.373 1248.31 391.373 1255.81 407.373 1255.31C423.373 1254.81 457.373 1247.81 466.873 1227.31C474.473 1210.91 450.373 1198.15 437.373 1193.81" stroke={c.springOuter} strokeWidth="7" />
                 <path id="Vector 18_7" d="M376.373 1190.31C363.832 1194.78 338.878 1209.23 344.813 1227.25C352.231 1249.78 389.323 1257.82 406.279 1257.29C423.235 1256.75 459.267 1249.24 469.335 1227.25C477.389 1209.66 451.849 1195.96 438.072 1191.31" stroke={c.stroke} strokeWidth="2" />
                 <path id="Vector 20_7" d="M378.873 1197.31C368.307 1201.11 347.373 1210.02 352.373 1225.31C358.623 1244.43 392.166 1252.75 406.452 1252.29C420.737 1251.84 453.891 1245.46 462.373 1226.81C469.159 1211.88 447.98 1201.26 436.373 1197.31" stroke={c.stroke} strokeWidth="2" />
-              </g>
-              <g id="spring-ring_8">
+              </motion.g>
+              <motion.g id="spring-ring_8" animate={{ y: getSpringOffset(7, isHovered, isPressed) }} transition={springTransition}>
                 <path id="Vector 19_8" d="M377.873 1183.81C366.04 1187.98 343.773 1200.51 349.373 1217.31C356.373 1238.31 391.373 1245.81 407.373 1245.31C423.373 1244.81 457.373 1237.81 466.873 1217.31C474.473 1200.91 450.373 1188.15 437.373 1183.81" stroke={c.springOuter} strokeWidth="7" />
                 <path id="Vector 18_8" d="M376.373 1180.31C363.832 1184.78 338.878 1199.23 344.813 1217.25C352.231 1239.78 389.323 1247.82 406.279 1247.29C423.235 1246.75 459.267 1239.24 469.335 1217.25C477.389 1199.66 451.849 1185.96 438.072 1181.31" stroke={c.stroke} strokeWidth="2" />
                 <path id="Vector 20_8" d="M378.873 1187.31C368.307 1191.11 347.373 1200.02 352.373 1215.31C358.623 1234.43 392.166 1242.75 406.452 1242.29C420.737 1241.84 453.891 1235.46 462.373 1216.81C469.159 1201.88 447.98 1191.26 436.373 1187.31" stroke={c.stroke} strokeWidth="2" />
-              </g>
-              <g id="spring-ring_9">
+              </motion.g>
+              <motion.g id="spring-ring_9" animate={{ y: getSpringOffset(8, isHovered, isPressed) }} transition={springTransition}>
                 <path id="Vector 19_9" d="M377.873 1175.81C366.04 1179.98 343.773 1192.51 349.373 1209.31C356.373 1230.31 391.373 1237.81 407.373 1237.31C423.373 1236.81 457.373 1229.81 466.873 1209.31C474.473 1192.91 450.373 1180.15 437.373 1175.81" stroke={c.springOuter} strokeWidth="7" />
                 <path id="Vector 18_9" d="M376.373 1172.31C363.832 1176.78 338.878 1191.23 344.813 1209.25C352.231 1231.78 389.323 1239.82 406.279 1239.29C423.235 1238.75 459.267 1231.24 469.335 1209.25C477.389 1191.66 451.849 1177.96 438.072 1173.31" stroke={c.stroke} strokeWidth="2" />
                 <path id="Vector 20_9" d="M378.873 1179.31C368.307 1183.11 347.373 1192.02 352.373 1207.31C358.623 1226.43 392.166 1234.75 406.452 1234.29C420.737 1233.84 453.891 1227.46 462.373 1208.81C469.159 1193.88 447.98 1183.26 436.373 1179.31" stroke={c.stroke} strokeWidth="2" />
-              </g>
+              </motion.g>
             </g>
             <g id="key-base-front">
               <g id="Vector 14">
