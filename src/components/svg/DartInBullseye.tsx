@@ -40,7 +40,7 @@ export default function DartInBullseye({
   className = "w-80",
   colors,
   animate = true,
-  animationDuration = 0.8,
+  animationDuration = 0.2,
 }: Props) {
   const c = { ...DEFAULT_COLORS, ...colors }
   const uid = useId()
@@ -65,14 +65,55 @@ export default function DartInBullseye({
         xmlns="http://www.w3.org/2000/svg"
       >
         <g id="dart-in-bullseye">
-          <path id="dart-path" d="M502.124 789.304L1105.12 0.303619" stroke={c.dartPath} />
           <g id="aim-discs" opacity="0.74">
-            <ellipse id="Ellipse 6" cx="482.251" cy="810.856" rx="167.607" ry="452.222" transform="rotate(-69 482.251 810.856)" fill={c.disc6} />
-            <ellipse id="Ellipse 5" cx="485.229" cy="806.444" rx="132.497" ry="364.458" transform="rotate(-69 485.229 806.444)" fill={c.disc5} />
-            <ellipse id="Ellipse 4" cx="495.687" cy="801.842" rx="98.9941" ry="256.717" transform="rotate(-69 495.687 801.842)" fill={c.disc4} />
-            <ellipse id="Ellipse 3" cx="502.711" cy="792.655" rx="55.4821" ry="160.644" transform="rotate(-69 502.711 792.655)" fill={c.disc3} />
-            <ellipse id="Ellipse 2" cx="504.142" cy="790.404" rx="21.7539" ry="70.5558" transform="rotate(-69 504.142 790.404)" fill={c.disc2} />
-            <ellipse id="Ellipse 1" cx="504.068" cy="789.046" rx="10.6697" ry="30.0852" transform="rotate(-69 504.068 789.046)" fill={c.disc1} />
+            <motion.g
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+              initial={animate ? { scale: 1 } : undefined}
+              animate={animate ? { scale: [1, 1.04, 0.98, 1.02, 1] } : undefined}
+              transition={animate ? { duration: animationDuration, delay: animationDuration + 0.15, ease: "easeOut", times: [0, 0.25, 0.5, 0.75, 1] } : undefined}
+            >
+              <ellipse id="Ellipse 6" cx="482.251" cy="810.856" rx="167.607" ry="452.222" transform="rotate(-69 482.251 810.856)" fill={c.disc6} />
+            </motion.g>
+            <motion.g
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+              initial={animate ? { scale: 1 } : undefined}
+              animate={animate ? { scale: [1, 1.06, 0.97, 1.03, 1] } : undefined}
+              transition={animate ? { duration: animationDuration, delay: animationDuration + 0.1, ease: "easeOut", times: [0, 0.25, 0.5, 0.75, 1] } : undefined}
+            >
+              <ellipse id="Ellipse 5" cx="485.229" cy="806.444" rx="132.497" ry="364.458" transform="rotate(-69 485.229 806.444)" fill={c.disc5} />
+            </motion.g>
+            <motion.g
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+              initial={animate ? { scale: 1 } : undefined}
+              animate={animate ? { scale: [1, 1.08, 0.96, 1.03, 1] } : undefined}
+              transition={animate ? { duration: animationDuration, delay: animationDuration + 0.07, ease: "easeOut", times: [0, 0.25, 0.5, 0.75, 1] } : undefined}
+            >
+              <ellipse id="Ellipse 4" cx="495.687" cy="801.842" rx="98.9941" ry="256.717" transform="rotate(-69 495.687 801.842)" fill={c.disc4} />
+            </motion.g>
+            <motion.g
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+              initial={animate ? { scale: 1 } : undefined}
+              animate={animate ? { scale: [1, 1.12, 0.94, 1.04, 1] } : undefined}
+              transition={animate ? { duration: animationDuration, delay: animationDuration + 0.04, ease: "easeOut", times: [0, 0.25, 0.5, 0.75, 1] } : undefined}
+            >
+              <ellipse id="Ellipse 3" cx="502.711" cy="792.655" rx="55.4821" ry="160.644" transform="rotate(-69 502.711 792.655)" fill={c.disc3} />
+            </motion.g>
+            <motion.g
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+              initial={animate ? { scale: 1 } : undefined}
+              animate={animate ? { scale: [1, 1.18, 0.9, 1.05, 1] } : undefined}
+              transition={animate ? { duration: animationDuration, delay: animationDuration + 0.02, ease: "easeOut", times: [0, 0.25, 0.5, 0.75, 1] } : undefined}
+            >
+              <ellipse id="Ellipse 2" cx="504.142" cy="790.404" rx="21.7539" ry="70.5558" transform="rotate(-69 504.142 790.404)" fill={c.disc2} />
+            </motion.g>
+            <motion.g
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+              initial={animate ? { scale: 1 } : undefined}
+              animate={animate ? { scale: [1, 1.25, 0.85, 1.05, 1] } : undefined}
+              transition={animate ? { duration: animationDuration, delay: animationDuration, ease: "easeOut", times: [0, 0.25, 0.5, 0.75, 1] } : undefined}
+            >
+              <ellipse id="Ellipse 1" cx="504.068" cy="789.046" rx="10.6697" ry="30.0852" transform="rotate(-69 504.068 789.046)" fill={c.disc1} />
+            </motion.g>
           </g>
           <g id="disc-glow">
             <g id="Rectangle 1" filter={`url(#${filter0Id})`}>
@@ -84,8 +125,8 @@ export default function DartInBullseye({
           </g>
           <motion.g
             id="dart"
-            initial={animate ? { x: 350, y: -250, rotate: 20, scale: 0.2 } : undefined}
-            animate={animate ? { x: 0, y: 0, rotate: 0, scale: 1 } : undefined}
+            initial={animate ? { x: 200, y: -100, rotate: 10, scale: 0.5, opacity: 0 } : undefined}
+            animate={animate ? { x: 0, y: 0, rotate: 0, scale: 1, opacity: 1 } : undefined}
             transition={animate ? { duration: animationDuration, ease: "easeOut" } : undefined}
           >
             <path id="point" d="M518.154 762.754L549.023 718.309L556.198 724.693L521.519 765.434L501.236 789.406L518.154 762.754Z" fill={c.dartPoint} />
