@@ -37,7 +37,7 @@ type Props = {
 }
 
 export default function DartInBullseye({
-  className = "w-80",
+  className = "w-110",
   colors,
   animate = true,
   animationDuration = 0.2,

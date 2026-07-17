@@ -243,5 +243,17 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["mechanical key", "glow", "animation", "hardware"],
     category: [categories.hardware],
+  },
+  {
+    name: "DartInBullseye",
+    description: "a dart hitting the bullseye of a target with a smooth animation and optional bounce effect",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      animationDuration: "number",
+    },
+    tags: ["dart", "bullseye", "target", "animation", "effects"],
+    category: [categories.effects],
   }
 ]
