@@ -1,5 +1,5 @@
 import { motion } from "motion/react"
-import { useId } from "react"
+import { useId, useState } from "react"
 
 const DEFAULT_COLORS = {
   baseBackLight: "#8F7696",
@@ -45,11 +45,11 @@ type Props = {
 }
 
 export default function MechanicalKey({
-  className = "w-80",
+  className = "h-100",
   colors,
   animate = true,
   staggerDelay = 0,
-  initialDelay = 0.3,
+  initialDelay = 0,
   duration = 0.9,
 }: Props) {
   const c = { ...DEFAULT_COLORS, ...colors }
@@ -57,6 +57,8 @@ export default function MechanicalKey({
   const paint0Id = `${uid}-paint0`
   const paint1Id = `${uid}-paint1`
   const filter0Id = `${uid}-filter0`
+  const [isHovered, setIsHovered] = useState(false)
+  const [isPressed, setIsPressed] = useState(false)
 
   const initialKey = animate
     ? { y: 400, opacity: 1 }
@@ -64,18 +66,22 @@ export default function MechanicalKey({
   const initialKeyTop = animate
     ? { y: 900, opacity: 1 }
     : { y: 0, opacity: 1 }
+
+  const keyY = animate ? (isHovered ? isPressed ? initialKey.y : initialKey.y / 4 : 0) : 0
+  const keyTopY = animate ? (isHovered ? isPressed ? initialKeyTop.y : initialKeyTop.y / 4 : 0) : 0
+
   const whileInViewKeyTop = animate
-    ? { y: 0, transition: { duration, delay: initialDelay, ease: [0.22, 1, 0.36, 1] as const } }
+    ? { y: keyTopY, transition: { duration, delay: initialDelay, ease: [0.22, 1, 0.36, 1] as const } }
     : undefined
   const whileInViewKey = animate
-    ? { y: 0, transition: { duration, delay: initialDelay + staggerDelay, ease: [0.22, 1, 0.36, 1] as const } }
+    ? { y: keyY, transition: { duration, delay: initialDelay + staggerDelay, ease: [0.22, 1, 0.36, 1] as const } }
     : undefined
   const whileInViewLight = animate
     ? { opacity: 1, transition: { duration: 0.5, delay: 2 * staggerDelay + duration * 0.5, ease: "easeOut" as const } }
     : undefined
 
   return (
-    <div>
+    <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onMouseDown={() => setIsPressed(true)} onMouseUp={() => setIsPressed(false)} className="cursor-pointer">
       <svg
         className={className}
         viewBox="0 0 819 1670"
