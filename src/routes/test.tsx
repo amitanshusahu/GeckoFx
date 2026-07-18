@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
 // import MechanicalKey from '../components/svg/MechanicalKey'
 import DartInBullseye from '../components/svg/DartInBullseye'
+import FileUpload from '../components/svg/FileUpload'
 
 export const Route = createFileRoute('/test')({
   component: RouteComponent,
@@ -21,7 +22,8 @@ function RouteComponent() {
         {/* <Folder />
         <SolanaTokens /> */}
         {/* <MechanicalKey /> */}
-        <DartInBullseye />
+        {/* <DartInBullseye /> */}
+        <FileUpload />
       </div>
     </div>
   )
