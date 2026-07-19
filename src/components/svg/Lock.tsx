@@ -61,8 +61,8 @@ export default function Lock({
             animate={
               canAnimate
                 ? {
-                  x: [0, -4, 4, -4, 4, -2, 2, 0],
-                  rotate: [0, -2, 2, -2, 2, -0.75, 0.75, 0],
+                  x: [0, -3, 3, -3, 3, -1.5, 1.5, 0],
+                  rotate: [0, -1.5, 1.5, -1.5, 1.5, -0.75, 0.75, 0],
                 }
                 : undefined
             }
@@ -112,8 +112,8 @@ export default function Lock({
             animate={
               canAnimate
                 ? {
-                  x: [0, -4, 4, -4, 4, -2, 2, 0],
-                  rotate: [0, -2, 2, -2, 2, -0.75, 0.75, 0],
+                  x: [0, -3, 3, -3, 3, -1.5, 1.5, 0],
+                  rotate: [0, -1.5, 1.5, -1.5, 1.5, -0.75, 0.75, 0],
                 }
                 : undefined
             }
