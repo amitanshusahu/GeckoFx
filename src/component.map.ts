@@ -268,5 +268,19 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["file", "upload", "arrow", "animation", "icons"],
     category: [categories.icons],
+  },
+  {
+    name: "Lock",
+    description: "a lock icon with a shackle that rotates closed and a shake animation for impact",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      shackleDuration: "number",
+      shakeDuration: "number",
+      shackleDelay: "number",
+    },
+    tags: ["lock", "security", "animation", "icons"],
+    category: [categories.icons],
   }
 ]
