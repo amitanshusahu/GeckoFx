@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
-import FileUpload from '../components/svg/FileUpload'
+// import FileUpload from '../components/svg/FileUpload'
+import Lock from '../components/svg/Lock'
 
 export const Route = createFileRoute('/test')({
   component: RouteComponent,
@@ -17,7 +18,8 @@ function RouteComponent() {
         </span>
       </p>
       <div className="flex gap-20">
-        <FileUpload />
+        {/* <FileUpload /> */}
+        <Lock />
       </div>
     </div>
   )

@@ -24,6 +24,7 @@ const DocsMicRippleLazyRouteImport = createFileRoute('/docs/mic-ripple')()
 const DocsMechanicalKeyLazyRouteImport = createFileRoute(
   '/docs/mechanical-key',
 )()
+const DocsLockLazyRouteImport = createFileRoute('/docs/lock')()
 const DocsIsometricCameraLazyRouteImport = createFileRoute(
   '/docs/isometric-camera',
 )()
@@ -108,6 +109,11 @@ const DocsMechanicalKeyLazyRoute = DocsMechanicalKeyLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/docs/mechanical-key.lazy').then((d) => d.Route),
 )
+const DocsLockLazyRoute = DocsLockLazyRouteImport.update({
+  id: '/lock',
+  path: '/lock',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() => import('./routes/docs/lock.lazy').then((d) => d.Route))
 const DocsIsometricCameraLazyRoute = DocsIsometricCameraLazyRouteImport.update({
   id: '/isometric-camera',
   path: '/isometric-camera',
@@ -208,6 +214,7 @@ export interface FileRoutesByFullPath {
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
   '/docs/isometric-camera': typeof DocsIsometricCameraLazyRoute
+  '/docs/lock': typeof DocsLockLazyRoute
   '/docs/mechanical-key': typeof DocsMechanicalKeyLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
@@ -233,6 +240,7 @@ export interface FileRoutesByTo {
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
   '/docs/isometric-camera': typeof DocsIsometricCameraLazyRoute
+  '/docs/lock': typeof DocsLockLazyRoute
   '/docs/mechanical-key': typeof DocsMechanicalKeyLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
@@ -259,6 +267,7 @@ export interface FileRoutesById {
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
   '/docs/isometric-camera': typeof DocsIsometricCameraLazyRoute
+  '/docs/lock': typeof DocsLockLazyRoute
   '/docs/mechanical-key': typeof DocsMechanicalKeyLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
@@ -286,6 +295,7 @@ export interface FileRouteTypes {
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
     | '/docs/isometric-camera'
+    | '/docs/lock'
     | '/docs/mechanical-key'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
@@ -311,6 +321,7 @@ export interface FileRouteTypes {
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
     | '/docs/isometric-camera'
+    | '/docs/lock'
     | '/docs/mechanical-key'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
@@ -336,6 +347,7 @@ export interface FileRouteTypes {
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
     | '/docs/isometric-camera'
+    | '/docs/lock'
     | '/docs/mechanical-key'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
@@ -421,6 +433,13 @@ declare module '@tanstack/react-router' {
       path: '/mechanical-key'
       fullPath: '/docs/mechanical-key'
       preLoaderRoute: typeof DocsMechanicalKeyLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/lock': {
+      id: '/docs/lock'
+      path: '/lock'
+      fullPath: '/docs/lock'
+      preLoaderRoute: typeof DocsLockLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
     '/docs/isometric-camera': {
@@ -531,6 +550,7 @@ interface DocsRouteRouteChildren {
   DocsGpuChipLazyRoute: typeof DocsGpuChipLazyRoute
   DocsGpuClusterLazyRoute: typeof DocsGpuClusterLazyRoute
   DocsIsometricCameraLazyRoute: typeof DocsIsometricCameraLazyRoute
+  DocsLockLazyRoute: typeof DocsLockLazyRoute
   DocsMechanicalKeyLazyRoute: typeof DocsMechanicalKeyLazyRoute
   DocsMicRippleLazyRoute: typeof DocsMicRippleLazyRoute
   DocsRadarScanLazyRoute: typeof DocsRadarScanLazyRoute
@@ -554,6 +574,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsGpuChipLazyRoute: DocsGpuChipLazyRoute,
   DocsGpuClusterLazyRoute: DocsGpuClusterLazyRoute,
   DocsIsometricCameraLazyRoute: DocsIsometricCameraLazyRoute,
+  DocsLockLazyRoute: DocsLockLazyRoute,
   DocsMechanicalKeyLazyRoute: DocsMechanicalKeyLazyRoute,
   DocsMicRippleLazyRoute: DocsMicRippleLazyRoute,
   DocsRadarScanLazyRoute: DocsRadarScanLazyRoute,
