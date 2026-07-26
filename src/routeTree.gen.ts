@@ -21,6 +21,9 @@ const DocsServerRackLazyRouteImport = createFileRoute('/docs/server-rack')()
 const DocsRoboBrainLazyRouteImport = createFileRoute('/docs/robo-brain')()
 const DocsRadarScanLazyRouteImport = createFileRoute('/docs/radar-scan')()
 const DocsMicRippleLazyRouteImport = createFileRoute('/docs/mic-ripple')()
+const DocsMessageBubbleLazyRouteImport = createFileRoute(
+  '/docs/message-bubble',
+)()
 const DocsMechanicalKeyLazyRouteImport = createFileRoute(
   '/docs/mechanical-key',
 )()
@@ -38,6 +41,7 @@ const DocsFastCompressLazyRouteImport = createFileRoute('/docs/fast-compress')()
 const DocsDartInBullseyeLazyRouteImport = createFileRoute(
   '/docs/dart-in-bullseye',
 )()
+const DocsCubicLatticeLazyRouteImport = createFileRoute('/docs/cubic-lattice')()
 const DocsConnectCubeLazyRouteImport = createFileRoute('/docs/connect-cube')()
 const DocsClockLazyRouteImport = createFileRoute('/docs/clock')()
 const DocsAudioChipLazyRouteImport = createFileRoute('/docs/audio-chip')()
@@ -101,6 +105,13 @@ const DocsMicRippleLazyRoute = DocsMicRippleLazyRouteImport.update({
   getParentRoute: () => DocsRouteRoute,
 } as any).lazy(() =>
   import('./routes/docs/mic-ripple.lazy').then((d) => d.Route),
+)
+const DocsMessageBubbleLazyRoute = DocsMessageBubbleLazyRouteImport.update({
+  id: '/message-bubble',
+  path: '/message-bubble',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/message-bubble.lazy').then((d) => d.Route),
 )
 const DocsMechanicalKeyLazyRoute = DocsMechanicalKeyLazyRouteImport.update({
   id: '/mechanical-key',
@@ -169,6 +180,13 @@ const DocsDartInBullseyeLazyRoute = DocsDartInBullseyeLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/docs/dart-in-bullseye.lazy').then((d) => d.Route),
 )
+const DocsCubicLatticeLazyRoute = DocsCubicLatticeLazyRouteImport.update({
+  id: '/cubic-lattice',
+  path: '/cubic-lattice',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/cubic-lattice.lazy').then((d) => d.Route),
+)
 const DocsConnectCubeLazyRoute = DocsConnectCubeLazyRouteImport.update({
   id: '/connect-cube',
   path: '/connect-cube',
@@ -205,6 +223,7 @@ export interface FileRoutesByFullPath {
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
+  '/docs/cubic-lattice': typeof DocsCubicLatticeLazyRoute
   '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
@@ -216,6 +235,7 @@ export interface FileRoutesByFullPath {
   '/docs/isometric-camera': typeof DocsIsometricCameraLazyRoute
   '/docs/lock': typeof DocsLockLazyRoute
   '/docs/mechanical-key': typeof DocsMechanicalKeyLazyRoute
+  '/docs/message-bubble': typeof DocsMessageBubbleLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
@@ -231,6 +251,7 @@ export interface FileRoutesByTo {
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
+  '/docs/cubic-lattice': typeof DocsCubicLatticeLazyRoute
   '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
@@ -242,6 +263,7 @@ export interface FileRoutesByTo {
   '/docs/isometric-camera': typeof DocsIsometricCameraLazyRoute
   '/docs/lock': typeof DocsLockLazyRoute
   '/docs/mechanical-key': typeof DocsMechanicalKeyLazyRoute
+  '/docs/message-bubble': typeof DocsMessageBubbleLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
@@ -258,6 +280,7 @@ export interface FileRoutesById {
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
+  '/docs/cubic-lattice': typeof DocsCubicLatticeLazyRoute
   '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
@@ -269,6 +292,7 @@ export interface FileRoutesById {
   '/docs/isometric-camera': typeof DocsIsometricCameraLazyRoute
   '/docs/lock': typeof DocsLockLazyRoute
   '/docs/mechanical-key': typeof DocsMechanicalKeyLazyRoute
+  '/docs/message-bubble': typeof DocsMessageBubbleLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
@@ -286,6 +310,7 @@ export interface FileRouteTypes {
     | '/docs/audio-chip'
     | '/docs/clock'
     | '/docs/connect-cube'
+    | '/docs/cubic-lattice'
     | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
@@ -297,6 +322,7 @@ export interface FileRouteTypes {
     | '/docs/isometric-camera'
     | '/docs/lock'
     | '/docs/mechanical-key'
+    | '/docs/message-bubble'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
     | '/docs/robo-brain'
@@ -312,6 +338,7 @@ export interface FileRouteTypes {
     | '/docs/audio-chip'
     | '/docs/clock'
     | '/docs/connect-cube'
+    | '/docs/cubic-lattice'
     | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
@@ -323,6 +350,7 @@ export interface FileRouteTypes {
     | '/docs/isometric-camera'
     | '/docs/lock'
     | '/docs/mechanical-key'
+    | '/docs/message-bubble'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
     | '/docs/robo-brain'
@@ -338,6 +366,7 @@ export interface FileRouteTypes {
     | '/docs/audio-chip'
     | '/docs/clock'
     | '/docs/connect-cube'
+    | '/docs/cubic-lattice'
     | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
@@ -349,6 +378,7 @@ export interface FileRouteTypes {
     | '/docs/isometric-camera'
     | '/docs/lock'
     | '/docs/mechanical-key'
+    | '/docs/message-bubble'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
     | '/docs/robo-brain'
@@ -428,6 +458,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsMicRippleLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/message-bubble': {
+      id: '/docs/message-bubble'
+      path: '/message-bubble'
+      fullPath: '/docs/message-bubble'
+      preLoaderRoute: typeof DocsMessageBubbleLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/mechanical-key': {
       id: '/docs/mechanical-key'
       path: '/mechanical-key'
@@ -505,6 +542,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsDartInBullseyeLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/cubic-lattice': {
+      id: '/docs/cubic-lattice'
+      path: '/cubic-lattice'
+      fullPath: '/docs/cubic-lattice'
+      preLoaderRoute: typeof DocsCubicLatticeLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/connect-cube': {
       id: '/docs/connect-cube'
       path: '/connect-cube'
@@ -541,6 +585,7 @@ interface DocsRouteRouteChildren {
   DocsAudioChipLazyRoute: typeof DocsAudioChipLazyRoute
   DocsClockLazyRoute: typeof DocsClockLazyRoute
   DocsConnectCubeLazyRoute: typeof DocsConnectCubeLazyRoute
+  DocsCubicLatticeLazyRoute: typeof DocsCubicLatticeLazyRoute
   DocsDartInBullseyeLazyRoute: typeof DocsDartInBullseyeLazyRoute
   DocsFastCompressLazyRoute: typeof DocsFastCompressLazyRoute
   DocsFastZapLazyRoute: typeof DocsFastZapLazyRoute
@@ -552,6 +597,7 @@ interface DocsRouteRouteChildren {
   DocsIsometricCameraLazyRoute: typeof DocsIsometricCameraLazyRoute
   DocsLockLazyRoute: typeof DocsLockLazyRoute
   DocsMechanicalKeyLazyRoute: typeof DocsMechanicalKeyLazyRoute
+  DocsMessageBubbleLazyRoute: typeof DocsMessageBubbleLazyRoute
   DocsMicRippleLazyRoute: typeof DocsMicRippleLazyRoute
   DocsRadarScanLazyRoute: typeof DocsRadarScanLazyRoute
   DocsRoboBrainLazyRoute: typeof DocsRoboBrainLazyRoute
@@ -565,6 +611,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsAudioChipLazyRoute: DocsAudioChipLazyRoute,
   DocsClockLazyRoute: DocsClockLazyRoute,
   DocsConnectCubeLazyRoute: DocsConnectCubeLazyRoute,
+  DocsCubicLatticeLazyRoute: DocsCubicLatticeLazyRoute,
   DocsDartInBullseyeLazyRoute: DocsDartInBullseyeLazyRoute,
   DocsFastCompressLazyRoute: DocsFastCompressLazyRoute,
   DocsFastZapLazyRoute: DocsFastZapLazyRoute,
@@ -576,6 +623,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsIsometricCameraLazyRoute: DocsIsometricCameraLazyRoute,
   DocsLockLazyRoute: DocsLockLazyRoute,
   DocsMechanicalKeyLazyRoute: DocsMechanicalKeyLazyRoute,
+  DocsMessageBubbleLazyRoute: DocsMessageBubbleLazyRoute,
   DocsMicRippleLazyRoute: DocsMicRippleLazyRoute,
   DocsRadarScanLazyRoute: DocsRadarScanLazyRoute,
   DocsRoboBrainLazyRoute: DocsRoboBrainLazyRoute,
