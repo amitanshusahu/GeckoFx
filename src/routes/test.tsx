@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
 import CubicLattice from '../components/svg/CubicLattice'
+import MessageBubble from '../components/svg/MessageBubble'
 // import FileUpload from '../components/svg/FileUpload'
 // import Lock from '../components/svg/Lock'
 
@@ -22,6 +23,7 @@ function RouteComponent() {
         {/* <FileUpload /> */}
         {/* <Lock /> */}
         <CubicLattice />
+        <MessageBubble />
       </div>
     </div>
   )

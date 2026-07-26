@@ -270,6 +270,20 @@ export const componentMap: ComponentMapEntry[] = [
     category: [categories.icons],
   },
   {
+    name: "MessageBubble",
+    description: "two stacked message bubbles where the back bubble pops in from the corner and the dots inside the top bubble wave in sequence",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      popDuration: "number",
+      waveDuration: "number",
+      waveStagger: "number",
+    },
+    tags: ["message", "chat", "bubble", "wave", "animation", "icons"],
+    category: [categories.icons],
+  },
+  {
     name: "Lock",
     description: "a lock icon with a shackle that rotates closed and a shake animation for impact",
     props: {
