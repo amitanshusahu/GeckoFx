@@ -282,5 +282,19 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["lock", "security", "animation", "icons"],
     category: [categories.icons],
+  },
+  {
+    name: "CubicLattice",
+    description: "a cubic lattice structure with optional floating and magnetic effects",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      float: "boolean",
+      floatDistance: "number",
+      floatDelay: "number",
+      magnetic: "boolean",
+    },
+    tags: ["cubic lattice", "3D", "animation", "effects"],
+    category: [categories.effects],
   }
 ]
