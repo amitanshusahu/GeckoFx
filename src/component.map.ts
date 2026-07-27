@@ -310,5 +310,17 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["cubic lattice", "3D", "animation", "effects"],
     category: [categories.effects],
-  }
+  },
+  {
+    name: "RibbonBadge",
+    description: "a badge with two ribbons that pop out from the center with staggered animation and a frosted glass blur effect",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      popDuration: "number",
+    },
+    tags: ["ribbon", "badge", "animation", "pop", "frosted glass", "effects"],
+    category: [categories.effects],
+  },
 ]

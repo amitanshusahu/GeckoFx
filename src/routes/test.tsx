@@ -1,7 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
-import CubicLattice from '../components/svg/CubicLattice'
-import MessageBubble from '../components/svg/MessageBubble'
+// import CubicLattice from '../components/svg/CubicLattice'
+// import MessageBubble from '../components/svg/MessageBubble'
+import RibbonBadge from '../components/svg/RibbonBadge'
 // import FileUpload from '../components/svg/FileUpload'
 // import Lock from '../components/svg/Lock'
 
@@ -22,8 +23,9 @@ function RouteComponent() {
       <div className="flex gap-20">
         {/* <FileUpload /> */}
         {/* <Lock /> */}
-        <CubicLattice />
-        <MessageBubble />
+        {/* <CubicLattice />
+        <MessageBubble /> */}
+        <RibbonBadge />
       </div>
     </div>
   )

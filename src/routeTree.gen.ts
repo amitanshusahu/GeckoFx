@@ -19,6 +19,7 @@ const DocsSolanaTokensLazyRouteImport = createFileRoute('/docs/solana-tokens')()
 const DocsServerStackLazyRouteImport = createFileRoute('/docs/server-stack')()
 const DocsServerRackLazyRouteImport = createFileRoute('/docs/server-rack')()
 const DocsRoboBrainLazyRouteImport = createFileRoute('/docs/robo-brain')()
+const DocsRibbonBadgeLazyRouteImport = createFileRoute('/docs/ribbon-badge')()
 const DocsRadarScanLazyRouteImport = createFileRoute('/docs/radar-scan')()
 const DocsMicRippleLazyRouteImport = createFileRoute('/docs/mic-ripple')()
 const DocsMessageBubbleLazyRouteImport = createFileRoute(
@@ -91,6 +92,13 @@ const DocsRoboBrainLazyRoute = DocsRoboBrainLazyRouteImport.update({
   getParentRoute: () => DocsRouteRoute,
 } as any).lazy(() =>
   import('./routes/docs/robo-brain.lazy').then((d) => d.Route),
+)
+const DocsRibbonBadgeLazyRoute = DocsRibbonBadgeLazyRouteImport.update({
+  id: '/ribbon-badge',
+  path: '/ribbon-badge',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/ribbon-badge.lazy').then((d) => d.Route),
 )
 const DocsRadarScanLazyRoute = DocsRadarScanLazyRouteImport.update({
   id: '/radar-scan',
@@ -238,6 +246,7 @@ export interface FileRoutesByFullPath {
   '/docs/message-bubble': typeof DocsMessageBubbleLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
+  '/docs/ribbon-badge': typeof DocsRibbonBadgeLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
@@ -266,6 +275,7 @@ export interface FileRoutesByTo {
   '/docs/message-bubble': typeof DocsMessageBubbleLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
+  '/docs/ribbon-badge': typeof DocsRibbonBadgeLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
@@ -295,6 +305,7 @@ export interface FileRoutesById {
   '/docs/message-bubble': typeof DocsMessageBubbleLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
+  '/docs/ribbon-badge': typeof DocsRibbonBadgeLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
@@ -325,6 +336,7 @@ export interface FileRouteTypes {
     | '/docs/message-bubble'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
+    | '/docs/ribbon-badge'
     | '/docs/robo-brain'
     | '/docs/server-rack'
     | '/docs/server-stack'
@@ -353,6 +365,7 @@ export interface FileRouteTypes {
     | '/docs/message-bubble'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
+    | '/docs/ribbon-badge'
     | '/docs/robo-brain'
     | '/docs/server-rack'
     | '/docs/server-stack'
@@ -381,6 +394,7 @@ export interface FileRouteTypes {
     | '/docs/message-bubble'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
+    | '/docs/ribbon-badge'
     | '/docs/robo-brain'
     | '/docs/server-rack'
     | '/docs/server-stack'
@@ -442,6 +456,13 @@ declare module '@tanstack/react-router' {
       path: '/robo-brain'
       fullPath: '/docs/robo-brain'
       preLoaderRoute: typeof DocsRoboBrainLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/ribbon-badge': {
+      id: '/docs/ribbon-badge'
+      path: '/ribbon-badge'
+      fullPath: '/docs/ribbon-badge'
+      preLoaderRoute: typeof DocsRibbonBadgeLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
     '/docs/radar-scan': {
@@ -600,6 +621,7 @@ interface DocsRouteRouteChildren {
   DocsMessageBubbleLazyRoute: typeof DocsMessageBubbleLazyRoute
   DocsMicRippleLazyRoute: typeof DocsMicRippleLazyRoute
   DocsRadarScanLazyRoute: typeof DocsRadarScanLazyRoute
+  DocsRibbonBadgeLazyRoute: typeof DocsRibbonBadgeLazyRoute
   DocsRoboBrainLazyRoute: typeof DocsRoboBrainLazyRoute
   DocsServerRackLazyRoute: typeof DocsServerRackLazyRoute
   DocsServerStackLazyRoute: typeof DocsServerStackLazyRoute
@@ -626,6 +648,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsMessageBubbleLazyRoute: DocsMessageBubbleLazyRoute,
   DocsMicRippleLazyRoute: DocsMicRippleLazyRoute,
   DocsRadarScanLazyRoute: DocsRadarScanLazyRoute,
+  DocsRibbonBadgeLazyRoute: DocsRibbonBadgeLazyRoute,
   DocsRoboBrainLazyRoute: DocsRoboBrainLazyRoute,
   DocsServerRackLazyRoute: DocsServerRackLazyRoute,
   DocsServerStackLazyRoute: DocsServerStackLazyRoute,
