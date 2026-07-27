@@ -343,6 +343,7 @@ export const componentMap: ComponentMapEntry[] = [
       colors: "Partial<Colors>",
       animate: "boolean",
       beatDuration: "number",
+      beatDelay: "number",
       rippleDuration: "number",
       rippleStagger: "number",
     },

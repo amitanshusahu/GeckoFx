@@ -22,17 +22,19 @@ type Props = {
   colors?: Partial<ZapWithRippleColors>
   animate?: boolean
   beatDuration?: number
+  beatDelay?: number
   rippleDuration?: number
   rippleStagger?: number
 }
 
 export default function ZapWithRipple({
-  className = "h-80",
+  className = "h-100",
   colors,
   animate = true,
   beatDuration = 0.9,
+  beatDelay,
   rippleDuration = 1.8,
-  rippleStagger = 0.35,
+  rippleStagger = 0.15,
 }: Props) {
   const c = { ...DEFAULT_COLORS, ...colors }
   const uid = useId()
@@ -43,6 +45,7 @@ export default function ZapWithRipple({
 
   const easeOut = [0.16, 1, 0.3, 1] as const
   const waveCycle = rippleDuration + rippleStagger * 3
+  const resolvedBeatDelay = beatDelay ?? waveCycle
 
   return (
     <div>
@@ -210,9 +213,11 @@ export default function ZapWithRipple({
               canAnimate
                 ? {
                     duration: beatDuration,
+                    delay: resolvedBeatDelay,
                     ease: "easeInOut",
                     times: [0, 0.15, 0.3, 0.45, 1],
                     repeat: Infinity,
+                    repeatDelay: Math.max(0, waveCycle - beatDuration),
                   }
                 : undefined
             }
