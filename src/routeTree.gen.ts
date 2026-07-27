@@ -45,6 +45,9 @@ const DocsFastCompressLazyRouteImport = createFileRoute('/docs/fast-compress')()
 const DocsDartInBullseyeLazyRouteImport = createFileRoute(
   '/docs/dart-in-bullseye',
 )()
+const DocsCubicStructure3dLazyRouteImport = createFileRoute(
+  '/docs/cubic-structure3d',
+)()
 const DocsCubicLatticeLazyRouteImport = createFileRoute('/docs/cubic-lattice')()
 const DocsConnectCubeLazyRouteImport = createFileRoute('/docs/connect-cube')()
 const DocsClockLazyRouteImport = createFileRoute('/docs/clock')()
@@ -199,6 +202,14 @@ const DocsDartInBullseyeLazyRoute = DocsDartInBullseyeLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/docs/dart-in-bullseye.lazy').then((d) => d.Route),
 )
+const DocsCubicStructure3dLazyRoute =
+  DocsCubicStructure3dLazyRouteImport.update({
+    id: '/cubic-structure3d',
+    path: '/cubic-structure3d',
+    getParentRoute: () => DocsRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/docs/cubic-structure3d.lazy').then((d) => d.Route),
+  )
 const DocsCubicLatticeLazyRoute = DocsCubicLatticeLazyRouteImport.update({
   id: '/cubic-lattice',
   path: '/cubic-lattice',
@@ -249,6 +260,7 @@ export interface FileRoutesByFullPath {
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
   '/docs/cubic-lattice': typeof DocsCubicLatticeLazyRoute
+  '/docs/cubic-structure3d': typeof DocsCubicStructure3dLazyRoute
   '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
@@ -280,6 +292,7 @@ export interface FileRoutesByTo {
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
   '/docs/cubic-lattice': typeof DocsCubicLatticeLazyRoute
+  '/docs/cubic-structure3d': typeof DocsCubicStructure3dLazyRoute
   '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
@@ -312,6 +325,7 @@ export interface FileRoutesById {
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
   '/docs/cubic-lattice': typeof DocsCubicLatticeLazyRoute
+  '/docs/cubic-structure3d': typeof DocsCubicStructure3dLazyRoute
   '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
@@ -345,6 +359,7 @@ export interface FileRouteTypes {
     | '/docs/clock'
     | '/docs/connect-cube'
     | '/docs/cubic-lattice'
+    | '/docs/cubic-structure3d'
     | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
@@ -376,6 +391,7 @@ export interface FileRouteTypes {
     | '/docs/clock'
     | '/docs/connect-cube'
     | '/docs/cubic-lattice'
+    | '/docs/cubic-structure3d'
     | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
@@ -407,6 +423,7 @@ export interface FileRouteTypes {
     | '/docs/clock'
     | '/docs/connect-cube'
     | '/docs/cubic-lattice'
+    | '/docs/cubic-structure3d'
     | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
@@ -598,6 +615,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsDartInBullseyeLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/cubic-structure3d': {
+      id: '/docs/cubic-structure3d'
+      path: '/cubic-structure3d'
+      fullPath: '/docs/cubic-structure3d'
+      preLoaderRoute: typeof DocsCubicStructure3dLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/cubic-lattice': {
       id: '/docs/cubic-lattice'
       path: '/cubic-lattice'
@@ -650,6 +674,7 @@ interface DocsRouteRouteChildren {
   DocsClockLazyRoute: typeof DocsClockLazyRoute
   DocsConnectCubeLazyRoute: typeof DocsConnectCubeLazyRoute
   DocsCubicLatticeLazyRoute: typeof DocsCubicLatticeLazyRoute
+  DocsCubicStructure3dLazyRoute: typeof DocsCubicStructure3dLazyRoute
   DocsDartInBullseyeLazyRoute: typeof DocsDartInBullseyeLazyRoute
   DocsFastCompressLazyRoute: typeof DocsFastCompressLazyRoute
   DocsFastZapLazyRoute: typeof DocsFastZapLazyRoute
@@ -679,6 +704,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsClockLazyRoute: DocsClockLazyRoute,
   DocsConnectCubeLazyRoute: DocsConnectCubeLazyRoute,
   DocsCubicLatticeLazyRoute: DocsCubicLatticeLazyRoute,
+  DocsCubicStructure3dLazyRoute: DocsCubicStructure3dLazyRoute,
   DocsDartInBullseyeLazyRoute: DocsDartInBullseyeLazyRoute,
   DocsFastCompressLazyRoute: DocsFastCompressLazyRoute,
   DocsFastZapLazyRoute: DocsFastZapLazyRoute,

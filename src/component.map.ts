@@ -357,7 +357,7 @@ export const componentMap: ComponentMapEntry[] = [
       className: "string",
       colors: "Partial<Colors>",
       float: "boolean",
-      magnetic: "boolean",
+      floatDistance: "number",
     },
     tags: ["cubic structure", "3D", "isometric", "animation", "effects"],
     category: [categories.effects],

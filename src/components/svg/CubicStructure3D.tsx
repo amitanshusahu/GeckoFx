@@ -1,5 +1,5 @@
-import { motion, useMotionValue, useSpring } from "motion/react"
-import { useId, useRef } from "react"
+import { motion } from "motion/react"
+import { useId, useState } from "react"
 
 const DEFAULT_COLORS = {
   cubeFaceDark: "#151515",
@@ -28,7 +28,6 @@ type Props = {
   colors?: Partial<CubicStructure3DColors>
   float?: boolean
   floatDistance?: number
-  magnetic?: boolean
 }
 
 export default function CubicStructure3D({
@@ -36,58 +35,30 @@ export default function CubicStructure3D({
   colors,
   float = true,
   floatDistance = 8,
-  magnetic = true,
 }: Props) {
   const c = { ...DEFAULT_COLORS, ...colors }
   const id = useId()
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-  const springX1 = useSpring(mouseX, { damping: 16, stiffness: 120, mass: 0.5 })
-  const springY1 = useSpring(mouseY, { damping: 16, stiffness: 120, mass: 0.5 })
-  const springX2 = useSpring(mouseX, { damping: 20, stiffness: 100, mass: 0.6 })
-  const springY2 = useSpring(mouseY, { damping: 20, stiffness: 100, mass: 0.6 })
-  const springX3 = useSpring(mouseX, { damping: 14, stiffness: 140, mass: 0.4 })
-  const springY3 = useSpring(mouseY, { damping: 14, stiffness: 140, mass: 0.4 })
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!magnetic || !containerRef.current) return
-    const rect = containerRef.current.getBoundingClientRect()
-    const offsetX = ((e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2)) * 10
-    const offsetY = ((e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2)) * 10
-    mouseX.set(offsetX)
-    mouseY.set(offsetY)
-  }
-
-  const handleMouseLeave = () => {
-    if (!magnetic) return
-    mouseX.set(0)
-    mouseY.set(0)
-  }
+  const [isHovered, setIsHovered] = useState(false)
 
   return (
     <motion.div
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      animate={float ? { y: [floatDistance, -floatDistance] } : undefined}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        repeatType: "reverse",
+        ease: "easeInOut",
+      }}
     >
-      <motion.div
-        animate={float ? { y: [floatDistance, -floatDistance] } : undefined}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          repeatType: "reverse",
-          ease: "easeInOut",
-        }}
-      >
-        <svg
+      <svg
         className={className}
         width="501"
         height="504"
         viewBox="0 0 501 504"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <g id={`${id}-3d-cubic-structure`}>
           <g id={`${id}-glow`}>
@@ -110,7 +81,12 @@ export default function CubicStructure3D({
               <ellipse cx="316" cy="363" rx="31" ry="30" fill={c.glowColor} />
             </g>
           </g>
-          <g id={`${id}-connected-cube-structure`}>
+          <motion.g
+            id={`${id}-connected-cube-structure`}
+            animate={isHovered ? { scale: 0.9 } : { scale: 1 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{ transformBox: "fill-box", transformOrigin: "50% 50%" }}
+          >
             <g id={`${id}-connected-cube`}>
               <rect id={`${id}-Rectangle-1`} width="64.3479" height="64.3479" transform="matrix(0.866025 -0.5 0.866025 0.5 194 128.174)" fill={`url(#${id}-paint0)`} />
               <rect id={`${id}-Rectangle-4`} width="97.0427" height="64.3479" transform="matrix(0.866025 -0.5 0.866025 0.5 111 272.521)" fill={`url(#${id}-paint1)`} />
@@ -136,10 +112,12 @@ export default function CubicStructure3D({
                 <rect id={`${id}-Rectangle-6-2`} width="95.3744" height="31.42" transform="matrix(-0.866025 0.5 0 1 249.263 257.03)" fill={c.wireframeSecondary} />
               </g>
             </g>
-          </g>
+          </motion.g>
           <motion.g
             id={`${id}-cube`}
-            style={magnetic ? { x: springX1, y: springY1 } : undefined}
+            animate={isHovered ? { x: -10, y: -10 } : { x: 0, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{ transformBox: "fill-box", transformOrigin: "50% 50%" }}
           >
             <rect id={`${id}-Rectangle-1-2`} width="64.3479" height="64.3479" transform="matrix(0.866025 -0.5 0.866025 0.5 111 176.174)" fill={c.cubeFaceDark} />
             <rect id={`${id}-Rectangle-3-2`} width="64.3479" height="64.3479" transform="matrix(0.866025 -0.5 0 1 166 208.174)" fill={c.cubeFaceLight} fillOpacity={c.cubeFaceLightOpacity} />
@@ -147,7 +125,9 @@ export default function CubicStructure3D({
           </motion.g>
           <motion.g
             id={`${id}-cube-2`}
-            style={magnetic ? { x: springX2, y: springY2 } : undefined}
+            animate={isHovered ? { x: 10, y: -10 } : { x: 0, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{ transformBox: "fill-box", transformOrigin: "50% 50%" }}
           >
             <rect id={`${id}-Rectangle-1-3`} width="64.3479" height="64.3479" transform="matrix(0.866025 -0.5 0.866025 0.5 278 176.174)" fill={c.cubeFaceDark} />
             <rect id={`${id}-Rectangle-3-3`} width="64.3479" height="64.3479" transform="matrix(0.866025 -0.5 0 1 333 208.174)" fill={c.cubeFaceDark} />
@@ -155,7 +135,9 @@ export default function CubicStructure3D({
           </motion.g>
           <motion.g
             id={`${id}-cube-3`}
-            style={magnetic ? { x: springX3, y: springY3 } : undefined}
+            animate={isHovered ? { y: 10 } : { y: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{ transformBox: "fill-box", transformOrigin: "50% 50%" }}
           >
             <rect id={`${id}-Rectangle-1-4`} width="64.3479" height="64.3479" transform="matrix(0.866025 -0.5 0.866025 0.5 193 321.174)" fill={c.cubeFaceLight} fillOpacity={c.cubeFaceLightOpacity} />
             <rect id={`${id}-Rectangle-3-4`} width="64.3479" height="64.3479" transform="matrix(0.866025 -0.5 0 1 248 353.174)" fill={c.cubeFaceDark} />
@@ -181,7 +163,7 @@ export default function CubicStructure3D({
               <circle cx="297.5" cy="331.5" r="12.5" fill={c.glowColor} />
             </g>
           </g>
-          <motion.path id={`${id}-Polygon-1`} d="M250.5 192L307.225 224V288L250.5 320L193.775 288V224L250.5 192Z" fill={c.centerHexFill} style={magnetic ? { x: springX1, y: springY1 } : undefined}/>
+          <motion.path id={`${id}-Polygon-1`} d="M250.5 192L307.225 224V288L250.5 320L193.775 288V224L250.5 192Z" fill={c.centerHexFill} animate={isHovered ? { scale: 1.1 } : { scale: 1 }} transition={{ duration: 0.3, ease: "easeInOut" }}/>
         </g>
         <defs>
           <filter id={`${id}-filter0`} x="43" y="244" width="262" height="260" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
@@ -284,8 +266,7 @@ export default function CubicStructure3D({
             <stop offset="1" stopColor={c.wireframeG1Start} />
           </linearGradient>
         </defs>
-        </svg>
-      </motion.div>
+      </svg>
     </motion.div>
   )
 }
