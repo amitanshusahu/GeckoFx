@@ -349,5 +349,17 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["zap", "ripple", "heartbeat", "animation", "effects"],
     category: [categories.effects],
-  }
+  },
+  {
+    name: "CubicStructure3D",
+    description: "a 3D isometric structure made of cubes with optional floating and magnetic effects",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      float: "boolean",
+      magnetic: "boolean",
+    },
+    tags: ["cubic structure", "3D", "isometric", "animation", "effects"],
+    category: [categories.effects],
+  },
 ]

@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
-import ZapWithRipple from '../components/svg/ZapWithRipple'
+// import ZapWithRipple from '../components/svg/ZapWithRipple'
+import CubicStructure3D from '../components/svg/CubicStructure3D'
 // import CubicLattice from '../components/svg/CubicLattice'
 // import MessageBubble from '../components/svg/MessageBubble'
 // import RibbonBadge from '../components/svg/RibbonBadge'
@@ -29,7 +30,8 @@ function RouteComponent() {
         <MessageBubble /> */}
         {/* <RibbonBadge /> */}
         {/* <Bell /> */}
-        <ZapWithRipple />
+        {/* <ZapWithRipple /> */}
+        <CubicStructure3D />
       </div>
     </div>
   )
