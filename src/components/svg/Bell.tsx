@@ -26,7 +26,7 @@ type Props = {
 }
 
 export default function Bell({
-  className,
+  className = "h-80",
   colors,
   animate = true,
   shakeDuration = 0.3,
@@ -46,8 +46,6 @@ export default function Bell({
     <div>
       <svg
         className={className}
-        width="428"
-        height="406"
         viewBox="0 0 428 406"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -63,8 +61,8 @@ export default function Bell({
             animate={
               canAnimate
                 ? {
-                    x: [0, -5, 5, -5, 5, -2.5, 2.5, 0],
-                    rotate: [0, -4, 4, -4, 4, -2, 2, 0],
+                    x: [0, -10, 10, -10, 10, -5, 5, 0],
+                    rotate: [0, -10, 10, -10, 10, -5, 5, 0],
                   }
                 : undefined
             }

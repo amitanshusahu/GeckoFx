@@ -30,7 +30,7 @@ type Props = {
 }
 
 export default function MessageBubble({
-  className,
+  className = "h-80",
   colors,
   animate = true,
   popDuration = 0.3,
@@ -71,8 +71,6 @@ export default function MessageBubble({
     <div>
       <svg
         className={className}
-        width="342"
-        height="315"
         viewBox="0 0 342 315"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

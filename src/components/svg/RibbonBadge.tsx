@@ -30,7 +30,7 @@ type Props = {
 }
 
 export default function RibbonBadge({
-  className,
+  className = "h-80",
   colors,
   animate = true,
   popDuration = 0.4,
@@ -72,8 +72,6 @@ export default function RibbonBadge({
     <div>
       <svg
         className={className}
-        width="377"
-        height="439"
         viewBox="0 0 377 439"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
