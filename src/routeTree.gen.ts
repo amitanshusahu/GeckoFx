@@ -15,6 +15,9 @@ import { Route as TestRouteImport } from './routes/test'
 import { Route as DocsRouteRouteImport } from './routes/docs/route'
 import { Route as IndexRouteImport } from './routes/index'
 
+const DocsZapWithRippleLazyRouteImport = createFileRoute(
+  '/docs/zap-with-ripple',
+)()
 const DocsSolanaTokensLazyRouteImport = createFileRoute('/docs/solana-tokens')()
 const DocsServerStackLazyRouteImport = createFileRoute('/docs/server-stack')()
 const DocsServerRackLazyRouteImport = createFileRoute('/docs/server-rack')()
@@ -66,6 +69,13 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocsZapWithRippleLazyRoute = DocsZapWithRippleLazyRouteImport.update({
+  id: '/zap-with-ripple',
+  path: '/zap-with-ripple',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/zap-with-ripple.lazy').then((d) => d.Route),
+)
 const DocsSolanaTokensLazyRoute = DocsSolanaTokensLazyRouteImport.update({
   id: '/solana-tokens',
   path: '/solana-tokens',
@@ -258,6 +268,7 @@ export interface FileRoutesByFullPath {
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
   '/docs/solana-tokens': typeof DocsSolanaTokensLazyRoute
+  '/docs/zap-with-ripple': typeof DocsZapWithRippleLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -288,6 +299,7 @@ export interface FileRoutesByTo {
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
   '/docs/solana-tokens': typeof DocsSolanaTokensLazyRoute
+  '/docs/zap-with-ripple': typeof DocsZapWithRippleLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -319,6 +331,7 @@ export interface FileRoutesById {
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
   '/docs/solana-tokens': typeof DocsSolanaTokensLazyRoute
+  '/docs/zap-with-ripple': typeof DocsZapWithRippleLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -351,6 +364,7 @@ export interface FileRouteTypes {
     | '/docs/server-rack'
     | '/docs/server-stack'
     | '/docs/solana-tokens'
+    | '/docs/zap-with-ripple'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -381,6 +395,7 @@ export interface FileRouteTypes {
     | '/docs/server-rack'
     | '/docs/server-stack'
     | '/docs/solana-tokens'
+    | '/docs/zap-with-ripple'
   id:
     | '__root__'
     | '/'
@@ -411,6 +426,7 @@ export interface FileRouteTypes {
     | '/docs/server-rack'
     | '/docs/server-stack'
     | '/docs/solana-tokens'
+    | '/docs/zap-with-ripple'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -441,6 +457,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/docs/zap-with-ripple': {
+      id: '/docs/zap-with-ripple'
+      path: '/zap-with-ripple'
+      fullPath: '/docs/zap-with-ripple'
+      preLoaderRoute: typeof DocsZapWithRippleLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
     }
     '/docs/solana-tokens': {
       id: '/docs/solana-tokens'
@@ -646,6 +669,7 @@ interface DocsRouteRouteChildren {
   DocsServerRackLazyRoute: typeof DocsServerRackLazyRoute
   DocsServerStackLazyRoute: typeof DocsServerStackLazyRoute
   DocsSolanaTokensLazyRoute: typeof DocsSolanaTokensLazyRoute
+  DocsZapWithRippleLazyRoute: typeof DocsZapWithRippleLazyRoute
 }
 
 const DocsRouteRouteChildren: DocsRouteRouteChildren = {
@@ -674,6 +698,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsServerRackLazyRoute: DocsServerRackLazyRoute,
   DocsServerStackLazyRoute: DocsServerStackLazyRoute,
   DocsSolanaTokensLazyRoute: DocsSolanaTokensLazyRoute,
+  DocsZapWithRippleLazyRoute: DocsZapWithRippleLazyRoute,
 }
 
 const DocsRouteRouteWithChildren = DocsRouteRoute._addFileChildren(

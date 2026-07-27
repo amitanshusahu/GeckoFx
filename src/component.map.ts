@@ -334,5 +334,19 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["ribbon", "badge", "animation", "pop", "frosted glass", "effects"],
     category: [categories.icons],
+  },
+  {
+    name: "ZapWithRipple",
+    description: "a lightning bolt that pulses like a heartbeat with concentric ripples expanding outward in staggered waves",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      beatDuration: "number",
+      rippleDuration: "number",
+      rippleStagger: "number",
+    },
+    tags: ["zap", "ripple", "heartbeat", "animation", "effects"],
+    category: [categories.effects],
   }
 ]
