@@ -312,6 +312,18 @@ export const componentMap: ComponentMapEntry[] = [
     category: [categories.effects],
   },
   {
+    name: "Bell",
+    description: "a bell with a frosted glass body and a clapper that shakes with an animated wobble effect",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      shakeDuration: "number",
+    },
+    tags: ["bell", "shake", "animation", "frosted glass", "icons"],
+    category: [categories.icons],
+  },
+  {
     name: "RibbonBadge",
     description: "a badge with two ribbons that pop out from the center with staggered animation and a frosted glass blur effect",
     props: {
@@ -321,6 +333,6 @@ export const componentMap: ComponentMapEntry[] = [
       popDuration: "number",
     },
     tags: ["ribbon", "badge", "animation", "pop", "frosted glass", "effects"],
-    category: [categories.effects],
-  },
+    category: [categories.icons],
+  }
 ]

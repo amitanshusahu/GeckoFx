@@ -2,7 +2,8 @@ import { createFileRoute } from '@tanstack/react-router'
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
 // import CubicLattice from '../components/svg/CubicLattice'
 // import MessageBubble from '../components/svg/MessageBubble'
-import RibbonBadge from '../components/svg/RibbonBadge'
+// import RibbonBadge from '../components/svg/RibbonBadge'
+import Bell from '../components/svg/Bell'
 // import FileUpload from '../components/svg/FileUpload'
 // import Lock from '../components/svg/Lock'
 
@@ -25,7 +26,8 @@ function RouteComponent() {
         {/* <Lock /> */}
         {/* <CubicLattice />
         <MessageBubble /> */}
-        <RibbonBadge />
+        {/* <RibbonBadge /> */}
+        <Bell />
       </div>
     </div>
   )
