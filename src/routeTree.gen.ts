@@ -15,10 +15,14 @@ import { Route as TestRouteImport } from './routes/test'
 import { Route as DocsRouteRouteImport } from './routes/docs/route'
 import { Route as IndexRouteImport } from './routes/index'
 
+const DocsZapWithRippleLazyRouteImport = createFileRoute(
+  '/docs/zap-with-ripple',
+)()
 const DocsSolanaTokensLazyRouteImport = createFileRoute('/docs/solana-tokens')()
 const DocsServerStackLazyRouteImport = createFileRoute('/docs/server-stack')()
 const DocsServerRackLazyRouteImport = createFileRoute('/docs/server-rack')()
 const DocsRoboBrainLazyRouteImport = createFileRoute('/docs/robo-brain')()
+const DocsRibbonBadgeLazyRouteImport = createFileRoute('/docs/ribbon-badge')()
 const DocsRadarScanLazyRouteImport = createFileRoute('/docs/radar-scan')()
 const DocsMicRippleLazyRouteImport = createFileRoute('/docs/mic-ripple')()
 const DocsMessageBubbleLazyRouteImport = createFileRoute(
@@ -41,9 +45,13 @@ const DocsFastCompressLazyRouteImport = createFileRoute('/docs/fast-compress')()
 const DocsDartInBullseyeLazyRouteImport = createFileRoute(
   '/docs/dart-in-bullseye',
 )()
+const DocsCubicStructure3dLazyRouteImport = createFileRoute(
+  '/docs/cubic-structure3d',
+)()
 const DocsCubicLatticeLazyRouteImport = createFileRoute('/docs/cubic-lattice')()
 const DocsConnectCubeLazyRouteImport = createFileRoute('/docs/connect-cube')()
 const DocsClockLazyRouteImport = createFileRoute('/docs/clock')()
+const DocsBellLazyRouteImport = createFileRoute('/docs/bell')()
 const DocsAudioChipLazyRouteImport = createFileRoute('/docs/audio-chip')()
 const DocsArrowInCubicLatticeLazyRouteImport = createFileRoute(
   '/docs/arrow-in-cubic-lattice',
@@ -64,6 +72,13 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocsZapWithRippleLazyRoute = DocsZapWithRippleLazyRouteImport.update({
+  id: '/zap-with-ripple',
+  path: '/zap-with-ripple',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/zap-with-ripple.lazy').then((d) => d.Route),
+)
 const DocsSolanaTokensLazyRoute = DocsSolanaTokensLazyRouteImport.update({
   id: '/solana-tokens',
   path: '/solana-tokens',
@@ -91,6 +106,13 @@ const DocsRoboBrainLazyRoute = DocsRoboBrainLazyRouteImport.update({
   getParentRoute: () => DocsRouteRoute,
 } as any).lazy(() =>
   import('./routes/docs/robo-brain.lazy').then((d) => d.Route),
+)
+const DocsRibbonBadgeLazyRoute = DocsRibbonBadgeLazyRouteImport.update({
+  id: '/ribbon-badge',
+  path: '/ribbon-badge',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/ribbon-badge.lazy').then((d) => d.Route),
 )
 const DocsRadarScanLazyRoute = DocsRadarScanLazyRouteImport.update({
   id: '/radar-scan',
@@ -180,6 +202,14 @@ const DocsDartInBullseyeLazyRoute = DocsDartInBullseyeLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/docs/dart-in-bullseye.lazy').then((d) => d.Route),
 )
+const DocsCubicStructure3dLazyRoute =
+  DocsCubicStructure3dLazyRouteImport.update({
+    id: '/cubic-structure3d',
+    path: '/cubic-structure3d',
+    getParentRoute: () => DocsRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/docs/cubic-structure3d.lazy').then((d) => d.Route),
+  )
 const DocsCubicLatticeLazyRoute = DocsCubicLatticeLazyRouteImport.update({
   id: '/cubic-lattice',
   path: '/cubic-lattice',
@@ -199,6 +229,11 @@ const DocsClockLazyRoute = DocsClockLazyRouteImport.update({
   path: '/clock',
   getParentRoute: () => DocsRouteRoute,
 } as any).lazy(() => import('./routes/docs/clock.lazy').then((d) => d.Route))
+const DocsBellLazyRoute = DocsBellLazyRouteImport.update({
+  id: '/bell',
+  path: '/bell',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() => import('./routes/docs/bell.lazy').then((d) => d.Route))
 const DocsAudioChipLazyRoute = DocsAudioChipLazyRouteImport.update({
   id: '/audio-chip',
   path: '/audio-chip',
@@ -221,9 +256,11 @@ export interface FileRoutesByFullPath {
   '/test': typeof TestRoute
   '/docs/arrow-in-cubic-lattice': typeof DocsArrowInCubicLatticeLazyRoute
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
+  '/docs/bell': typeof DocsBellLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
   '/docs/cubic-lattice': typeof DocsCubicLatticeLazyRoute
+  '/docs/cubic-structure3d': typeof DocsCubicStructure3dLazyRoute
   '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
@@ -238,10 +275,12 @@ export interface FileRoutesByFullPath {
   '/docs/message-bubble': typeof DocsMessageBubbleLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
+  '/docs/ribbon-badge': typeof DocsRibbonBadgeLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
   '/docs/solana-tokens': typeof DocsSolanaTokensLazyRoute
+  '/docs/zap-with-ripple': typeof DocsZapWithRippleLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -249,9 +288,11 @@ export interface FileRoutesByTo {
   '/test': typeof TestRoute
   '/docs/arrow-in-cubic-lattice': typeof DocsArrowInCubicLatticeLazyRoute
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
+  '/docs/bell': typeof DocsBellLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
   '/docs/cubic-lattice': typeof DocsCubicLatticeLazyRoute
+  '/docs/cubic-structure3d': typeof DocsCubicStructure3dLazyRoute
   '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
@@ -266,10 +307,12 @@ export interface FileRoutesByTo {
   '/docs/message-bubble': typeof DocsMessageBubbleLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
+  '/docs/ribbon-badge': typeof DocsRibbonBadgeLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
   '/docs/solana-tokens': typeof DocsSolanaTokensLazyRoute
+  '/docs/zap-with-ripple': typeof DocsZapWithRippleLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -278,9 +321,11 @@ export interface FileRoutesById {
   '/test': typeof TestRoute
   '/docs/arrow-in-cubic-lattice': typeof DocsArrowInCubicLatticeLazyRoute
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
+  '/docs/bell': typeof DocsBellLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
   '/docs/cubic-lattice': typeof DocsCubicLatticeLazyRoute
+  '/docs/cubic-structure3d': typeof DocsCubicStructure3dLazyRoute
   '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
@@ -295,10 +340,12 @@ export interface FileRoutesById {
   '/docs/message-bubble': typeof DocsMessageBubbleLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
+  '/docs/ribbon-badge': typeof DocsRibbonBadgeLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
   '/docs/solana-tokens': typeof DocsSolanaTokensLazyRoute
+  '/docs/zap-with-ripple': typeof DocsZapWithRippleLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -308,9 +355,11 @@ export interface FileRouteTypes {
     | '/test'
     | '/docs/arrow-in-cubic-lattice'
     | '/docs/audio-chip'
+    | '/docs/bell'
     | '/docs/clock'
     | '/docs/connect-cube'
     | '/docs/cubic-lattice'
+    | '/docs/cubic-structure3d'
     | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
@@ -325,10 +374,12 @@ export interface FileRouteTypes {
     | '/docs/message-bubble'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
+    | '/docs/ribbon-badge'
     | '/docs/robo-brain'
     | '/docs/server-rack'
     | '/docs/server-stack'
     | '/docs/solana-tokens'
+    | '/docs/zap-with-ripple'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -336,9 +387,11 @@ export interface FileRouteTypes {
     | '/test'
     | '/docs/arrow-in-cubic-lattice'
     | '/docs/audio-chip'
+    | '/docs/bell'
     | '/docs/clock'
     | '/docs/connect-cube'
     | '/docs/cubic-lattice'
+    | '/docs/cubic-structure3d'
     | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
@@ -353,10 +406,12 @@ export interface FileRouteTypes {
     | '/docs/message-bubble'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
+    | '/docs/ribbon-badge'
     | '/docs/robo-brain'
     | '/docs/server-rack'
     | '/docs/server-stack'
     | '/docs/solana-tokens'
+    | '/docs/zap-with-ripple'
   id:
     | '__root__'
     | '/'
@@ -364,9 +419,11 @@ export interface FileRouteTypes {
     | '/test'
     | '/docs/arrow-in-cubic-lattice'
     | '/docs/audio-chip'
+    | '/docs/bell'
     | '/docs/clock'
     | '/docs/connect-cube'
     | '/docs/cubic-lattice'
+    | '/docs/cubic-structure3d'
     | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
@@ -381,10 +438,12 @@ export interface FileRouteTypes {
     | '/docs/message-bubble'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
+    | '/docs/ribbon-badge'
     | '/docs/robo-brain'
     | '/docs/server-rack'
     | '/docs/server-stack'
     | '/docs/solana-tokens'
+    | '/docs/zap-with-ripple'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -416,6 +475,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/docs/zap-with-ripple': {
+      id: '/docs/zap-with-ripple'
+      path: '/zap-with-ripple'
+      fullPath: '/docs/zap-with-ripple'
+      preLoaderRoute: typeof DocsZapWithRippleLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/solana-tokens': {
       id: '/docs/solana-tokens'
       path: '/solana-tokens'
@@ -442,6 +508,13 @@ declare module '@tanstack/react-router' {
       path: '/robo-brain'
       fullPath: '/docs/robo-brain'
       preLoaderRoute: typeof DocsRoboBrainLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/ribbon-badge': {
+      id: '/docs/ribbon-badge'
+      path: '/ribbon-badge'
+      fullPath: '/docs/ribbon-badge'
+      preLoaderRoute: typeof DocsRibbonBadgeLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
     '/docs/radar-scan': {
@@ -542,6 +615,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsDartInBullseyeLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/cubic-structure3d': {
+      id: '/docs/cubic-structure3d'
+      path: '/cubic-structure3d'
+      fullPath: '/docs/cubic-structure3d'
+      preLoaderRoute: typeof DocsCubicStructure3dLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/cubic-lattice': {
       id: '/docs/cubic-lattice'
       path: '/cubic-lattice'
@@ -561,6 +641,13 @@ declare module '@tanstack/react-router' {
       path: '/clock'
       fullPath: '/docs/clock'
       preLoaderRoute: typeof DocsClockLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/bell': {
+      id: '/docs/bell'
+      path: '/bell'
+      fullPath: '/docs/bell'
+      preLoaderRoute: typeof DocsBellLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
     '/docs/audio-chip': {
@@ -583,9 +670,11 @@ declare module '@tanstack/react-router' {
 interface DocsRouteRouteChildren {
   DocsArrowInCubicLatticeLazyRoute: typeof DocsArrowInCubicLatticeLazyRoute
   DocsAudioChipLazyRoute: typeof DocsAudioChipLazyRoute
+  DocsBellLazyRoute: typeof DocsBellLazyRoute
   DocsClockLazyRoute: typeof DocsClockLazyRoute
   DocsConnectCubeLazyRoute: typeof DocsConnectCubeLazyRoute
   DocsCubicLatticeLazyRoute: typeof DocsCubicLatticeLazyRoute
+  DocsCubicStructure3dLazyRoute: typeof DocsCubicStructure3dLazyRoute
   DocsDartInBullseyeLazyRoute: typeof DocsDartInBullseyeLazyRoute
   DocsFastCompressLazyRoute: typeof DocsFastCompressLazyRoute
   DocsFastZapLazyRoute: typeof DocsFastZapLazyRoute
@@ -600,18 +689,22 @@ interface DocsRouteRouteChildren {
   DocsMessageBubbleLazyRoute: typeof DocsMessageBubbleLazyRoute
   DocsMicRippleLazyRoute: typeof DocsMicRippleLazyRoute
   DocsRadarScanLazyRoute: typeof DocsRadarScanLazyRoute
+  DocsRibbonBadgeLazyRoute: typeof DocsRibbonBadgeLazyRoute
   DocsRoboBrainLazyRoute: typeof DocsRoboBrainLazyRoute
   DocsServerRackLazyRoute: typeof DocsServerRackLazyRoute
   DocsServerStackLazyRoute: typeof DocsServerStackLazyRoute
   DocsSolanaTokensLazyRoute: typeof DocsSolanaTokensLazyRoute
+  DocsZapWithRippleLazyRoute: typeof DocsZapWithRippleLazyRoute
 }
 
 const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsArrowInCubicLatticeLazyRoute: DocsArrowInCubicLatticeLazyRoute,
   DocsAudioChipLazyRoute: DocsAudioChipLazyRoute,
+  DocsBellLazyRoute: DocsBellLazyRoute,
   DocsClockLazyRoute: DocsClockLazyRoute,
   DocsConnectCubeLazyRoute: DocsConnectCubeLazyRoute,
   DocsCubicLatticeLazyRoute: DocsCubicLatticeLazyRoute,
+  DocsCubicStructure3dLazyRoute: DocsCubicStructure3dLazyRoute,
   DocsDartInBullseyeLazyRoute: DocsDartInBullseyeLazyRoute,
   DocsFastCompressLazyRoute: DocsFastCompressLazyRoute,
   DocsFastZapLazyRoute: DocsFastZapLazyRoute,
@@ -626,10 +719,12 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsMessageBubbleLazyRoute: DocsMessageBubbleLazyRoute,
   DocsMicRippleLazyRoute: DocsMicRippleLazyRoute,
   DocsRadarScanLazyRoute: DocsRadarScanLazyRoute,
+  DocsRibbonBadgeLazyRoute: DocsRibbonBadgeLazyRoute,
   DocsRoboBrainLazyRoute: DocsRoboBrainLazyRoute,
   DocsServerRackLazyRoute: DocsServerRackLazyRoute,
   DocsServerStackLazyRoute: DocsServerStackLazyRoute,
   DocsSolanaTokensLazyRoute: DocsSolanaTokensLazyRoute,
+  DocsZapWithRippleLazyRoute: DocsZapWithRippleLazyRoute,
 }
 
 const DocsRouteRouteWithChildren = DocsRouteRoute._addFileChildren(

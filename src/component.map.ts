@@ -310,5 +310,56 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["cubic lattice", "3D", "animation", "effects"],
     category: [categories.effects],
-  }
+  },
+  {
+    name: "Bell",
+    description: "a bell with a frosted glass body and a clapper that shakes with an animated wobble effect",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      shakeDuration: "number",
+    },
+    tags: ["bell", "shake", "animation", "frosted glass", "icons"],
+    category: [categories.icons],
+  },
+  {
+    name: "RibbonBadge",
+    description: "a badge with two ribbons that pop out from the center with staggered animation and a frosted glass blur effect",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      popDuration: "number",
+    },
+    tags: ["ribbon", "badge", "animation", "pop", "frosted glass", "effects"],
+    category: [categories.icons],
+  },
+  {
+    name: "ZapWithRipple",
+    description: "a lightning bolt that pulses like a heartbeat with concentric ripples expanding outward in staggered waves",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      beatDuration: "number",
+      beatDelay: "number",
+      rippleDuration: "number",
+      rippleStagger: "number",
+    },
+    tags: ["zap", "ripple", "heartbeat", "animation", "effects"],
+    category: [categories.effects],
+  },
+  {
+    name: "CubicStructure3D",
+    description: "a 3D isometric structure made of cubes with optional floating and magnetic effects",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      float: "boolean",
+      floatDistance: "number",
+    },
+    tags: ["cubic structure", "3D", "isometric", "animation", "effects"],
+    category: [categories.effects],
+  },
 ]
