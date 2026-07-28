@@ -1,8 +1,13 @@
 import fs from 'fs';
 import { Logger } from '../lib/logger';
-
+import { fetchComponentContent, isAvailableInRegistry } from '../lib/registry';
 
 export async function addComponent(componentName: string): Promise<void> {
+  if (!isAvailableInRegistry(componentName)) {
+    Logger.log.error(`Component ${componentName} is not available in the registry.`);
+    return;
+  }
+
   const spinner = Logger.spinner(`Adding component: ${componentName}.tsx`);
   spinner.start();
 
@@ -23,18 +28,7 @@ export async function addComponent(componentName: string): Promise<void> {
     fs.mkdirSync(componentDir, { recursive: true });
   }
 
-  const componentContent = `import React from 'react';
-
-const ${componentName} = () => {
-  return (
-    <div>
-      <h1>${componentName} Component</h1>
-    </div>
-  );
-};
-
-export default ${componentName};
-`
+  const componentContent = await fetchComponentContent(componentName);
 
   Logger.log.info(`Creating component ${componentPath}`);
   fs.writeFileSync(componentPath, componentContent);
