@@ -1,18 +1,21 @@
 import fs from 'fs';
-import { logger } from '../lib/consola';
+import { Logger } from '../lib/logger';
+
 
 export async function addComponent(componentName: string): Promise<void> {
-  logger.start(`Adding component: ${componentName}.tsx`);
+  const spinner = Logger.spinner(`Adding component: ${componentName}.tsx`);
+  spinner.start();
 
   const componentPath = `src/components/fx/${componentName}.tsx`;
 
   if (fs.existsSync(componentPath)) {
-    logger.error(`Component ${componentName}.tsx already exists.`);
-    const canOverwrite = await logger.prompt("Do you want to overwrite it? (y/n): ", {
-      type: 'confirm'
-    });
+    Logger.log.error(`Component ${componentName}.tsx already exists.`);
+    const canOverwrite = await Logger.prompt.confirm({ message: `Do you want to overwrite ${componentName}.tsx?` });
 
-    if (!canOverwrite) return;
+    if (!canOverwrite) {
+      spinner.error(`Component ${componentName}.tsx was not added.`);
+      return;
+    };
   }
 
   const componentDir = componentPath.substring(0, componentPath.lastIndexOf('/'));
@@ -33,7 +36,8 @@ const ${componentName} = () => {
 export default ${componentName};
 `
 
+  Logger.log.info(`Creating component ${componentPath}`);
   fs.writeFileSync(componentPath, componentContent);
 
-  logger.success(`Component ${componentName}.tsx has been added successfully.`);
+  spinner.stop(`Component ${componentName}.tsx has been added successfully.`);
 }

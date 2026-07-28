@@ -6,12 +6,12 @@
     "geckofx": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format esm --clean"
+    "build": "rm -rf src/components && tsup src/index.ts --format esm --clean"
   },
   "dependencies": {
+    "@clack/prompts": "^1.7.0",
     "@types/node": "^26.1.2",
-    "cac": "^6",
-    "consola": "^3.4.2"
+    "cac": "^6"
   },
   "devDependencies": {
     "tsup": "^8",
