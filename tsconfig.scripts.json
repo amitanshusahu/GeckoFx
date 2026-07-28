@@ -5,5 +5,5 @@
     "lib": ["ES2023"],
     "module": "esnext"
   },
-  "include": ["src/scripts"]
+  "include": ["scripts"]
 }
