@@ -1,0 +1,20 @@
+{
+  "name": "geckofx",
+  "version": "0.0.1",
+  "type": "module",
+  "bin": {
+    "geckofx": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean"
+  },
+  "dependencies": {
+    "@types/node": "^26.1.2",
+    "cac": "^6",
+    "consola": "^3.4.2"
+  },
+  "devDependencies": {
+    "tsup": "^8",
+    "typescript": "^5"
+  }
+}
