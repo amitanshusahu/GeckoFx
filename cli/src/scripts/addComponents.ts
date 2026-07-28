@@ -13,12 +13,13 @@ export async function addComponents(): Promise<void> {
 
     const selectedOptions = await autocompleteMultiselect({
       message: "Select components to add:",
-      options: componentOptions
+      options: componentOptions,
+      placeholder: "Type to search components... (ESC) to exit",
     });
 
     if (isCancel(selectedOptions)) {
-      console.log('Operation cancelled');
-      process.exit(0);
+      log.error('Operation cancelled');
+      return;
     }
 
     await Promise.all(selectedOptions.map(async (component) => {
