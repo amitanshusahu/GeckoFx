@@ -1,22 +1,23 @@
 import fs from 'fs';
-import { Logger } from '../lib/logger';
+import { createSpinner } from '../lib/clack/spinner';
 import { fetchComponentContent, isAvailableInRegistry } from '../lib/registry';
+import { log, confirm } from '@clack/prompts';
 
 export async function addComponent(componentName: string): Promise<void> {
   try {
     if (!isAvailableInRegistry(componentName)) {
-      Logger.log.error(`Component ${componentName} is not available in the registry.`);
+      log.error(`Component ${componentName} is not available in the registry.`);
       return;
     }
 
-    const spinner = Logger.spinner(`Adding component: ${componentName}.tsx`);
+    const spinner = createSpinner(`Adding component: ${componentName}.tsx`);
     spinner.start();
 
     const componentPath = `src/components/fx/${componentName}.tsx`;
 
     if (fs.existsSync(componentPath)) {
-      Logger.log.error(`Component ${componentName}.tsx already exists.`);
-      const canOverwrite = await Logger.prompt.confirm({ message: `Do you want to overwrite ${componentName}.tsx?` });
+      log.error(`Component ${componentName}.tsx already exists.`);
+      const canOverwrite = await confirm({ message: `Do you want to overwrite ${componentName}.tsx?` });
 
       if (!canOverwrite) {
         spinner.error(`Component ${componentName}.tsx was not added.`);
@@ -31,11 +32,11 @@ export async function addComponent(componentName: string): Promise<void> {
 
     const componentContent = await fetchComponentContent(componentName);
 
-    Logger.log.info(`Creating component ${componentPath}`);
+    log.info(`Creating component ${componentPath}`);
     fs.writeFileSync(componentPath, componentContent);
 
     spinner.stop(`Component ${componentName}.tsx has been added successfully.`);
   } catch (error) {
-    Logger.log.error(`Error occurred while adding component ${componentName}: ${error}`);
+    log.error(`Error occurred while adding component ${componentName}: ${error}`);
   }
 }
