@@ -1,5 +1,6 @@
 import { toKebab } from "../utils";
 import { componentMap } from "../../registry.autogen";
+import { CONFIG } from "../../config";
 
 export async function fetchComponentContent(componentName: string): Promise<string> {
 
@@ -10,7 +11,7 @@ export async function fetchComponentContent(componentName: string): Promise<stri
     throw new Error(`Failed to fetch component content for ${componentName}`);
   }
 
-  const data = await response.json();
+  const data = await response.json() as { name: string; content: string };
   return data.content;
 }
 
