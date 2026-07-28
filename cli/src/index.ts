@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { cac } from "cac";
-import { addComponent } from "./scripts/addComponent";
-import { addComponents } from "./scripts/addComponents";
-import { searchComponent } from "./scripts/searchComponent";
+import { addComponent } from "./commands/addComponent";
+import { addComponents } from "./commands/addComponents";
+import { searchComponent } from "./commands/searchComponent";
 
 const cli = cac("geckofx");
 
