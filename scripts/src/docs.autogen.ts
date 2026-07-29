@@ -1,6 +1,6 @@
 import fs from "fs";
-import { toKebab } from "../src/lib/utils";
-import { componentMap } from "../src/component.map";
+import { toKebab } from "../../src/lib/utils";
+import { componentMap } from "../../src/component.map";
 
 function generateDocsPageContent(componentName: string) {
 
