@@ -2,7 +2,6 @@
   "name": "geckofx",
   "version": "0.0.1",
   "type": "module",
-  "private": false,
   "bin": {
     "geckofx": "./dist/index.js"
   },

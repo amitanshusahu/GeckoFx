@@ -1,3 +1,3 @@
 export const CONFIG = {
-  registryUrl: "http://localhost:5173/registry",
+  registryUrl: "https://geckofx.geckostack.store/registry",
 }
