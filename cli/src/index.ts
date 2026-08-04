@@ -3,24 +3,32 @@
 import { cac } from "cac";
 import { addComponent } from "./commands/addComponent";
 import { addComponents } from "./commands/addComponents";
+import { findNAddComponents } from "./commands/findNAddComponents";
 import { searchComponent } from "./commands/searchComponent";
 
 const cli = cac("geckofx");
 
 cli.command("", "MultiSelect Components to add to your project")
-.action(async () => {
-    await addComponents();
-})
+    .action(async () => {
+        await addComponents();
+    })
 
-cli.command("add <component>", "Add a component from the registry to the project")
-.action(async (component) => {
-    await addComponent(component);
-});
+cli.command("add <component...>", "Add a components from the registry to the project")
+    .action(async (components: string[]) => {
+        for (const component of components) {
+            await addComponent(component);
+        }
+    });
 
-cli.command("search", "Search for a component in the registry")
-.action(async () => {
-    await searchComponent();
-});
+cli.command("find", "Find and add a component from the registry to the project in a loop")
+    .action(async () => {
+        await findNAddComponents();
+    });
+
+cli.command("search <query>", "Search for a component in the registry")
+    .action(async (query: string) => {
+        await searchComponent(query);
+    });
 
 cli.help();
 
