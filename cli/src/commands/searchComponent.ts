@@ -4,7 +4,7 @@ import { componentMap } from "../registry.autogen";
 export async function searchComponent(query: string): Promise<void> {
   const spinner = createSpinner("Searching for components...");
   spinner.start();
-  
+
   const results = componentMap.filter((component) => {
     if (
       component.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -19,9 +19,11 @@ export async function searchComponent(query: string): Promise<void> {
     return;
   }
 
-  // log the results in a formatted way
+  // log the results in a markdown formatted way
   results.forEach((component) => {
-    console.log(`- ${component.name}: ${component.description}`);
+    console.log(`## ${component.name}`);
+    console.log(`Description: ${component.description}`);
+    console.log(`\n`);
   });
 
   spinner.stop(`Found ${results.length} components for query: "${query}"`);
