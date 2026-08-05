@@ -1,0 +1,23 @@
+{
+  "name": "Folder",
+  "description": "a folder with a frosted glass effect, representing file storage or organization",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "animate": "boolean"
+  },
+  "tags": [
+    "folder",
+    "frosted glass",
+    "file storage",
+    "organization",
+    "animation"
+  ],
+  "category": [
+    "icons"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": []
+}

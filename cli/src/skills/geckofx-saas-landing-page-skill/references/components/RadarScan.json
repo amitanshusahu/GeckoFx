@@ -1,0 +1,25 @@
+{
+  "name": "RadarScan",
+  "description": "a radar scanning animation with animated dots and lines",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "animation": "boolean"
+  },
+  "tags": [
+    "radar",
+    "scan",
+    "animation",
+    "hardware",
+    "infrastructure"
+  ],
+  "category": [
+    "infrastructure"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": [
+    "RoboBrain"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "CubicLattice",
+  "description": "a cubic lattice structure with optional floating and magnetic effects",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "float": "boolean",
+    "floatDistance": "number",
+    "floatDelay": "number",
+    "magnetic": "boolean"
+  },
+  "tags": [
+    "cubic lattice",
+    "3D",
+    "animation",
+    "effects"
+  ],
+  "category": [
+    "effects"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages",
+    "can be used in hero sections of landing pages"
+  ],
+  "similar": [
+    "ConnectCube",
+    "CubicStructure3D",
+    "ArrowInCubicLattice"
+  ]
+}

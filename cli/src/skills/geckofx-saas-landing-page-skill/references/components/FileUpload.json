@@ -1,0 +1,27 @@
+{
+  "name": "FileUpload",
+  "description": "a file upload icon with an arrow indicating the upload direction and optional animation",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "animate": "boolean",
+    "text": "string",
+    "arrowUp": "boolean"
+  },
+  "tags": [
+    "file",
+    "upload",
+    "arrow",
+    "animation",
+    "icons"
+  ],
+  "category": [
+    "icons"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": [
+    "Folder"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "RoboBrain",
+  "description": "a robotic brain animation with animated radar and floating effects",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "rgb": "boolean",
+    "cycleColors": "string[]",
+    "cycleDuration": "number",
+    "floatDuration": "number",
+    "floatAmplitude": "number",
+    "radarDuration": "number"
+  },
+  "tags": [
+    "robotic",
+    "brain",
+    "animation",
+    "hardware",
+    "ai"
+  ],
+  "category": [
+    "ai"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": [
+    "Gpu"
+  ]
+}

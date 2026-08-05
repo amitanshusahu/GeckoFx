@@ -1,0 +1,26 @@
+{
+  "name": "ServerStack",
+  "description": "a stack of three server units with animated LED indicators that flicker and pulse",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "flicker": "boolean"
+  },
+  "tags": [
+    "server",
+    "stack",
+    "led",
+    "animation",
+    "hardware",
+    "infrastructure"
+  ],
+  "category": [
+    "infrastructure"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": [
+    "ServerRack"
+  ]
+}

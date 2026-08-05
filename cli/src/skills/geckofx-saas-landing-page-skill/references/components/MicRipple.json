@@ -1,0 +1,28 @@
+{
+  "name": "MicRipple",
+  "description": "a microphone with animated ripple effects and floating animation",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "ripple": "boolean",
+    "bounce": "boolean",
+    "float": "boolean",
+    "animate": "boolean"
+  },
+  "tags": [
+    "microphone",
+    "ripple",
+    "animation",
+    "hardware",
+    "audio"
+  ],
+  "category": [
+    "hardware"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": [
+    "AudioChip"
+  ]
+}

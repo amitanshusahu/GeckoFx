@@ -1,0 +1,27 @@
+{
+  "name": "ZapWithRipple",
+  "description": "a lightning bolt that pulses like a heartbeat with concentric ripples expanding outward in staggered waves",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "animate": "boolean",
+    "beatDuration": "number",
+    "beatDelay": "number",
+    "rippleDuration": "number",
+    "rippleStagger": "number"
+  },
+  "tags": [
+    "zap",
+    "ripple",
+    "heartbeat",
+    "animation",
+    "effects"
+  ],
+  "category": [
+    "effects"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": []
+}

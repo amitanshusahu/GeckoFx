@@ -8,11 +8,12 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate": "bun run generate:types && bun run generate:docs && bun run generate:registry && bun run generate:component-map",
+    "generate": "bun run generate:types && bun run generate:docs && bun run generate:registry && bun run generate:component-map && bun run generate:skillReferences",
     "generate:types": "tsx --tsconfig tsconfig.scripts.json scripts/src/types.autogen.ts",
     "generate:docs": "tsx --tsconfig tsconfig.scripts.json scripts/src/docs.autogen.ts",
     "generate:registry": "tsx --tsconfig tsconfig.scripts.json scripts/src/registry.autogen.ts",
-    "generate:component-map": "tsx --tsconfig tsconfig.scripts.json scripts/src/componentMap.autogen.ts"
+    "generate:component-map": "tsx --tsconfig tsconfig.scripts.json scripts/src/componentMap.autogen.ts",
+    "generate:skillReferences": "tsx --tsconfig tsconfig.scripts.json scripts/src/skillReferences.autogen.ts"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

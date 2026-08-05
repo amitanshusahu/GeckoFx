@@ -1,0 +1,24 @@
+{
+  "name": "DartInBullseye",
+  "description": "a dart hitting the bullseye of a target with a smooth animation and optional bounce effect",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "animate": "boolean",
+    "animationDuration": "number"
+  },
+  "tags": [
+    "dart",
+    "bullseye",
+    "target",
+    "animation",
+    "effects"
+  ],
+  "category": [
+    "effects"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": []
+}

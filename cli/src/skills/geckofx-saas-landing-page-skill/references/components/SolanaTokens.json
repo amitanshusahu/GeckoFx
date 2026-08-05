@@ -1,0 +1,26 @@
+{
+  "name": "SolanaTokens",
+  "description": "two mirrored Solana coins with floating animation and twinkling sparkles",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "animate": "boolean",
+    "floatSpeed": "number",
+    "sparkleSpeed": "number"
+  },
+  "tags": [
+    "solana",
+    "tokens",
+    "crypto",
+    "coins",
+    "animation",
+    "web3"
+  ],
+  "category": [
+    "web3"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": []
+}
