@@ -23,6 +23,8 @@ export async function searchComponent(query: string): Promise<void> {
   results.forEach((component) => {
     console.log(`## ${component.name}`);
     console.log(`Description: ${component.description}`);
+    console.log(`Recommended: ${component.recommended}`);
+    console.log(`Similar Components: ${component.similar.join(", ")}`);
     console.log(`\n`);
   });
 

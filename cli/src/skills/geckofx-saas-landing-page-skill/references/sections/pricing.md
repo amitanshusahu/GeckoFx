@@ -23,9 +23,10 @@ The section should immediately communicate:
 ## Layout
 
 ```txt
-Large heading
+Section heading following -> ## Section Header from # Design Philosoply
+[section header](../philosophy.md)
 
-Billing toggle
+Billing toggle ( left alligned )
 (Monthly / Yearly)
 
 2 pricing cards
@@ -75,7 +76,7 @@ Gap between cards:
 
 Place above the cards.
 
-Aligned right.
+Aligned left.
 
 Floating segmented control.
 
@@ -223,7 +224,7 @@ Price
 
 ```
 72-96px
-Extra Bold
+Bold
 ```
 
 Billing period

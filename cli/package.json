@@ -1,12 +1,12 @@
 {
   "name": "geckofx",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "bin": {
     "geckofx": "./dist/index.js"
   },
   "scripts": {
-    "build": "rm -rf src/components && tsup src/index.ts --format esm --clean"
+    "build": "rm -rf src/components && tsup src/index.ts --format esm --clean && cp -r src/skills dist/skills"
   },
   "dependencies": {
     "@clack/prompts": "^1.7.0",

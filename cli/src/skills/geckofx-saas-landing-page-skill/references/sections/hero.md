@@ -1,11 +1,13 @@
 ## Hero
 
-Preferred structure: **center CTA + product image below**.
+hero must take up a minimum of 100vh.
+**Avoid**
+- Hero eyebrow / pill chip : A tiny uppercase letter-spaced label sitting immediately above an oversized hero headline, or the same shape rendered as a pill chip, avoid at all cost
+- Kicker / eyebrow label above heading : A tracked uppercase label above a heading, avoid at all costs
 
 ### Layout
 
 ```txt
-Badge (optional)
 Headline (max 2 lines)
 Subheadline (max 2 lines)
 Primary CTA + Secondary CTA
@@ -19,17 +21,17 @@ if product screenshot exists or user want's to add them later:
 
 ```tsx
 <section className="pt-24 pb-32">
-  <div className="mx-auto max-w-4xl text-center\">
+  <div className="mx-auto max-w-4xl text-center">
 
-    <h1 className="mt-6 text-[4rem] font-[510] tracking-tight">
+    <h1 className="text-[4rem] font-medium tracking-tight">
       The product development system for teams and agentsThe product development system for teams and agents
     </h1>
 
-    <p className="mx-auto mt-6 max-w-2xl text-[0.9rem] text-muted-foreground">
+    <p className="mx-auto mt-8 max-w-2xl text-[0.9rem] text-muted-foreground">
       Purpose-built for planning and building products. Designed for the <StyledUnderLinedSvgSpan> AI era </StyledUnderLinedSvgSpan>
     </p>
 
-    <div className="mt-10 flex justify-center gap-4">
+    <div className="mt-16 flex justify-center gap-4">
       <Button size="lg">Start free</Button>
       <Button variant="outline" size="lg">Book a demo</Button>
     </div>
@@ -40,6 +42,8 @@ if product screenshot exists or user want's to add them later:
   </div>
 </section>
 ```
+
+important # Type Scale from design philosohy -> typography
 
 ### Alternative layout
 

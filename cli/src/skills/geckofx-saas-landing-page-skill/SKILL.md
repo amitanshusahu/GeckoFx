@@ -11,11 +11,11 @@ Build minimal, premium SaaS landing pages inspired by Linear, Vercel, Stripe, An
 This skill focuses on **visually calm layouts**, **generous whitespace**, **clean typography**, and **structured bento sections**. The goal is to create pages that feel intentional and trustworthy rather than trendy and overdesigned.
 
 ---
-
+planning your landing page? Check out the
 [planning workflow](references/workflow.md)
 
 ---
-
+designing your landing page? Check out the
 [design philosophy](references/philosophy.md)
 
 ---
@@ -38,7 +38,7 @@ Footer
 ```
 
 check of references for each section while making theme:
-
+[navbar](references/sections/navbar.md)
 [hero section](references/sections/hero.md)
 [bento section](references/sections/bento.md)
 [pricing section](references/sections/pricing.md)
@@ -134,6 +134,7 @@ Before finishing, verify:
 - Every section has one purpose
 - Product remains the visual focus
 - Page feels calm
+- all of `# IMPORTANT: Must Avoid Slope` from [philosophy](references/philosophy.md) are avoided
 
 If any answer is "No",
 refine before finishing.
@@ -179,6 +180,9 @@ yarn add geckofx
 
 > !IMPORTANT: on adding componets using `npx geckofx add <component-name>` command, it gets added to your project in src/components/fx folder. You can then import and use the component in your code.
 
+**Reference:** : after adding required components using `npx geckofx add <component-name>` command, you can refer to it's documentation in [component reference](./references//components/<component-name>.json) file. The reference file will contain the component's props, usage examples, and other relevant information. if the reference file has where to use the component in the landing page, it will be mentioned in the reference file. if the usage does not match your requirements, try out similar components from the registry. 
+
+for example, if GpuCluster is recommended for background hero section, then look for similar components and add them to your project
 
 ## GeckoFX Themeing
 
