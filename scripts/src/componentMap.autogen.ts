@@ -1,7 +1,7 @@
 import { knowledgeBase } from "./knowledge";
 import fs from "fs";
 
-const componentMapGenPath = "../../src/component.map.autogen.ts";
+const componentMapGenPath = "./src/component.map.autogen.ts";
 
 function generateComponentMap() {
   const componentMapContent = `// IMPORTANT

@@ -1,10 +1,10 @@
 import { knowledgeBase } from "./knowledge";
 import fs from "fs";
 
-const typeGenPath = "./types/autogenTypes.ts";
+const typeGenPath = "./scripts/src/types/autogenTypes.ts";
 
 function generateTypeDefinitions() {
-  const componentNames = Object.entries(knowledgeBase).map(([name]) => name);
+  const componentNames = knowledgeBase.map((entry) => entry.name);
   const typeDefinitions = `// IMPORTANT
 // This file is auto-generated. Do not edit directly.
 
@@ -18,7 +18,7 @@ export type ComponentName = ${componentNames.map(name => `"${name}"`).join(" | "
 function main() {
   try {
     generateTypeDefinitions();
-    console.log("Type definitions generated successfully.");
+    console.log("Type definitions generated successfully. \n");
   } catch (error) {
     console.error("Error generating type definitions:", error);
   }

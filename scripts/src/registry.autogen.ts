@@ -42,7 +42,7 @@ async function generateResgistryJsonFiles() {
     console.log(`Generated: ${filePath}`);
   }
 
-  console.log(`\nDone! Generated ${knowledgeBase.length} registry json files in ${registryDir}`);
+  console.log(`\nDone! Generated ${knowledgeBase.length} registry json files in ${registryDir} \n`);
 }
 
 async function generateRegistryIndexFile() {
@@ -58,12 +58,14 @@ async function generateRegistryIndexFile() {
 export const componentMap = ${JSON.stringify(knowledgeBase, null, 2)};
 `;
   fs.writeFileSync(registryFilePath, registryIndexContent);
+  console.log(`Generated: ${registryFilePath} \n`);
 }
 
 async function main() {
   try {
     await generateResgistryJsonFiles();
     await generateRegistryIndexFile();
+    console.log("\n\n")
   }
   catch (error) {
     console.error("Error generating registry:", error);

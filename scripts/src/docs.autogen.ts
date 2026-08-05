@@ -99,7 +99,8 @@ async function main() {
       console.log(`Generated: ${filePath}`);
     }
 
-    console.log(`\nDone! Generated ${knowledgeBase.length} docs pages.`);
+    console.log(`\nDone! Generated ${knowledgeBase.length} docs pages. \n`);
+    console.log("\n\n")
   }
   catch (error) {
     console.error("Error generating docs:", error);

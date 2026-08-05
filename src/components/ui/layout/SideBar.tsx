@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { cn, toKebab, toLabel } from "../../../lib/utils";
-import { componentMap } from "../../../component.map";
+import { componentMap } from "../../../component.map.autogen";
 
 export default function SideBar({
   onNavigate,
