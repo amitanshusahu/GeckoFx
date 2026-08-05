@@ -6,7 +6,7 @@
     "geckofx": "./dist/index.js"
   },
   "scripts": {
-    "build": "rm -rf src/components && tsup src/index.ts --format esm --clean && cp -r src/skills dist/skills"
+    "build": "rm -rf src/components && tsup src/index.ts --format esm --clean && cp -r src/skills dist"
   },
   "dependencies": {
     "@clack/prompts": "^1.7.0",
