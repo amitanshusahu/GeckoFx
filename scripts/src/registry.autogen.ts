@@ -1,7 +1,7 @@
 import fs, { readFile } from "fs";
 import path from "path";
 import { toKebab } from "../../src/lib/utils";
-import { componentMap } from "../../src/component.map";
+import { knowledgeBase } from "./knowledge";
 
 async function getComponentContent(componentName: string): Promise<string> {
   const file = path.resolve(
@@ -31,7 +31,7 @@ async function generateResgistryJsonFiles() {
     fs.mkdirSync(registryDir, { recursive: true });
   }
 
-  for (const component of componentMap) {
+  for (const component of knowledgeBase) {
     const content = await getComponentContent(component.name);
     const registryJson = {
       name: component.name,
@@ -42,7 +42,7 @@ async function generateResgistryJsonFiles() {
     console.log(`Generated: ${filePath}`);
   }
 
-  console.log(`\nDone! Generated ${componentMap.length} registry json files in ${registryDir}`);
+  console.log(`\nDone! Generated ${knowledgeBase.length} registry json files in ${registryDir}`);
 }
 
 async function generateRegistryIndexFile() {
@@ -55,7 +55,7 @@ async function generateRegistryIndexFile() {
   const registryIndexContent = ` // IMPORTANT
 // This file is auto-generated. Do not edit directly.
 
-export const componentMap = ${JSON.stringify(componentMap, null, 2)};
+export const componentMap = ${JSON.stringify(knowledgeBase, null, 2)};
 `;
   fs.writeFileSync(registryFilePath, registryIndexContent);
 }
