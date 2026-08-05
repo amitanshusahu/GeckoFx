@@ -180,7 +180,7 @@ yarn add geckofx
 
 > !IMPORTANT: on adding componets using `npx geckofx add <component-name>` command, it gets added to your project in src/components/fx folder. You can then import and use the component in your code.
 
-**Reference:** : after adding required components using `npx geckofx add <component-name>` command, you can refer to it's documentation in [component reference](./references//components/<component-name>.json) file. The reference file will contain the component's props, usage examples, and other relevant information. if the reference file has where to use the component in the landing page, it will be mentioned in the reference file. if the usage does not match your requirements, try out similar components from the registry. 
+**Reference:** : after adding required components using `npx geckofx add <component-name>` command, you can refer to it's documentation in [component reference](./references/components/) `<component-name>.json` file. The reference file will contain the component's props, usage examples, and other relevant information. if the reference file has where to use the component in the landing page, it will be mentioned in the reference file. if the usage does not match your requirements, try out similar components from the registry. 
 
 for example, if GpuCluster is recommended for background hero section, then look for similar components and add them to your project
 
