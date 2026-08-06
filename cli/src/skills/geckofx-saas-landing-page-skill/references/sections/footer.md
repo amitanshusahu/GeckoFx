@@ -18,15 +18,15 @@ Desktop
 
 ```txt
 ┌──────────────┬────────────────────────────────────┐
-│              │ Link Column                        │
-│ Logo         │ Link Column                        │
-│ Tagline      │ Link Column                        │
+│              │                        Link Column │
+│ Logo         │                        Link Column │
+│ Tagline      │                        Link Column │
 │              │                                    │
-│ Newsletter   │                     Socials        │
+│ Newsletter   │                            Socials │
 └──────────────┴────────────────────────────────────┘
 
 ┌───────────────────────────────────────────────────┐
-│ Copyright                CTA                      │ 
+│ Copyright                                     CTA │ 
 └───────────────────────────────────────────────────┘
 
 APP NAME
@@ -62,9 +62,9 @@ Desktop
 30% | 70%
 ```
 
-The left column introduces the brand.
+The left column introduces the brand. (left aligned)
 
-The right column contains navigation and social links.
+The right column contains navigation and social links. (right aligned)
 
 Do not center the footer.
 
