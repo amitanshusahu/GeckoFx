@@ -14,8 +14,9 @@ cli.command("", "MultiSelect Components to add to your project")
         await addComponents();
     })
 
-cli.command("add <component...>", "Add a components from the registry to the project")
-    .action(async (components: string[]) => {
+cli.command("add", "Add a components from the registry to the project")
+    .action(async () => {
+        const components = process.argv.slice(3); // first 3 is bun, geckofx, add
         for (const component of components) {
             await addComponent(component);
         }
