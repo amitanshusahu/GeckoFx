@@ -40,7 +40,7 @@ export const knowledgeBase: knowledgeBaseEntry[] = [
     },
     tags: ["server", "stack", "led", "animation", "hardware", "infrastructure"],
     category: [categories.infrastructure],
-    recommended: [recommendations.bentoNarrow],
+    recommended: [recommendations.bentoNarrow, recommendations.hero],
     similar: ["ServerRack"],
   },
   {
@@ -100,7 +100,7 @@ export const knowledgeBase: knowledgeBaseEntry[] = [
     },
     tags: ["data flow", "network", "rack", "server", "hardware", "infrastructure"],
     category: [categories.infrastructure],
-    recommended: [recommendations.bentoNarrow, recommendations.hero],
+    recommended: [recommendations.bentoNarrow],
     similar: ["ServerStack"],
   },
   {
@@ -291,7 +291,7 @@ export const knowledgeBase: knowledgeBaseEntry[] = [
     },
     tags: ["mechanical key", "glow", "animation", "hardware"],
     category: [categories.hardware],
-    recommended: [recommendations.bentoNarrow, "bento should be longer in height", recommendations.hero],
+    recommended: [recommendations.bentoNarrow, "bento should be longer in height if used in bento", recommendations.hero],
     similar: [],
   },
   {

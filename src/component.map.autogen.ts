@@ -22,7 +22,8 @@ export const componentMap = [
       "infrastructure"
     ],
     "recommended": [
-      "can be used in bento narrow sections of landing pages"
+      "can be used in bento narrow sections of landing pages",
+      "can be used in hero sections of landing pages"
     ],
     "similar": [
       "ServerRack"
@@ -143,8 +144,7 @@ export const componentMap = [
       "infrastructure"
     ],
     "recommended": [
-      "can be used in bento narrow sections of landing pages",
-      "can be used in hero sections of landing pages"
+      "can be used in bento narrow sections of landing pages"
     ],
     "similar": [
       "ServerStack"
@@ -476,7 +476,7 @@ export const componentMap = [
     ],
     "recommended": [
       "can be used in bento narrow sections of landing pages",
-      "bento should be longer in height",
+      "bento should be longer in height if used in bento",
       "can be used in hero sections of landing pages"
     ],
     "similar": []
