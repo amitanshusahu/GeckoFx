@@ -276,9 +276,9 @@ Choose **one**:
 Never combine more than **two** background treatments.
 
 ### Step 2 — Heading Fade
-
+give a fadeed bg in heading, from card backgroudn color to transparent so that the card bg visulas does not impact the redability of the heading content
 ```tsx
-<div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-background to-transparent" />
+<div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-card-background to-transparent" />
 ```
 
 ### Step 3 — Content
@@ -307,7 +307,7 @@ Place the SVG in the lower portion of the card.
 ```tsx
 <Card className="group relative overflow-hidden rounded-3xl border bg-surface">
   <div className="absolute inset-0 bg-grid opacity-40" />
-  <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-background to-transparent" />
+  <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-card-background to-transparent" />
 
   <div className="relative flex h-full min-h-[420px] flex-col p-8">
     <div>

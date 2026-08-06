@@ -9,7 +9,7 @@
 * **One visual focus per section** — do not compete for attention.
 * **Premium over playful** — think enterprise AI startup, not indie launch page.
 * no eybrow, perfer oklch for soft gradients 
-example, for hilighted pricing card bottom section
+example, for hilighted pricing cards bottom section, which can change depending on the accent color choosed
 ```
 bg-[radial-gradient(in_oklch_120%_120%_at_50%_120%,#12283F_0%,#1B1430_45%,#14140F_100%)]
 ```

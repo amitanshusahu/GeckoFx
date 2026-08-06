@@ -118,7 +118,7 @@ A good test: **if the page still looks premium after removing every gradient, th
 
 ---
 
-## Final Design Review
+# Final Design Review (Must Pass Before Launch)
 
 Before finishing, verify:
 - Hero fits in one viewport
