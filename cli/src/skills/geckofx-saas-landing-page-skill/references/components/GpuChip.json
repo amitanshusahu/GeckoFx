@@ -1,0 +1,26 @@
+{
+  "name": "GpuChip",
+  "description": "a single GPU chip with a grid of connection dots and animated stroke effects",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "float": "boolean"
+  },
+  "tags": [
+    "gpu",
+    "chip",
+    "processor",
+    "hardware",
+    "ai"
+  ],
+  "category": [
+    "ai"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": [
+    "Gpu",
+    "GpuCluster"
+  ]
+}

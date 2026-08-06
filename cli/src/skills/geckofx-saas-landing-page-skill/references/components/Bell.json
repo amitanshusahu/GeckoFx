@@ -1,0 +1,24 @@
+{
+  "name": "Bell",
+  "description": "a bell with a frosted glass body and a clapper that shakes with an animated wobble effect",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "animate": "boolean",
+    "shakeDuration": "number"
+  },
+  "tags": [
+    "bell",
+    "shake",
+    "animation",
+    "frosted glass",
+    "icons"
+  ],
+  "category": [
+    "icons"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": []
+}

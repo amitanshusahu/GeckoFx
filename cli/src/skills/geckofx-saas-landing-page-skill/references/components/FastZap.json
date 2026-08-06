@@ -1,0 +1,24 @@
+{
+  "name": "FastZap",
+  "description": "a fast zap animation with animated lines and gradients",
+  "props": {
+    "className": "string",
+    "color": "string",
+    "animate": "boolean",
+    "speedLineDuration": "number",
+    "shakeDuration": "number"
+  },
+  "tags": [
+    "zap",
+    "animation",
+    "hardware",
+    "infrastructure"
+  ],
+  "category": [
+    "effects"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": []
+}

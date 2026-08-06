@@ -1,0 +1,25 @@
+{
+  "name": "AudioChip",
+  "description": "a single audio chip with animated glow and floating effects",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "float": "boolean",
+    "animate": "boolean"
+  },
+  "tags": [
+    "audio",
+    "chip",
+    "hardware",
+    "animation"
+  ],
+  "category": [
+    "ai"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": [
+    "MicRipple"
+  ]
+}

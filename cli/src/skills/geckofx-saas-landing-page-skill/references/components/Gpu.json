@@ -1,0 +1,27 @@
+{
+  "name": "Gpu",
+  "description": "a single GPU chip with animated cooling fans and glowing effects",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "rotationDuration": "number"
+  },
+  "tags": [
+    "gpu",
+    "chip",
+    "fan",
+    "animation",
+    "hardware",
+    "ai"
+  ],
+  "category": [
+    "ai"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages"
+  ],
+  "similar": [
+    "GpuChip",
+    "GpuCluster"
+  ]
+}

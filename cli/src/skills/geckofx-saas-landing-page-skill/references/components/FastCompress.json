@@ -1,0 +1,21 @@
+{
+  "name": "FastCompress",
+  "description": "a fast compression animation with animated lines and stars",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "animation": "boolean",
+    "speed": "number"
+  },
+  "tags": [
+    "compression",
+    "animation",
+    "hardware",
+    "infrastructure"
+  ],
+  "category": [
+    "effects"
+  ],
+  "recommended": [],
+  "similar": []
+}

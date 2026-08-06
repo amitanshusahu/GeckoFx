@@ -1,6 +1,6 @@
 import fs from "fs";
 import { toKebab } from "../../src/lib/utils";
-import { componentMap } from "../../src/component.map";
+import { knowledgeBase } from "./knowledge";
 
 function generateDocsPageContent(componentName: string) {
 
@@ -92,14 +92,15 @@ async function main() {
       fs.mkdirSync(docsDir, { recursive: true });
     }
 
-    for (const component of componentMap) {
+    for (const component of knowledgeBase) {
       const content = generateDocsPageContent(component.name);
       const filePath = getRouteFilePath(component.name);
       fs.writeFileSync(filePath, content.trimStart());
       console.log(`Generated: ${filePath}`);
     }
 
-    console.log(`\nDone! Generated ${componentMap.length} docs pages.`);
+    console.log(`\nDone! Generated ${knowledgeBase.length} docs pages. \n`);
+    console.log("\n\n")
   }
   catch (error) {
     console.error("Error generating docs:", error);

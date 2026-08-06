@@ -1,0 +1,28 @@
+{
+  "name": "CubicStructure3D",
+  "description": "a 3D isometric structure made of cubes with optional floating and magnetic effects",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "float": "boolean",
+    "floatDistance": "number"
+  },
+  "tags": [
+    "cubic structure",
+    "3D",
+    "isometric",
+    "animation",
+    "effects"
+  ],
+  "category": [
+    "effects"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages",
+    "can be used in hero sections of landing pages"
+  ],
+  "similar": [
+    "ConnectCube",
+    "CubicLattice"
+  ]
+}

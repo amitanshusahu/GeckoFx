@@ -1,0 +1,27 @@
+{
+  "name": "MechanicalKey",
+  "description": "a mechanical key with a glowing effect and staggered animation of key components",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "animate": "boolean",
+    "staggerDelay": "number",
+    "initialDelay": "number",
+    "duration": "number"
+  },
+  "tags": [
+    "mechanical key",
+    "glow",
+    "animation",
+    "hardware"
+  ],
+  "category": [
+    "hardware"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages",
+    "bento should be longer in height if used in bento",
+    "can be used in hero sections of landing pages"
+  ],
+  "similar": []
+}

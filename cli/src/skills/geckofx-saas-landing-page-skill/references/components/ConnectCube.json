@@ -1,0 +1,34 @@
+{
+  "name": "ConnectCube",
+  "description": "a 3D isometric cube with connecting lines and animated beam effects",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "float": "boolean",
+    "floatDistance": "number",
+    "floatDelay": "number",
+    "beam": "boolean",
+    "magnetic": "boolean",
+    "ping": "boolean"
+  },
+  "tags": [
+    "cube",
+    "connection",
+    "network",
+    "3d",
+    "isometric",
+    "infrastructure"
+  ],
+  "category": [
+    "infrastructure",
+    "web3"
+  ],
+  "recommended": [
+    "can be used in bento narrow sections of landing pages",
+    "can be used in hero sections of landing pages"
+  ],
+  "similar": [
+    "CubicLattice",
+    "CubicStructure3D"
+  ]
+}

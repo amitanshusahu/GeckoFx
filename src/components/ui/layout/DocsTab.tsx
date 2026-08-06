@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
 import { cn } from "../../../lib/utils";
-import { componentMap } from "../../../component.map";
+import { componentMap } from "../../../component.map.autogen";
 
 type DocsTabProps = {
   children: ReactNode,

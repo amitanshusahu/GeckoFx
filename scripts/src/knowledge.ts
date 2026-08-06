@@ -1,3 +1,5 @@
+import type { ComponentName } from "./types/autogenTypes"
+
 const categories = {
   hardware: "hardware",
   ai: "ai",
@@ -5,17 +7,29 @@ const categories = {
   infrastructure: "infrastructure",
   effects: "effects",
   icons: "icons",
+  background: "background",
 }
 
-type ComponentMapEntry = {
+type knowledgeBaseEntry = {
   name: string
   description: string
   props: Record<string, string | string[]>
   tags: string[]
   category: string[]
+  recommended: string[]
+  similar: ComponentName[]
+  example?: string
 }
 
-export const componentMap: ComponentMapEntry[] = [
+const recommendations = {
+  hero: "can be used in hero sections of landing pages",
+  bentoNarrow: "can be used in bento narrow sections of landing pages",
+  bentoWide: "can be used in bento wide sections of landing pages",
+  bentoFull: "can be used in bento full sections of landing pages",
+  background: "can be used in as background in landing pages",
+}
+
+export const knowledgeBase: knowledgeBaseEntry[] = [
   {
     name: "ServerStack",
     description: "a stack of three server units with animated LED indicators that flicker and pulse",
@@ -25,7 +39,9 @@ export const componentMap: ComponentMapEntry[] = [
       flicker: "boolean",
     },
     tags: ["server", "stack", "led", "animation", "hardware", "infrastructure"],
-    category: [ categories.infrastructure],
+    category: [categories.infrastructure],
+    recommended: [recommendations.bentoNarrow, recommendations.hero],
+    similar: ["ServerRack"],
   },
   {
     name: "GpuCluster",
@@ -36,7 +52,9 @@ export const componentMap: ComponentMapEntry[] = [
       fanAnimation: "boolean",
     },
     tags: ["gpu", "cluster", "chip", "fan", "animation", "hardware", "ai"],
-    category: [ categories.ai],
+    category: [categories.ai],
+    recommended: [recommendations.hero, recommendations.background],
+    similar: ["GpuChip", "Gpu"],
   },
   {
     name: "GpuChip",
@@ -47,7 +65,9 @@ export const componentMap: ComponentMapEntry[] = [
       float: "boolean",
     },
     tags: ["gpu", "chip", "processor", "hardware", "ai"],
-    category: [ categories.ai],
+    category: [categories.ai],
+    recommended: [recommendations.bentoNarrow],
+    similar: ["Gpu", "GpuCluster"],
   },
   {
     name: "ConnectCube",
@@ -64,6 +84,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["cube", "connection", "network", "3d", "isometric", "infrastructure"],
     category: [categories.infrastructure, categories.web3],
+    recommended: [recommendations.bentoNarrow, recommendations.hero],
+    similar: ["CubicLattice", "CubicStructure3D"],
   },
   {
     name: "ServerRack",
@@ -78,6 +100,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["data flow", "network", "rack", "server", "hardware", "infrastructure"],
     category: [categories.infrastructure],
+    recommended: [recommendations.bentoNarrow],
+    similar: ["ServerStack"],
   },
   {
     name: "Gpu",
@@ -88,7 +112,9 @@ export const componentMap: ComponentMapEntry[] = [
       rotationDuration: "number",
     },
     tags: ["gpu", "chip", "fan", "animation", "hardware", "ai"],
-    category: [ categories.ai],
+    category: [categories.ai],
+    recommended: [recommendations.bentoNarrow],
+    similar: ["GpuChip", "GpuCluster"],
   },
   {
     name: "AudioChip",
@@ -100,7 +126,9 @@ export const componentMap: ComponentMapEntry[] = [
       animate: "boolean",
     },
     tags: ["audio", "chip", "hardware", "animation"],
-    category: [ categories.ai],
+    category: [categories.ai],
+    recommended: [recommendations.bentoNarrow],
+    similar: ["MicRipple"],
   },
   {
     name: "MicRipple",
@@ -115,6 +143,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["microphone", "ripple", "animation", "hardware", "audio"],
     category: [categories.hardware],
+    recommended: [recommendations.bentoNarrow],
+    similar: ["AudioChip"],
   },
   {
     name: "RadarScan",
@@ -126,6 +156,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["radar", "scan", "animation", "hardware", "infrastructure"],
     category: [categories.infrastructure],
+    recommended: [recommendations.bentoNarrow],
+    similar: ["RoboBrain"],
   },
   {
     name: "FastCompress",
@@ -138,6 +170,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["compression", "animation", "hardware", "infrastructure"],
     category: [categories.effects],
+    recommended: [],
+    similar: [],
   },
   {
     name: "FastZap",
@@ -151,6 +185,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["zap", "animation", "hardware", "infrastructure"],
     category: [categories.effects],
+    recommended: [recommendations.bentoNarrow],
+    similar: [],
   },
   {
     name: "RoboBrain",
@@ -166,7 +202,9 @@ export const componentMap: ComponentMapEntry[] = [
       radarDuration: "number",
     },
     tags: ["robotic", "brain", "animation", "hardware", "ai"],
-    category: [ categories.ai],
+    category: [categories.ai],
+    recommended: [recommendations.bentoNarrow],
+    similar: ["Gpu"],
   },
   {
     name: "Clock",
@@ -179,6 +217,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["clock", "animation", "hardware", "effects"],
     category: [categories.hardware],
+    recommended: [recommendations.bentoNarrow],
+    similar: [],
   },
   {
     name: "IsometricCamera",
@@ -191,6 +231,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["camera", "recording", "isometric", "led", "animation", "hardware"],
     category: [categories.hardware],
+    recommended: [recommendations.bentoNarrow],
+    similar: [],
   },
   {
     name: "ArrowInCubicLattice",
@@ -205,6 +247,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["arrow", "cubic lattice", "3D", "animation", "effects"],
     category: [categories.effects],
+    recommended: [recommendations.bentoNarrow, recommendations.hero],
+    similar: [],
   },
   {
     name: "Folder",
@@ -216,6 +260,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["folder", "frosted glass", "file storage", "organization", "animation"],
     category: [categories.icons],
+    recommended: [recommendations.bentoNarrow],
+    similar: [],
   },
   {
     name: "SolanaTokens",
@@ -229,6 +275,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["solana", "tokens", "crypto", "coins", "animation", "web3"],
     category: [categories.web3],
+    recommended: [recommendations.bentoNarrow],
+    similar: [],
   },
   {
     name: "MechanicalKey",
@@ -243,6 +291,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["mechanical key", "glow", "animation", "hardware"],
     category: [categories.hardware],
+    recommended: [recommendations.bentoNarrow, "bento should be longer in height if used in bento", recommendations.hero],
+    similar: [],
   },
   {
     name: "DartInBullseye",
@@ -255,6 +305,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["dart", "bullseye", "target", "animation", "effects"],
     category: [categories.effects],
+    recommended: [recommendations.bentoNarrow],
+    similar: [],
   },
   {
     name: "FileUpload",
@@ -268,6 +320,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["file", "upload", "arrow", "animation", "icons"],
     category: [categories.icons],
+    recommended: [recommendations.bentoNarrow],
+    similar: ["Folder"],
   },
   {
     name: "MessageBubble",
@@ -282,6 +336,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["message", "chat", "bubble", "wave", "animation", "icons"],
     category: [categories.icons],
+    recommended: [recommendations.bentoNarrow],
+    similar: [],
   },
   {
     name: "Lock",
@@ -296,6 +352,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["lock", "security", "animation", "icons"],
     category: [categories.icons],
+    recommended: [recommendations.bentoNarrow],
+    similar: [],
   },
   {
     name: "CubicLattice",
@@ -310,6 +368,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["cubic lattice", "3D", "animation", "effects"],
     category: [categories.effects],
+    recommended: [recommendations.bentoNarrow, recommendations.hero],
+    similar: ["ConnectCube", "CubicStructure3D", "ArrowInCubicLattice"],
   },
   {
     name: "Bell",
@@ -322,6 +382,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["bell", "shake", "animation", "frosted glass", "icons"],
     category: [categories.icons],
+    recommended: [recommendations.bentoNarrow],
+    similar: [],
   },
   {
     name: "RibbonBadge",
@@ -334,6 +396,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["ribbon", "badge", "animation", "pop", "frosted glass", "effects"],
     category: [categories.icons],
+    recommended: [recommendations.bentoNarrow],
+    similar: [],
   },
   {
     name: "ZapWithRipple",
@@ -349,6 +413,8 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["zap", "ripple", "heartbeat", "animation", "effects"],
     category: [categories.effects],
+    recommended: [recommendations.bentoNarrow],
+    similar: [],
   },
   {
     name: "CubicStructure3D",
@@ -361,5 +427,7 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["cubic structure", "3D", "isometric", "animation", "effects"],
     category: [categories.effects],
+    recommended: [recommendations.bentoNarrow, recommendations.hero],
+    similar: ["ConnectCube", "CubicLattice"],
   },
 ]

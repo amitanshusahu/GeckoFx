@@ -1,0 +1,29 @@
+{
+  "name": "GpuCluster",
+  "description": "a cluster of GPU chips arranged in a grid pattern with animated cooling fans and glowing effects",
+  "props": {
+    "className": "string",
+    "colors": "Partial<Colors>",
+    "fanAnimation": "boolean"
+  },
+  "tags": [
+    "gpu",
+    "cluster",
+    "chip",
+    "fan",
+    "animation",
+    "hardware",
+    "ai"
+  ],
+  "category": [
+    "ai"
+  ],
+  "recommended": [
+    "can be used in hero sections of landing pages",
+    "can be used in as background in landing pages"
+  ],
+  "similar": [
+    "GpuChip",
+    "Gpu"
+  ]
+}
