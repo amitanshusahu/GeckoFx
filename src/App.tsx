@@ -26,7 +26,7 @@ function App() {
                     onClick={() => {
                       router.navigate({ to: "/docs/server-stack" })
                     }}
-                    className="mt-8 lg:mt-15 border border-dashed border-primary/40 px-6 lg:px-10 py-4 lg:py-5 relative bg-primary/15 text-[#FF86AC] text-base lg:text-lg cursor-pointer hover:bg-primary/20 transition-all duration-300"
+                    className="mt-8 lg:mt-15 border border-dashed border-primary/40 px-6 lg:px-10 py-4 lg:py-5 relative bg-primary/15 text-secondary text-base lg:text-lg cursor-pointer hover:bg-primary/20 transition-all duration-300"
                   >
                     Premium SVG Components
                     <Edges color="#FF4C85" opacity={100} />
@@ -35,7 +35,7 @@ function App() {
                 <div className="mt-10 lg:mt-20 flex items-center gap-4 lg:gap-6">
                   <Logo />
                   <div className="w-1 h-1 bg-neutral-400 rounded-full"></div>
-                  <span className="text-neutral-400 text-sm">npx geckofx skill</span>
+                  <span className="text-secondary text-sm">npx geckofx skill</span>
                 </div>
               </div>
               {/* hero right */}

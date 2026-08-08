@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TestRouteImport } from './routes/test'
 import { Route as DocsRouteRouteImport } from './routes/docs/route'
+import { Route as CliRouteRouteImport } from './routes/cli/route'
 import { Route as IndexRouteImport } from './routes/index'
 
 const DocsZapWithRippleLazyRouteImport = createFileRoute(
@@ -65,6 +66,11 @@ const TestRoute = TestRouteImport.update({
 const DocsRouteRoute = DocsRouteRouteImport.update({
   id: '/docs',
   path: '/docs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CliRouteRoute = CliRouteRouteImport.update({
+  id: '/cli',
+  path: '/cli',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -252,6 +258,7 @@ const DocsArrowInCubicLatticeLazyRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cli': typeof CliRouteRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
   '/docs/arrow-in-cubic-lattice': typeof DocsArrowInCubicLatticeLazyRoute
@@ -284,6 +291,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cli': typeof CliRouteRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
   '/docs/arrow-in-cubic-lattice': typeof DocsArrowInCubicLatticeLazyRoute
@@ -317,6 +325,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cli': typeof CliRouteRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
   '/docs/arrow-in-cubic-lattice': typeof DocsArrowInCubicLatticeLazyRoute
@@ -351,6 +360,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/cli'
     | '/docs'
     | '/test'
     | '/docs/arrow-in-cubic-lattice'
@@ -383,6 +393,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/cli'
     | '/docs'
     | '/test'
     | '/docs/arrow-in-cubic-lattice'
@@ -415,6 +426,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/cli'
     | '/docs'
     | '/test'
     | '/docs/arrow-in-cubic-lattice'
@@ -448,6 +460,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CliRouteRoute: typeof CliRouteRoute
   DocsRouteRoute: typeof DocsRouteRouteWithChildren
   TestRoute: typeof TestRoute
 }
@@ -466,6 +479,13 @@ declare module '@tanstack/react-router' {
       path: '/docs'
       fullPath: '/docs'
       preLoaderRoute: typeof DocsRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cli': {
+      id: '/cli'
+      path: '/cli'
+      fullPath: '/cli'
+      preLoaderRoute: typeof CliRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -733,6 +753,7 @@ const DocsRouteRouteWithChildren = DocsRouteRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CliRouteRoute: CliRouteRoute,
   DocsRouteRoute: DocsRouteRouteWithChildren,
   TestRoute: TestRoute,
 }
