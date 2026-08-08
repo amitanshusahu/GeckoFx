@@ -3,61 +3,7 @@
   
 </div>
 
-# GeckoFX
-
-> Open-source library of premium animated SVG components for modern websites. [live link](https://geckofx.geckostack.store/)
-
-GeckoFX is a collection of handcrafted SVG components designed for developers who want their products to look technical, futuristic, and memorable.
-
-No generic corporate illustrations. No bloated assets.
-
-Just clean, customizable, animated SVGs built for landing pages, dashboards, developer tools, AI products, infrastructure platforms, and startups.
-
-### Why GeckoFX?
-
-Most illustration libraries are filled with people pointing at charts.
-
-GeckoFX focuses on what developers actually build and love:
-
-- AI chips
-- Satellites
-- Server racks
-- Drones
-- Mechs
-- GPUs
-- Robotics
-- Infrastructure
-- Sci-fi inspired technology
-
-Every asset is designed as a reusable component with animation and theming support.
-
-## Features
-
-- Lightweight SVG-based components
-- Built for React
-- Smooth motion-powered animations
-- Themeable colors and styles
-- Dark-mode friendly
-- Open source
-- Developer-first API
-
-## Example
-
-```tsx
-import { Satellite } from "@geckofx/react";
-
-export default function Hero() {
-  return (
-    <Satellite
-      size={420}
-      animate
-      theme="neon"
-    />
-  );
-}
-```
-
-## Philosophy
+> library of premium animated SVG components for modern websites. [live link](https://geckofx.geckostack.store/)
 
 The modern web has become increasingly generic.
 
@@ -65,38 +11,71 @@ GeckoFX exists to bring back personality, engineering aesthetics, and visual ide
 
 **Making the internet less slope.**
 
-## Roadmap
+## CLI Usage
 
-### Core Collection
+GeckoFX ships with a developer-first CLI that lets you install components, search the registry, and scaffold AI agent skills — all from your terminal.
 
-* [ ] Satellite
-* [ ] Turret
-* [ ] Drone
-* [ ] AI Chip
-* [ ] GPU Cluster
-* [ ] Server Rack
-* [ ] Robot Arm
-* [ ] Mechanical Keyboard
-* [ ] Quantum Core
-* [ ] Validator Node
+### Installation
 
-### Themes
+Install the `geckofx` package in your project to use the CLI:
 
-* [ ] Wireframe
-* [ ] Blueprint
-* [ ] Neon
-* [ ] Terminal
+```bash
+npm install geckofx
+# or
+bun add geckofx
+# or
+yarn add geckofx
+```
 
-### Future
+You can also run it without installing via `npx`.
 
-* [ ] Component CLI
-* [ ] Motion presets
-* [ ] Figma support
-* [ ] SVG generation tooling
-* [ ] Interactive playground
+### Commands
 
-## Contributing
+#### `npx geckofx`
 
-Contributions, ideas, and new component designs are welcome.
+Launch an interactive multiselect with a live searchable list of every component in the registry. Pick any number of components and they get added to your project.
 
-If you've built something that deserves a place in GeckoFX, open a PR.
+```bash
+npx geckofx
+```
+
+#### `npx geckofx add <name...>`
+
+Add one or more components by name directly. Already have the component? The CLI will prompt you before overwriting.
+
+```bash
+# add a single component
+npx geckofx add ConnectCube
+
+# add multiple components at once
+npx geckofx add ConnectCube ServerRack AI-Chip
+```
+
+Components are written to `src/components/fx/<Name>.tsx`.
+
+#### `npx geckofx search <query>`
+
+Query the component registry like a search engine. The query can be a component name, a keyword, a category, or even a description (e.g. `fan rotating`). Results are printed with the component name, description, recommendation status, and similar components.
+
+```bash
+npx geckofx search web3
+npx geckofx search satellite
+```
+
+#### `npx geckofx find`
+
+Loop-based search-and-add. Enter a query, get a filtered list of matching components, select the ones you want — then repeat with a new query until you're done. Perfect for exploring the registry.
+
+```bash
+npx geckofx find
+```
+
+#### `npx geckofx skill`
+
+Scaffold the GeckoFX skill into your project as an AI agent skill for building SaaS landing pages with GeckoFX components.
+
+```bash
+npx geckofx skill
+```
+
+The skill is installed to `.agents/skills/geckofx-saas-landing-page-skill` in your project root.
