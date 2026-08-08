@@ -78,4 +78,12 @@ Scaffold the GeckoFX skill into your project as an AI agent skill for building S
 npx geckofx skill
 ```
 
-The skill is installed to `.agents/skills/geckofx-saas-landing-page-skill` in your project root.
+By default the skill is installed to `.agents/skills/geckofx-saas-landing-page-skill` in your project root. Use `--claude` and/or `--cursor` to install it for those agents instead - the flags can be combined:
+
+```bash
+# install to .claude/skills
+npx geckofx skill --claude
+
+# install to both .claude/skills and .cursor/skills
+npx geckofx skill --claude --cursor
+```
