@@ -32,8 +32,10 @@ function App() {
                     <Edges color="#FF4C85" opacity={100} />
                   </button>
                 </div>
-                <div className="mt-10 lg:mt-20">
+                <div className="mt-10 lg:mt-20 flex items-center gap-4 lg:gap-6">
                   <Logo />
+                  <div className="w-1 h-1 bg-neutral-400 rounded-full"></div>
+                  <span className="text-neutral-400 text-sm">npx geckofx skill</span>
                 </div>
               </div>
               {/* hero right */}
