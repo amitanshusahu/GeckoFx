@@ -32,9 +32,13 @@ cli.command("search <query>", "Search for a component in the registry")
         await searchComponent(query);
     });
 
-cli.command("skill", "Add a skill to your project")
-    .action(() => {
-        addSkill();
+cli.command("skill ", "Add geckofx skill to your project's .agenets/skills folder")
+    .option("--claude", "Add a skill to .claude/skills")
+    .option("--cursor", "Add a skill to .cursor/skills")
+    .action((options) => {
+        // bunx geckofx skill --claude --cursor 
+        // { '--': [], claude: true, cursor: true }
+        addSkill(options);
     });
 
 cli.help();
